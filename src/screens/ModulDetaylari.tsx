@@ -8,14 +8,33 @@
 // 4. Replace placeholder data with props/state
 
 import { useState } from "react";
+import type { ScreenId, AppState, HabitatModule } from '../types/domain';
 
 interface ModulDetaylariProps {
-  currentScreen: import('../types/domain').ScreenId;
-  onNavigate: (screen: import('../types/domain').ScreenId) => void;
-  state?: import('../types/domain').AppState;
+  currentScreen: ScreenId;
+  onNavigate: (screen: ScreenId) => void;
+  state?: AppState;
+  onEditModule: () => void;
+  onUpdateModule: (id: string, updates: Partial<HabitatModule>) => void;
+  onRemoveModule: (id: string) => void;
 }
 
-export function ModulDetaylari({ currentScreen, onNavigate, state }: ModulDetaylariProps) {
+export function ModulDetaylari({ currentScreen, onNavigate, state, onEditModule, onUpdateModule, onRemoveModule }: ModulDetaylariProps) {
+  const module = state?.selectedModuleId ? state.modules.find(m => m.id === state.selectedModuleId) : undefined;
+
+  if (!module) {
+    return (
+      <div className="ml-64 mt-16 p-gutter flex flex-col items-center justify-center h-[calc(100vh-64px)]">
+      <span className="material-symbols-outlined text-6xl text-outline mb-4">help</span>
+      <h2 className="font-display-tr text-display-tr text-on-surface mb-2">Modül Bulunamadı</h2>
+      <p className="font-body-tr text-body-tr text-on-surface-variant mb-4">Seçili modül verisi mevcut değil.</p>
+      <button onClick={() => onNavigate('habitat')} className="bg-primary-container text-on-primary-container px-md py-sm rounded hover:bg-inverse-primary transition-colors">Habitat Tasarımına Dön</button>
+      </div>
+    );
+  }
+
+  const connectedModules = state?.modules.filter(m => m.id !== module.id).slice(0, 3) ?? [];
+  const isActive = module.status === 'active';
   return (
     <>
       {/* TopNavBar */}
@@ -100,20 +119,24 @@ export function ModulDetaylari({ currentScreen, onNavigate, state }: ModulDetayl
       <div className="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-surface-variant pb-md">
       <div>
       <div className="flex items-center gap-2 mb-2">
-      <span className="font-label-tr text-label-tr text-primary-fixed uppercase tracking-widest bg-primary-container/20 px-2 py-0.5 rounded-sm border border-primary-container/30 shadow-[0_0_8px_rgba(37,99,235,0.2)]">ENERJİ SİSTEMLERİ</span>
+      <span className="font-label-tr text-label-tr text-primary-fixed uppercase tracking-widest bg-primary-container/20 px-2 py-0.5 rounded-sm border border-primary-container/30 shadow-[0_0_8px_rgba(37,99,235,0.2)]">{getModuleCategory(module.type)}</span>
       <span className="w-1 h-1 rounded-full bg-outline-variant"></span>
-      <span className="font-label-tr text-label-tr text-outline">MODÜL ID: PWR-A-092</span>
+      <span className="font-label-tr text-label-tr text-outline">MODÜL ID: {module.id}</span>
       </div>
-      <h1 className="font-display-tr text-display-tr text-on-surface m-0">Güç Reaktörü Alpha</h1>
+      <h1 className="font-display-tr text-display-tr text-on-surface m-0">{module.name}</h1>
       </div>
       <div className="flex gap-sm">
-      <button className="bg-transparent border border-surface-variant text-on-surface font-label-tr text-label-tr px-4 py-2 rounded-DEFAULT hover:bg-surface-container-high transition-colors flex items-center gap-2">
+      <button onClick={onEditModule} className="bg-transparent border border-surface-variant text-on-surface font-label-tr text-label-tr px-4 py-2 rounded-DEFAULT hover:bg-surface-container-high transition-colors flex items-center gap-2">
       <span className="material-symbols-outlined text-[18px]">build</span>
-                              Bakım Başlat
+                              Düzenle
                           </button>
-      <button className="bg-error-container/20 border border-error/50 text-error font-label-tr text-label-tr px-4 py-2 rounded-DEFAULT hover:bg-error-container/40 transition-colors flex items-center gap-2">
+      <button onClick={() => {
+                        if (confirm(`${module.name} modülü devre dışı bırakılacak. Emin misiniz?`)) {
+                          onUpdateModule(module.id, { status: module.status === 'active' ? 'offline' : 'active' });
+                        }
+                      }} className="bg-error-container/20 border border-error/50 text-error font-label-tr text-label-tr px-4 py-2 rounded-DEFAULT hover:bg-error-container/40 transition-colors flex items-center gap-2">
       <span className="material-symbols-outlined text-[18px]">power_settings_new</span>
-                              Devre Dışı Bırak
+                              {module.status === 'active' ? 'Devre Dışı Bırak' : 'Aktifleştir'}
                           </button>
       </div>
       </div>
@@ -127,22 +150,22 @@ export function ModulDetaylari({ currentScreen, onNavigate, state }: ModulDetayl
                                   Çekirdek Çıkış Verileri
                               </h3>
       <div className="flex items-center gap-2 bg-primary-container/10 px-3 py-1 rounded-full border border-primary-container/30 shadow-[0_0_8px_rgba(37,99,235,0.2)]">
-      <span className="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
-      <span className="font-label-tr text-label-tr text-primary-fixed">AKTİF - OPTİMAL</span>
+      <span className={`w-2 h-2 rounded-full ${isActive ? 'bg-primary-container animate-pulse' : 'bg-error'}`}></span>
+      <span className="font-label-tr text-label-tr text-primary-fixed">{isActive ? 'AKTİF - OPTİMAL' : 'OFFLINE'}</span>
       </div>
       </div>
       <div className="grid grid-cols-3 gap-sm mb-lg">
       <div className="bg-surface-container-high border border-surface-variant rounded-DEFAULT p-3">
-      <p className="font-mono-tr text-mono-tr text-outline-variant mb-1 uppercase text-[10px]">Anlık Üretim</p>
-      <p className="font-headline-tr text-headline-tr text-primary">4.2 GW</p>
+      <p className="font-mono-tr text-mono-tr text-outline-variant mb-1 uppercase text-[10px]">Anlık Üretim / Kapasite</p>
+      <p className="font-headline-tr text-headline-tr text-primary">{module.output ?? 0} kW</p>
       </div>
       <div className="bg-surface-container-high border border-surface-variant rounded-DEFAULT p-3">
-      <p className="font-mono-tr text-mono-tr text-outline-variant mb-1 uppercase text-[10px]">Çekirdek Sıcaklığı</p>
-      <p className="font-headline-tr text-headline-tr text-on-surface">840 °C</p>
+      <p className="font-mono-tr text-mono-tr text-outline-variant mb-1 uppercase text-[10px]">Kapasite</p>
+      <p className="font-headline-tr text-headline-tr text-on-surface">{module.capacity ?? 0} m³</p>
       </div>
       <div className="bg-surface-container-high border border-surface-variant rounded-DEFAULT p-3">
-      <p className="font-mono-tr text-mono-tr text-outline-variant mb-1 uppercase text-[10px]">Plazma Stabilitesi</p>
-      <p className="font-headline-tr text-headline-tr text-on-surface">%99.8</p>
+      <p className="font-mono-tr text-mono-tr text-outline-variant mb-1 uppercase text-[10px]">Tüketim</p>
+      <p className="font-headline-tr text-headline-tr text-on-surface">{module.consumption ?? 0} kW</p>
       </div>
       </div>
       <div className="flex-1 bg-surface-container-low border border-surface-variant rounded-DEFAULT p-4 relative min-h-[200px] flex items-end justify-center overflow-hidden">
@@ -172,41 +195,23 @@ export function ModulDetaylari({ currentScreen, onNavigate, state }: ModulDetayl
                               </h3>
       </div>
       <div className="space-y-sm flex-1">
-      {/* Integration Item */}
-      <div className="bg-surface-container-high border border-surface-variant p-3 rounded-DEFAULT flex items-center justify-between group hover:border-primary-container/50 transition-colors">
-      <div className="flex items-center gap-3">
-      <span className="material-symbols-outlined text-outline-variant text-[20px]">air</span>
-      <div>
-      <p className="font-label-tr text-label-tr text-on-surface">O2 Geri Kazanım Ağı</p>
-      <p className="font-mono-tr text-mono-tr text-outline-variant text-[10px]">Tüketim: 1.2 GW</p>
+      {connectedModules.map((mod) => (
+        <div key={mod.id} className={`bg-surface-container-high border border-surface-variant p-3 rounded-DEFAULT flex items-center justify-between group hover:border-primary-container/50 transition-colors cursor-pointer`} onClick={() => onNavigate('module-detail')}>
+        <div className="flex items-center gap-3">
+        <span className="material-symbols-outlined text-outline-variant text-[20px]">{getModuleIcon(mod.type)}</span>
+        <div>
+        <p className="font-label-tr text-label-tr text-on-surface">{mod.name}</p>
+        <p className="font-mono-tr text-mono-tr text-outline-variant text-[10px]">Durum: {mod.status}</p>
+        </div>
+        </div>
+        <span className="material-symbols-outlined text-primary-container text-[16px]">check_circle</span>
+        </div>
+      ))}
+      {connectedModules.length === 0 && (
+        <div className="text-center text-on-surface-variant font-body-tr text-sm py-4">Bağlı sistem bulunmuyor</div>
+      )}
       </div>
-      </div>
-      <span className="material-symbols-outlined text-primary-container text-[16px]">check_circle</span>
-      </div>
-      {/* Integration Item */}
-      <div className="bg-surface-container-high border border-surface-variant p-3 rounded-DEFAULT flex items-center justify-between group hover:border-primary-container/50 transition-colors">
-      <div className="flex items-center gap-3">
-      <span className="material-symbols-outlined text-outline-variant text-[20px]">thermostat</span>
-      <div>
-      <p className="font-label-tr text-label-tr text-on-surface">Termal Kalkan B</p>
-      <p className="font-mono-tr text-mono-tr text-outline-variant text-[10px]">Tüketim: 0.8 GW</p>
-      </div>
-      </div>
-      <span className="material-symbols-outlined text-primary-container text-[16px]">check_circle</span>
-      </div>
-      {/* Integration Item */}
-      <div className="bg-error-container/10 border border-error/30 p-3 rounded-DEFAULT flex items-center justify-between shadow-[0_0_8px_rgba(255,180,171,0.1)]">
-      <div className="flex items-center gap-3">
-      <span className="material-symbols-outlined text-error text-[20px]">router</span>
-      <div>
-      <p className="font-label-tr text-label-tr text-error">İletişim Dizisi - Uzak</p>
-      <p className="font-mono-tr text-mono-tr text-error/70 text-[10px]">Durum: Düşük Güç Uyarı</p>
-      </div>
-      </div>
-      <span className="material-symbols-outlined text-error text-[16px]">warning</span>
-      </div>
-      </div>
-      <button className="mt-md w-full py-2 border border-surface-variant text-outline hover:text-on-surface hover:bg-surface-container-high rounded-DEFAULT font-label-tr text-label-tr transition-colors">
+      <button className="mt-md w-full py-2 border border-surface-variant text-outline hover:text-on-surface hover:bg-surface-container-high rounded-DEFAULT font-label-tr text-label-tr transition-colors" onClick={() => onNavigate('habitat')}>
                               Tüm Ağı Görüntüle
                           </button>
       </div>
@@ -281,4 +286,25 @@ export function ModulDetaylari({ currentScreen, onNavigate, state }: ModulDetayl
       </div>
     </>
   );
+}
+
+function getModuleCategory(type: string): string {
+  const cats: Record<string, string> = {
+    living: 'YAŞAM DESTEK',
+    power: 'ENERJİ SİSTEMLERİ',
+    greenhouse: 'BİYO-TARIM',
+    lab: 'AR-GE LABORATUVARI',
+    core: 'MERKEZİ ÇEKİRDEK',
+    medical: 'SAĞLIK ÜNİTESİ',
+    storage: 'DEPOLAMA',
+  };
+  return cats[type] ?? 'GENEL';
+}
+
+function getModuleIcon(type: string): string {
+  const icons: Record<string, string> = {
+    living: 'bed', power: 'bolt', greenhouse: 'eco', lab: 'science',
+    core: 'hub', medical: 'medical_services', storage: 'inventory_2',
+  };
+  return icons[type] ?? 'help';
 }
