@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HABİTAT KONTROL - Uyarılar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-filled {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#bc4800",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-surface": "#e1e2ed",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-container-lowest": "#0c0e16",
+                        "on-tertiary-container": "#ffede6",
+                        "on-primary-container": "#eeefff",
+                        "surface-dim": "#11131b",
+                        "background": "#11131b",
+                        "primary": "#b4c5ff",
+                        "on-surface": "#e1e2ed",
+                        "primary-container": "#2563eb",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#581e00",
+                        "on-background": "#e1e2ed",
+                        "surface-variant": "#32343d",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-error": "#690005",
+                        "outline": "#8d90a0",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-on-surface": "#2e3039",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#282a32",
+                        "outline-variant": "#434655",
+                        "surface-container": "#1d1f27",
+                        "inverse-primary": "#0053db",
+                        "on-primary": "#002a78",
+                        "on-secondary": "#233144",
+                        "secondary": "#b9c7df",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#32343d",
+                        "surface-container-low": "#191b23",
+                        "tertiary-fixed": "#ffdbcd",
+                        "tertiary": "#ffb596",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-bright": "#373942",
+                        "on-surface-variant": "#c3c6d7",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-secondary-container": "#abb9d1",
+                        "surface": "#11131b",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-container": "#3c4a5e",
+                        "surface-tint": "#b4c5ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "unit": "4px",
+                        "margin": "24px"
+                    },
+                    "fontFamily": {
+                        "display-tr": ["Inter", "sans-serif"],
+                        "headline-tr": ["Inter", "sans-serif"],
+                        "label-tr": ["Inter", "sans-serif"],
+                        "title-tr": ["Inter", "sans-serif"],
+                        "mono-tr": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+                        "body-tr": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-tr": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-tr": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-tr": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "title-tr": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "mono-tr": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "body-tr": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex font-body-tr text-body-tr overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (Shared Component JSON) -->
+<nav class="hidden md:flex flex-col bg-slate-950 fixed left-0 h-full w-64 border-r border-slate-800 shadow-[0_0_15px_rgba(37,99,235,0.1)] py-4 space-y-2 z-50">
+<!-- Header -->
+<div class="px-6 pb-6 border-b border-slate-800 mb-4 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center text-blue-400">
+<span class="material-symbols-outlined">satellite_alt</span>
+</div>
+<div>
+<h1 class="text-lg font-bold text-blue-500 tracking-wider">SEKTÖR-7</h1>
+<p class="font-inter text-[10px] font-medium tracking-tight text-emerald-400 uppercase">Operasyonel Durum: Aktif</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 flex flex-col space-y-1 px-2 font-inter text-sm font-medium tracking-tight">
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined">assignment_late</span>
+                Görev Panosu
+            </a>
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined">architecture</span>
+                Habitat Tasarımı
+            </a>
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined">groups</span>
+                Mürettebat
+            </a>
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined">timeline</span>
+                Kaynaklar
+            </a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-l-DEFAULT" href="#">
+<span class="material-symbols-filled">warning</span>
+                Uyarılar
+            </a>
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Ayarlar
+            </a>
+</div>
+<!-- Footer -->
+<div class="px-2 pt-4 border-t border-slate-800 space-y-1 font-inter text-sm font-medium tracking-tight mt-auto">
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+                Profil
+            </a>
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT text-red-400 hover:text-red-300" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Çıkış
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-64 h-screen">
+<!-- TopNavBar (Shared Component JSON) -->
+<header class="flex justify-between items-center w-full h-16 px-6 z-50 bg-slate-950 border-b border-slate-800">
+<!-- Brand Mobile (Hidden on Desktop as SideNav has it, but JSON mandates brand logo style) -->
+<div class="md:hidden text-xl font-black text-slate-100 tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-500">satellite_alt</span>
+                HABİTAT KONTROL
+            </div>
+<!-- Empty div to push nav to right if needed, or hold telemetry -->
+<div class="hidden md:flex gap-6 font-inter tracking-tighter text-xs font-bold uppercase text-slate-400">
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> O2: %98</div>
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-yellow-500"></span> GÜÇ: %85</div>
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-500"></span> GIDA: %92</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4 text-blue-600 dark:text-blue-500">
+<button class="p-2 rounded-full hover:bg-slate-900/50 transition-colors duration-200 active:scale-95 active:opacity-80 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-slate-950"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-900/50 transition-colors duration-200 active:scale-95 active:opacity-80">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Alerts Canvas (Design System Applied) -->
+<div class="flex-1 overflow-y-auto p-gutter md:p-margin bg-background relative">
+<!-- Atmospheric Background Texture (Fulfilling data-alt constraint via pseudo/bg-image approach) -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-screen bg-cover bg-center" data-alt="A highly detailed satellite view of a dark, alien planet surface illuminated by faint, glowing blue atmospheric grids and technological nodes. The scene evokes a deep-space, high-tech operational command center aesthetic. The lighting is extremely low-key, utilizing the deep blacks and slate grays of a minimalist SaaS dashboard, pierced only by sharp, luminescent cyan and electric blue data pathways. The mood is precise, vast, and utilitarian." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCFR7qQF4nU3sJof4g5QaTX6bK4LM0RYKz4I8vY7cI3urp_FYpNIRyoZTVbpdBpSW-8YrFBcLoyZwS_OobnYUxINXaGySckzxbHOAIr90mYX0t2Y4As-Dqn0UoSBH6rCPhzlnqj0blVBd4QvLLd1sEbh1ZdZPg9Q7HudR7fhn-HSe-dn4yi3sP7dEXHXNeXp2iIh45B-ciPMwvjnTivrcwqPmTkaf7BnKMK16CuKfhsc6hnc8szxGgB0Gv1nY03mgLwAfPE0nLZ3JQ');"></div>
+<div class="max-w-6xl mx-auto relative z-10 flex flex-col gap-lg">
+<!-- Page Header -->
+<div class="flex flex-col gap-xs">
+<h2 class="font-display-tr text-display-tr text-on-surface flex items-center gap-sm">
+<span class="material-symbols-filled text-error">warning</span>
+                        Sistem Uyarıları
+                    </h2>
+<p class="font-mono-tr text-mono-tr text-on-surface-variant uppercase tracking-widest">
+                        Protokol: Aktif İzleme // UTC 14:02:45
+                    </p>
+</div>
+<!-- Telemetry Summary Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Critical Stats -->
+<div class="bg-error-container border border-error/50 rounded-lg p-md flex items-center justify-between shadow-[0_0_15px_rgba(255,180,171,0.05)]">
+<div>
+<p class="font-label-tr text-label-tr text-on-error-container/80 uppercase">Kritik Arızalar</p>
+<p class="font-display-tr text-[32px] font-bold text-on-error-container leading-none mt-1">02</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-filled text-[28px]">crisis_alert</span>
+</div>
+</div>
+<!-- Moderate Stats -->
+<div class="bg-surface-container border border-tertiary/30 rounded-lg p-md flex items-center justify-between">
+<div>
+<p class="font-label-tr text-label-tr text-on-surface-variant uppercase">Orta Seviye</p>
+<p class="font-display-tr text-[32px] font-bold text-tertiary leading-none mt-1">05</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[28px]">error</span>
+</div>
+</div>
+<!-- Low Stats -->
+<div class="bg-surface-container border border-outline-variant rounded-lg p-md flex items-center justify-between">
+<div>
+<p class="font-label-tr text-label-tr text-on-surface-variant uppercase">Düşük Seviye / Bilgi</p>
+<p class="font-display-tr text-[32px] font-bold text-secondary leading-none mt-1">14</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[28px]">info</span>
+</div>
+</div>
+</div>
+<!-- Alerts List/Grid -->
+<div class="flex flex-col gap-sm">
+<h3 class="font-label-tr text-label-tr text-outline uppercase border-b border-outline-variant pb-xs mb-xs">Aktif Bildirim Logu</h3>
+<!-- Critical Alert Card 1 -->
+<div class="bg-surface-container-high rounded-lg border border-error/40 p-0 flex flex-col sm:flex-row relative overflow-hidden group shadow-[0_0_12px_rgba(255,180,171,0.08)]">
+<!-- Left Accent Line -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error shadow-[0_0_8px_rgba(255,180,171,0.8)]"></div>
+<div class="p-md flex-1 flex flex-col gap-xs pl-lg">
+<div class="flex items-center gap-sm font-mono-tr text-mono-tr text-error">
+<span class="material-symbols-filled text-[16px] animate-pulse">emergency</span>
+<span>KRİTİK</span>
+<span class="text-on-surface-variant">•</span>
+<span class="text-on-surface-variant">Modül: Yaşam Destek (A-Blok)</span>
+<span class="ml-auto text-on-surface-variant">T-Eksi: 00:04:12</span>
+</div>
+<h4 class="font-title-tr text-title-tr text-on-surface">O2 Sirkülasyon Pompası Arızası</h4>
+<p class="font-body-tr text-body-tr text-on-surface-variant">
+                                Ana basınç hattında %40 oranında ani düşüş tespit edildi. Yedek sistemler devrede ancak kapasite sınırında çalışıyor. Acil mühendislik müdahalesi gereklidir.
+                            </p>
+</div>
+<div class="p-md bg-surface-container-highest border-l border-outline-variant flex sm:flex-col items-center justify-center gap-sm">
+<button class="w-full sm:w-auto px-lg py-sm bg-error text-on-error rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:bg-[#ffcdc7] transition-colors shadow-[0_0_10px_rgba(255,180,171,0.2)]">
+                                Çözüldü
+                            </button>
+<button class="w-full sm:w-auto px-lg py-sm border border-outline text-on-surface rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:bg-surface-variant transition-colors">
+                                Ertele
+                            </button>
+</div>
+</div>
+<!-- Critical Alert Card 2 (Personnel) -->
+<div class="bg-surface-container-high rounded-lg border border-error/40 p-0 flex flex-col sm:flex-row relative overflow-hidden group shadow-[0_0_12px_rgba(255,180,171,0.08)]">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error shadow-[0_0_8px_rgba(255,180,171,0.8)]"></div>
+<div class="p-md flex-1 flex flex-col gap-xs pl-lg">
+<div class="flex items-center gap-sm font-mono-tr text-mono-tr text-error">
+<span class="material-symbols-filled text-[16px]">monitor_heart</span>
+<span>KRİTİK SAĞLIK</span>
+<span class="text-on-surface-variant">•</span>
+<span class="text-on-surface-variant">Personel: Müh. K. Yılmaz (ID: 4492)</span>
+<span class="ml-auto text-on-surface-variant">T-Eksi: 00:12:05</span>
+</div>
+<div class="flex items-start gap-md mt-sm">
+<img class="w-16 h-16 rounded-DEFAULT object-cover border border-outline-variant grayscale sepia-[.2] hue-rotate-[180deg]" data-alt="A close up, low-angle portrait of an astronaut engineer in a sleek, high-tech dark space suit inside a dimly lit space station corridor. The lighting is extremely dramatic, casting deep, sharp shadows across the visor and highlighting the worn metallic textures of the life support rig. The mood is tense, urgent, and serious, perfectly suited for a sci-fi UI dashboard. The color palette relies heavily on deep navy blacks and stark whites, punctuated by a faint, warning-red LED reflection on the helmet visor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClpp4JCJbGLCBM0vjGomMGGKwJ-lwVcCH9clU0Md4mKeSYoMN-2q2Mc6E9imkI5JsfYzzR0irLEaV6x0EIdD_ISoZCxdzaYIT2pdWIsF17K3rahsCt2Wf9GTaqyWSR6A15rf0p72Ip8igsyudggVjolniwdeZ18aofN9CoocAXEY6afIdxN1IHLqxddRLhAp0AywitX2Mr0DGaZ_YVCGV86QrsWrB2Ep8ZCitgRWcFonWbucSidZUJ-MA3wykAqr87TdddTH_EsPQ"/>
+<div>
+<h4 class="font-title-tr text-title-tr text-on-surface">Anormal Vital Bulgular - Sektör 4 Dış Yüzey</h4>
+<p class="font-body-tr text-body-tr text-on-surface-variant mt-1">
+                                        EVA görevi sırasında kalp ritminde düzensizlik ve kask içi CO2 seviyesinde sınır aşımı tespit edildi. Otomatik geri dönüş protokolü öneriliyor.
+                                    </p>
+</div>
+</div>
+</div>
+<div class="p-md bg-surface-container-highest border-l border-outline-variant flex sm:flex-col items-center justify-center gap-sm">
+<button class="w-full sm:w-auto px-lg py-sm bg-error text-on-error rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:bg-[#ffcdc7] transition-colors shadow-[0_0_10px_rgba(255,180,171,0.2)] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">medical_services</span> Müdahale
+                            </button>
+</div>
+</div>
+<!-- Moderate Alert Card -->
+<div class="bg-surface-container rounded-lg border border-tertiary/30 p-0 flex flex-col sm:flex-row relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary/50"></div>
+<div class="p-md flex-1 flex flex-col gap-xs pl-lg">
+<div class="flex items-center gap-sm font-mono-tr text-mono-tr text-tertiary">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span>ORTA</span>
+<span class="text-on-surface-variant">•</span>
+<span class="text-on-surface-variant">Modül: Hidroponik Bahçe</span>
+<span class="ml-auto text-on-surface-variant">T-Eksi: 02:45:10</span>
+</div>
+<h4 class="font-title-tr text-title-tr text-on-surface">Nutrient Akışında Dalgalanma</h4>
+<p class="font-body-tr text-body-tr text-on-surface-variant">
+                                B-Sektörü bitki yetiştirme ünitelerine giden sıvı besin pompası #2'de basınç dalgalanmaları gözlemleniyor. Verim düşüşü riski.
+                            </p>
+</div>
+<div class="p-md border-t sm:border-t-0 sm:border-l border-outline-variant flex sm:flex-col items-center justify-center gap-sm">
+<button class="w-full sm:w-auto px-lg py-sm bg-tertiary-container text-on-tertiary-container rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:brightness-110 transition-all">
+                                Çözüldü
+                            </button>
+<button class="w-full sm:w-auto px-lg py-sm border border-outline text-on-surface rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:bg-surface-variant transition-colors">
+                                Ertele
+                            </button>
+</div>
+</div>
+<!-- Low Alert Card -->
+<div class="bg-surface-container rounded-lg border border-outline-variant/50 p-0 flex flex-col sm:flex-row relative overflow-hidden group hover:bg-surface-container-high transition-colors opacity-80 hover:opacity-100">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary/30"></div>
+<div class="p-md flex-1 flex flex-col gap-xs pl-lg">
+<div class="flex items-center gap-sm font-mono-tr text-mono-tr text-secondary">
+<span class="material-symbols-outlined text-[16px]">info</span>
+<span>DÜŞÜK</span>
+<span class="text-on-surface-variant">•</span>
+<span class="text-on-surface-variant">Sistem: Yapay Zeka Çekirdeği</span>
+<span class="ml-auto text-on-surface-variant">T-Eksi: 05:12:00</span>
+</div>
+<h4 class="font-title-tr text-title-tr text-on-surface">Rutin Diagnostik Gecikmesi</h4>
+<p class="font-body-tr text-body-tr text-on-surface-variant">
+                                Alt-sistemlerin günlük otomatik kontrol protokolü planlanan süreden %5 daha uzun sürdü. Performans logları kaydedildi.
+                            </p>
+</div>
+<div class="p-md border-t sm:border-t-0 sm:border-l border-outline-variant flex sm:flex-col items-center justify-center gap-sm">
+<button class="w-full sm:w-auto px-lg py-sm border border-outline text-on-surface rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:bg-surface-variant transition-colors">
+                                Gözardı Et
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

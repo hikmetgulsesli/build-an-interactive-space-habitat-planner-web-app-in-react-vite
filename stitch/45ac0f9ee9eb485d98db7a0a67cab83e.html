@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sektör-7 | Habitat Tasarımı</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#bc4800",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-surface": "#e1e2ed",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-container-lowest": "#0c0e16",
+                        "on-tertiary-container": "#ffede6",
+                        "on-primary-container": "#eeefff",
+                        "surface-dim": "#11131b",
+                        "background": "#11131b",
+                        "primary": "#b4c5ff",
+                        "on-surface": "#e1e2ed",
+                        "primary-container": "#2563eb",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#581e00",
+                        "on-background": "#e1e2ed",
+                        "surface-variant": "#32343d",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-error": "#690005",
+                        "outline": "#8d90a0",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-on-surface": "#2e3039",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#282a32",
+                        "outline-variant": "#434655",
+                        "surface-container": "#1d1f27",
+                        "inverse-primary": "#0053db",
+                        "on-primary": "#002a78",
+                        "on-secondary": "#233144",
+                        "secondary": "#b9c7df",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#32343d",
+                        "surface-container-low": "#191b23",
+                        "tertiary-fixed": "#ffdbcd",
+                        "tertiary": "#ffb596",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-bright": "#373942",
+                        "on-surface-variant": "#c3c6d7",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-secondary-container": "#abb9d1",
+                        "surface": "#11131b",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-container": "#3c4a5e",
+                        "surface-tint": "#b4c5ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "unit": "4px",
+                        "margin": "24px"
+                    },
+                    "fontFamily": {
+                        "display-tr": ["Inter"],
+                        "headline-tr": ["Inter"],
+                        "label-tr": ["Inter"],
+                        "title-tr": ["Inter"],
+                        "mono-tr": ["System Sans"],
+                        "body-tr": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-tr": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-tr": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-tr": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "title-tr": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "mono-tr": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "body-tr": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .hud-grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(141, 144, 160, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(141, 144, 160, 0.05) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-tr text-body-tr antialiased overflow-hidden h-screen w-screen flex">
+<!-- Shared Component: SideNavBar -->
+<aside class="fixed left-0 h-full w-64 border-r border-slate-800 bg-slate-950 flex flex-col h-full py-4 space-y-2 z-40">
+<div class="px-6 mb-8 mt-20">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-container/20 border border-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="satellite_alt">satellite_alt</span>
+</div>
+<div>
+<h2 class="font-headline-tr text-title-tr text-slate-100">SEKTÖR-7</h2>
+<p class="font-mono-tr text-mono-tr text-emerald-500">Operasyonel Durum: Aktif</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<!-- Inactive -->
+<a class="flex items-center gap-3 font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_late">assignment_late</span>
+                Görev Panosu
+            </a>
+<!-- Active (Habitat Tasarımı) -->
+<a class="flex items-center gap-3 font-inter text-sm font-medium tracking-tight bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-l translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="architecture" data-weight="fill" style="font-variation-settings: 'FILL' 1;">architecture</span>
+                Habitat Tasarımı
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+                Mürettebat
+            </a>
+<a class="flex items-center gap-3 font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="timeline">timeline</span>
+                Kaynaklar
+            </a>
+<a class="flex items-center gap-3 font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+                Uyarılar
+            </a>
+<a class="flex items-center gap-3 font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Ayarlar
+            </a>
+</nav>
+<div class="mt-auto px-2 pt-4 border-t border-slate-800 space-y-1">
+<a class="flex items-center gap-3 font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+                Profil
+            </a>
+<a class="flex items-center gap-3 font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Çıkış
+            </a>
+</div>
+</aside>
+<!-- Shared Component: TopNavBar -->
+<header class="docked full-width top-0 border-b border-slate-800 flex justify-between items-center w-full h-16 px-6 z-50 bg-slate-950/90 backdrop-blur-md fixed">
+<div class="text-xl font-black text-slate-100 tracking-widest pl-64 ml-6">
+            HABİTAT KONTROL
+        </div>
+<div class="flex items-center gap-8">
+<div class="flex gap-6 font-inter tracking-tighter text-xs font-bold uppercase text-slate-400">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span> O2: %98</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></span> GÜÇ: %85</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span> GIDA: %92</span>
+</div>
+<div class="flex items-center gap-4 text-blue-600 dark:text-blue-500">
+<button class="hover:bg-slate-900/50 transition-colors duration-200 p-2 rounded relative">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<div class="h-6 w-px bg-slate-800"></div>
+<button class="hover:bg-slate-900/50 transition-colors duration-200 p-2 rounded relative group">
+<span class="absolute top-2 right-2 w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-slate-900/50 transition-colors duration-200 p-2 rounded">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 mt-16 p-gutter w-full h-[calc(100vh-64px)] flex flex-col gap-gutter overflow-hidden">
+<!-- Header Section -->
+<div class="flex justify-between items-end shrink-0">
+<div>
+<h1 class="font-display-tr text-display-tr text-on-surface">Habitat Builder</h1>
+<p class="font-body-tr text-body-tr text-on-surface-variant mt-1">Modüler mimari konfigürasyon arayüzü.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container font-label-tr text-label-tr px-md py-sm rounded-lg flex items-center gap-sm shadow-[0_0_12px_rgba(37,99,235,0.4)] hover:bg-inverse-primary transition-colors border border-primary/50">
+<span class="material-symbols-outlined" data-icon="add" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add</span>
+                Yeni Modül Ekle
+            </button>
+</div>
+<!-- Builder Workspace -->
+<div class="grid grid-cols-12 gap-gutter flex-1 min-h-0">
+<!-- Side Panel: Inventory -->
+<div class="col-span-12 lg:col-span-3 bg-surface-container border border-outline-variant rounded-xl flex flex-col overflow-hidden">
+<div class="p-md border-b border-outline-variant bg-surface-container-high">
+<h3 class="font-title-tr text-title-tr text-on-surface">Envanter</h3>
+<p class="font-mono-tr text-mono-tr text-outline mt-1 text-xs">Kullanılabilir yapı birimleri</p>
+</div>
+<div class="p-sm flex-1 overflow-y-auto space-y-sm">
+<!-- Inventory Item -->
+<div class="bg-surface border border-outline-variant rounded-lg p-sm flex items-center gap-md cursor-grab hover:border-primary-fixed-dim hover:bg-surface-container-highest transition-all group">
+<div class="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center border border-outline-variant group-hover:border-primary-fixed-dim">
+<span class="material-symbols-outlined text-outline group-hover:text-primary-fixed-dim" data-icon="bed">bed</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-tr text-label-tr text-on-surface">Yaşam Modülü</h4>
+<div class="font-mono-tr text-mono-tr text-[10px] text-outline mt-0.5 flex gap-2">
+<span>Kapasite: 4</span>
+<span>Tüketim: Yüksek</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary opacity-50" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<!-- Inventory Item -->
+<div class="bg-surface border border-outline-variant rounded-lg p-sm flex items-center gap-md cursor-grab hover:border-tertiary hover:bg-surface-container-highest transition-all group">
+<div class="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center border border-outline-variant group-hover:border-tertiary">
+<span class="material-symbols-outlined text-outline group-hover:text-tertiary" data-icon="bolt">bolt</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-tr text-label-tr text-on-surface">Güç Kaynağı</h4>
+<div class="font-mono-tr text-mono-tr text-[10px] text-outline mt-0.5 flex gap-2">
+<span>Üretim: 500kW</span>
+<span>Risk: Orta</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-tertiary opacity-50" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<!-- Inventory Item -->
+<div class="bg-surface border border-outline-variant rounded-lg p-sm flex items-center gap-md cursor-grab hover:border-emerald-400 hover:bg-surface-container-highest transition-all group">
+<div class="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center border border-outline-variant group-hover:border-emerald-400">
+<span class="material-symbols-outlined text-outline group-hover:text-emerald-400" data-icon="eco">eco</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-tr text-label-tr text-on-surface">Sera</h4>
+<div class="font-mono-tr text-mono-tr text-[10px] text-outline mt-0.5 flex gap-2">
+<span>O2 Katkısı: +%5</span>
+<span>Gıda: +%2</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-emerald-400 opacity-50" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<!-- Inventory Item -->
+<div class="bg-surface border border-outline-variant rounded-lg p-sm flex items-center gap-md cursor-grab hover:border-purple-400 hover:bg-surface-container-highest transition-all group">
+<div class="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center border border-outline-variant group-hover:border-purple-400">
+<span class="material-symbols-outlined text-outline group-hover:text-purple-400" data-icon="science">science</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-tr text-label-tr text-on-surface">Laboratuvar</h4>
+<div class="font-mono-tr text-mono-tr text-[10px] text-outline mt-0.5 flex gap-2">
+<span>Tip: Biyokimya</span>
+<span>Durum: Hazır</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-purple-400 opacity-50" data-icon="drag_indicator">drag_indicator</span>
+</div>
+</div>
+<div class="p-sm bg-surface-container-low border-t border-outline-variant">
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[65%]"></div>
+</div>
+<div class="flex justify-between mt-2 font-mono-tr text-mono-tr text-[10px] text-outline">
+<span>Ağ Kapasitesi</span>
+<span>%65 Kullanımda</span>
+</div>
+</div>
+</div>
+<!-- Main Canvas: Grid View -->
+<div class="col-span-12 lg:col-span-9 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden relative flex items-center justify-center hud-grid-bg shadow-[inset_0_0_50px_rgba(0,0,0,0.8)]">
+<!-- Zoom/Pan Controls -->
+<div class="absolute bottom-4 right-4 flex bg-surface-container border border-outline-variant rounded-lg shadow-lg">
+<button class="p-2 text-outline hover:text-on-surface hover:bg-surface-container-highest border-r border-outline-variant transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<div class="px-3 py-2 font-mono-tr text-mono-tr text-xs text-on-surface flex items-center justify-center">100%</div>
+<button class="p-2 text-outline hover:text-on-surface hover:bg-surface-container-highest border-l border-outline-variant transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+<!-- Canvas Content Wrapper (Simulated Transform) -->
+<div class="relative w-[800px] h-[600px]">
+<!-- Connection Lines (SVG) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 0;">
+<!-- Core to Lab -->
+<path d="M 400 300 L 400 150" fill="none" stroke="#434655" stroke-dasharray="4 4" stroke-width="2"></path>
+<!-- Core to Power -->
+<path class="shadow-[0_0_8px_#bc4800]" d="M 400 300 L 200 300" fill="none" stroke="#bc4800" stroke-width="2"></path>
+<!-- Core to Green -->
+<path d="M 400 300 L 600 300" fill="none" stroke="#434655" stroke-width="2"></path>
+</svg>
+<!-- Placed Module: Central Core (Active) -->
+<div class="absolute top-[250px] left-[300px] w-[200px] bg-surface-container border-2 border-primary rounded-lg shadow-[0_0_20px_rgba(37,99,235,0.3)] z-10 cursor-pointer ring-1 ring-primary-container/50">
+<div class="p-2 border-b border-primary/30 flex items-center justify-between bg-primary-container/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="hub">hub</span>
+<span class="font-label-tr text-label-tr text-primary-fixed font-bold">Merkezi Çekirdek</span>
+</div>
+<div class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_5px_#34d399]"></div>
+</div>
+<div class="p-3 bg-surface/50 backdrop-blur">
+<div class="grid grid-cols-2 gap-2 text-[10px] font-mono-tr text-outline">
+<div>DURUM: <span class="text-on-surface">AKTİF</span></div>
+<div>YÜK: <span class="text-on-surface">%42</span></div>
+<div>BAĞLANTI: <span class="text-primary-fixed-dim">3 NODE</span></div>
+<div>SICAKLIK: <span class="text-on-surface">22°C</span></div>
+</div>
+</div>
+</div>
+<!-- Placed Module: Lab -->
+<div class="absolute top-[80px] left-[320px] w-[160px] bg-surface-container border border-outline-variant rounded-lg shadow-lg z-10 cursor-pointer hover:border-outline">
+<div class="p-2 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-purple-400 text-sm" data-icon="science">science</span>
+<span class="font-label-tr text-[11px] text-on-surface">Laboratuvar-A</span>
+</div>
+</div>
+<div class="p-2 bg-surface/50">
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden mt-1">
+<div class="h-full bg-purple-500 w-[80%]"></div>
+</div>
+</div>
+</div>
+<!-- Placed Module: Power (Warning State) -->
+<div class="absolute top-[260px] left-[50px] w-[150px] bg-error-container/20 border border-tertiary rounded-lg shadow-[0_0_15px_rgba(188,72,0,0.15)] z-10 cursor-pointer">
+<div class="p-2 border-b border-tertiary/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="bolt">bolt</span>
+<span class="font-label-tr text-[11px] text-tertiary-fixed-dim">Güç Ünitesi</span>
+</div>
+<span class="material-symbols-outlined text-tertiary text-xs" data-icon="warning">warning</span>
+</div>
+<div class="p-2 bg-surface/50">
+<div class="text-[10px] font-mono-tr text-tertiary animate-pulse">ÇIKIŞ DALGALANMASI</div>
+</div>
+</div>
+<!-- Placed Module: Greenhouse -->
+<div class="absolute top-[260px] left-[600px] w-[150px] bg-surface-container border border-outline-variant rounded-lg shadow-lg z-10 cursor-pointer hover:border-emerald-400/50">
+<div class="p-2 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-sm" data-icon="eco">eco</span>
+<span class="font-label-tr text-[11px] text-on-surface">Sera-1</span>
+</div>
+</div>
+<div class="p-2 bg-surface/50 text-[10px] font-mono-tr text-outline">
+                            O2 Üretimi: Normal
+                        </div>
+</div>
+<!-- Empty Slot Drop Zone -->
+<div class="absolute top-[450px] left-[325px] w-[150px] h-[80px] border-2 border-dashed border-outline-variant rounded-lg flex items-center justify-center bg-surface-container-lowest/50 z-0">
+<span class="font-mono-tr text-[10px] text-outline-variant uppercase tracking-widest">Bağlantı Noktası</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

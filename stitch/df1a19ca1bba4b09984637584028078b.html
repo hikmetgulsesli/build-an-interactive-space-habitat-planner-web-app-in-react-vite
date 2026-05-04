@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sektör-7 | Habitat Kontrol</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-container": "#bc4800",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-surface": "#e1e2ed",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-container-lowest": "#0c0e16",
+                        "on-tertiary-container": "#ffede6",
+                        "on-primary-container": "#eeefff",
+                        "surface-dim": "#11131b",
+                        "background": "#11131b",
+                        "primary": "#b4c5ff",
+                        "on-surface": "#e1e2ed",
+                        "primary-container": "#2563eb",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#581e00",
+                        "on-background": "#e1e2ed",
+                        "surface-variant": "#32343d",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-error": "#690005",
+                        "outline": "#8d90a0",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-on-surface": "#2e3039",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#282a32",
+                        "outline-variant": "#434655",
+                        "surface-container": "#1d1f27",
+                        "inverse-primary": "#0053db",
+                        "on-primary": "#002a78",
+                        "on-secondary": "#233144",
+                        "secondary": "#b9c7df",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#32343d",
+                        "surface-container-low": "#191b23",
+                        "tertiary-fixed": "#ffdbcd",
+                        "tertiary": "#ffb596",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-bright": "#373942",
+                        "on-surface-variant": "#c3c6d7",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-secondary-container": "#abb9d1",
+                        "surface": "#11131b",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-container": "#3c4a5e",
+                        "surface-tint": "#b4c5ff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "unit": "4px",
+                        "margin": "24px"
+                    },
+                    fontFamily: {
+                        "display-tr": ["Inter", "sans-serif"],
+                        "headline-tr": ["Inter", "sans-serif"],
+                        "label-tr": ["Inter", "sans-serif"],
+                        "title-tr": ["Inter", "sans-serif"],
+                        "mono-tr": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+                        "body-tr": ["Inter", "sans-serif"]
+                    },
+                    fontSize: {
+                        "display-tr": ["32px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-tr": ["24px", { lineHeight: "1.3", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "label-tr": ["12px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "title-tr": ["18px", { lineHeight: "1.4", fontWeight: "600" }],
+                        "mono-tr": ["13px", { lineHeight: "1.4", fontWeight: "400" }],
+                        "body-tr": ["14px", { lineHeight: "1.5", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface flex h-screen overflow-hidden font-body-tr text-body-tr selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (from JSON) -->
+<nav class="hidden md:flex flex-col h-full py-4 space-y-2 fixed left-0 w-64 border-r bg-slate-950 border-slate-800 z-40 shadow-[0_0_15px_rgba(37,99,235,0.1)]">
+<!-- Header -->
+<div class="px-6 pb-6 border-b border-slate-800 flex flex-col gap-1 mt-2">
+<div class="text-lg font-bold text-blue-500 font-headline-tr tracking-tight">SEKTÖR-7</div>
+<div class="text-slate-500 font-mono-tr text-mono-tr text-[10px] uppercase tracking-wider">Operasyonel Durum: Aktif</div>
+</div>
+<!-- Tabs -->
+<div class="flex-1 overflow-y-auto mt-4 flex flex-col space-y-1 w-full">
+<!-- Active Navigation (Görev Panosu matches intent of "Ana Ekran/Dashboard") -->
+<a class="flex items-center gap-3 w-full bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] font-inter text-sm font-medium tracking-tight px-6 py-3 hover:bg-slate-900 transition-all duration-150 translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">assignment_late</span>
+<span>Görev Panosu</span>
+</a>
+<a class="flex items-center gap-3 w-full text-slate-500 hover:text-slate-300 font-inter text-sm font-medium tracking-tight px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">architecture</span>
+<span>Habitat Tasarımı</span>
+</a>
+<a class="flex items-center gap-3 w-full text-slate-500 hover:text-slate-300 font-inter text-sm font-medium tracking-tight px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+<span>Mürettebat</span>
+</a>
+<a class="flex items-center gap-3 w-full text-slate-500 hover:text-slate-300 font-inter text-sm font-medium tracking-tight px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">timeline</span>
+<span>Kaynaklar</span>
+</a>
+<a class="flex items-center gap-3 w-full text-slate-500 hover:text-slate-300 font-inter text-sm font-medium tracking-tight px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<span>Uyarılar</span>
+</a>
+<a class="flex items-center gap-3 w-full text-slate-500 hover:text-slate-300 font-inter text-sm font-medium tracking-tight px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span>Ayarlar</span>
+</a>
+</div>
+<!-- Footer Tabs -->
+<div class="border-t border-slate-800 pt-2 flex flex-col space-y-1 w-full">
+<a class="flex items-center gap-3 w-full text-slate-500 hover:text-slate-300 font-inter text-sm font-medium tracking-tight px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+<span>Profil</span>
+</a>
+<a class="flex items-center gap-3 w-full text-slate-500 hover:text-slate-300 font-inter text-sm font-medium tracking-tight px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span>Çıkış</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 h-full relative w-full">
+<!-- TopNavBar (from JSON) -->
+<header class="flex justify-between items-center w-full h-16 px-6 z-50 bg-slate-950/90 backdrop-blur-md docked full-width top-0 border-b border-slate-800 flat no shadows relative flex-shrink-0">
+<!-- Brand Logo -->
+<div class="text-xl font-black text-slate-100 tracking-widest font-inter uppercase">
+                HABİTAT KONTROL
+            </div>
+<!-- Navigation Links (Data Telemetry) -->
+<div class="hidden md:flex space-x-6 items-center">
+<div class="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-1.5 rounded flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_5px_rgba(59,130,246,0.8)]"></div>
+                    O2: %98
+                </div>
+<div class="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-1.5 rounded flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_5px_rgba(245,158,11,0.8)]"></div>
+                    GÜÇ: %85
+                </div>
+<div class="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-1.5 rounded flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,0.8)]"></div>
+                    GIDA: %92
+                </div>
+</div>
+<!-- Trailing Icon Actions -->
+<div class="flex items-center space-x-2 text-blue-600 dark:text-blue-500">
+<button class="p-2 rounded hover:bg-slate-900/50 transition-colors duration-200 flex items-center justify-center relative">
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-slate-950"></span>
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded hover:bg-slate-900/50 transition-colors duration-200 flex items-center justify-center">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Canvas (Dashboard Content) -->
+<main class="flex-1 overflow-y-auto p-gutter bg-background w-full">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter max-w-[1600px] mx-auto w-full pb-xl">
+<!-- Page Header -->
+<div class="col-span-1 md:col-span-12 mb-sm flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mt-sm">
+<div>
+<h1 class="font-display-tr text-display-tr text-on-surface">Ana Sistem Özeti</h1>
+<p class="font-body-tr text-body-tr text-on-surface-variant mt-1">Sektör-7 yaşam destek ve operasyonel metrikleri canlı yayında.</p>
+</div>
+<div class="font-mono-tr text-mono-tr text-on-surface-variant flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-outline-variant rounded">
+<span class="material-symbols-outlined text-[16px] text-primary">sync</span>
+                        SON GÜNCELLEME: 14:42 TZT
+                    </div>
+</div>
+<!-- Metrics Bento Grid -->
+<!-- O2 Card -->
+<div class="col-span-1 md:col-span-3 bg-surface-container-low border border-outline-variant p-lg rounded-lg relative overflow-hidden group flex flex-col justify-between min-h-[140px]">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-start z-10">
+<span class="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-widest">Atmosfer O2</span>
+<span class="material-symbols-outlined text-primary text-[20px]">air</span>
+</div>
+<div class="z-10 mt-auto">
+<div class="font-display-tr text-display-tr text-on-surface mb-2">%98.2</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary shadow-[0_0_8px_var(--tw-colors-primary)] rounded-full" style="width: 98.2%"></div>
+</div>
+<div class="font-mono-tr text-[10px] text-primary mt-2 uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Optimal Seviye
+                        </div>
+</div>
+</div>
+<!-- Power Card -->
+<div class="col-span-1 md:col-span-3 bg-surface-container-low border border-outline-variant p-lg rounded-lg relative overflow-hidden group flex flex-col justify-between min-h-[140px]">
+<div class="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-start z-10">
+<span class="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-widest">Ana Şebeke Gücü</span>
+<span class="material-symbols-outlined text-amber-500 text-[20px]">bolt</span>
+</div>
+<div class="z-10 mt-auto">
+<div class="font-display-tr text-display-tr text-on-surface mb-2">%85.0</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)] rounded-full" style="width: 85%"></div>
+</div>
+<div class="font-mono-tr text-[10px] text-amber-500 mt-2 uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">trending_down</span> Tüketim Yüksek
+                        </div>
+</div>
+</div>
+<!-- Water Card (User requested Su/Water, JSON had Gıda/Food. We show both for a complete dashboard) -->
+<div class="col-span-1 md:col-span-3 bg-surface-container-low border border-outline-variant p-lg rounded-lg relative overflow-hidden group flex flex-col justify-between min-h-[140px]">
+<div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-start z-10">
+<span class="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-widest">Su Rezervi</span>
+<span class="material-symbols-outlined text-cyan-500 text-[20px]">water_drop</span>
+</div>
+<div class="z-10 mt-auto">
+<div class="font-display-tr text-display-tr text-on-surface mb-2">%92.4</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.5)] rounded-full" style="width: 92.4%"></div>
+</div>
+<div class="font-mono-tr text-[10px] text-cyan-500 mt-2 uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Filtreleme Aktif
+                        </div>
+</div>
+</div>
+<!-- Thermal Card -->
+<div class="col-span-1 md:col-span-3 bg-surface-container-low border border-outline-variant p-lg rounded-lg relative overflow-hidden group flex flex-col justify-between min-h-[140px]">
+<div class="absolute inset-0 bg-gradient-to-br from-error/5 to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-start z-10">
+<span class="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-widest">İç Ortam Isısı</span>
+<span class="material-symbols-outlined text-error text-[20px]">thermostat</span>
+</div>
+<div class="z-10 mt-auto">
+<div class="font-display-tr text-display-tr text-on-surface mb-2">22.4°C</div>
+<div class="w-full flex gap-1 h-1">
+<div class="h-full w-1/4 bg-surface-container-highest rounded-full"></div>
+<div class="h-full w-1/2 bg-error shadow-[0_0_8px_var(--tw-colors-error)] rounded-full"></div>
+<div class="h-full w-1/4 bg-surface-container-highest rounded-full"></div>
+</div>
+<div class="font-mono-tr text-[10px] text-error mt-2 uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">warning</span> Regülasyon Gerekli
+                        </div>
+</div>
+</div>
+<!-- Alerts Column -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-md h-full flex flex-col">
+<div class="flex justify-between items-center mb-md pb-sm border-b border-outline-variant/50">
+<h2 class="font-title-tr text-title-tr text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[20px]" style="font-variation-settings: 'FILL' 1;">error</span>
+                                Aktif Uyarılar
+                            </h2>
+<span class="px-2 py-0.5 bg-error-container text-on-error-container font-mono-tr text-[10px] rounded">3 KRİTİK</span>
+</div>
+<div class="flex-1 flex flex-col gap-2 overflow-y-auto pr-1">
+<!-- Alert Item -->
+<div class="p-3 bg-surface/50 border border-error/20 rounded hover:border-error/50 transition-colors group cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-tr text-label-tr text-error font-bold tracking-wider">HATA KODU: TH-092</span>
+<span class="font-mono-tr text-[10px] text-on-surface-variant group-hover:text-on-surface">12 dk önce</span>
+</div>
+<p class="font-body-tr text-[13px] text-on-surface-variant leading-tight">Sektör-7C Termal regülatör yanıt vermiyor. Manuel müdahale bekleniyor.</p>
+</div>
+<!-- Alert Item -->
+<div class="p-3 bg-surface/50 border border-amber-500/20 rounded hover:border-amber-500/50 transition-colors group cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-tr text-label-tr text-amber-500 font-bold tracking-wider">UYARI: PWR-LVL</span>
+<span class="font-mono-tr text-[10px] text-on-surface-variant group-hover:text-on-surface">45 dk önce</span>
+</div>
+<p class="font-body-tr text-[13px] text-on-surface-variant leading-tight">Yedek jeneratör 2 kapasite altına düştü. Yük dengeleme önerilir.</p>
+</div>
+<!-- Alert Item -->
+<div class="p-3 bg-surface/50 border border-outline-variant/50 rounded hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-tr text-label-tr text-primary font-bold tracking-wider">BİLGİ: COM-SYNC</span>
+<span class="font-mono-tr text-[10px] text-on-surface-variant group-hover:text-on-surface">2 saat önce</span>
+</div>
+<p class="font-body-tr text-[13px] text-on-surface-variant leading-tight">Dünya ile telemetri senkronizasyonu tamamlandı. Paket kaybı: %0.01.</p>
+</div>
+</div>
+<button class="w-full mt-md py-2 border border-outline-variant text-on-surface-variant font-label-tr text-label-tr uppercase tracking-widest rounded hover:bg-surface-container-highest transition-colors">Tüm Logları Gör</button>
+</div>
+</div>
+<!-- Main Chart Area -->
+<div class="col-span-1 md:col-span-8 flex flex-col gap-gutter">
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-md h-[400px] flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-center mb-md z-10 relative">
+<div>
+<h2 class="font-title-tr text-title-tr text-on-surface">Kaynak Kullanım Grafiği</h2>
+<p class="font-mono-tr text-[11px] text-on-surface-variant uppercase mt-1">Son 24 Saatlik Döngü (O2 vs Güç)</p>
+</div>
+<div class="flex gap-2 bg-surface-container-highest p-1 rounded">
+<button class="px-3 py-1 text-[11px] font-label-tr uppercase tracking-widest bg-surface-container-low text-primary rounded shadow-sm border border-outline-variant/30">O2</button>
+<button class="px-3 py-1 text-[11px] font-label-tr uppercase tracking-widest text-on-surface-variant hover:text-on-surface rounded">GÜÇ</button>
+<button class="px-3 py-1 text-[11px] font-label-tr uppercase tracking-widest text-on-surface-variant hover:text-on-surface rounded">SU</button>
+</div>
+</div>
+<!-- Stylized Data Visualization (CSS Based) -->
+<div class="flex-1 w-full relative flex items-end justify-between px-4 pb-8 z-10">
+<!-- Background Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between border-t border-b border-outline-variant/20 py-8 pointer-events-none">
+<div class="w-full border-t border-dashed border-outline-variant/10"></div>
+<div class="w-full border-t border-dashed border-outline-variant/10"></div>
+<div class="w-full border-t border-dashed border-outline-variant/10"></div>
+<div class="w-full border-t border-dashed border-outline-variant/10"></div>
+</div>
+<!-- Graph Bars -->
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[30%] relative group"><div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors"></div></div>
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[45%] relative group"><div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors"></div></div>
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[40%] relative group"><div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors"></div></div>
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[60%] relative group"><div class="absolute inset-0 bg-primary/30 shadow-[0_0_15px_var(--tw-colors-primary)] group-hover:bg-primary/50 transition-colors"></div></div>
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[55%] relative group"><div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors"></div></div>
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[75%] relative group"><div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors"></div></div>
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[70%] relative group"><div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors"></div></div>
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[85%] relative group"><div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors"></div></div>
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[90%] relative group"><div class="absolute inset-0 bg-primary/40 shadow-[0_0_20px_var(--tw-colors-primary)] group-hover:bg-primary/60 transition-colors"></div></div>
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[65%] relative group"><div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors"></div></div>
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[50%] relative group"><div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors"></div></div>
+<div class="w-8 bg-surface-container border border-outline-variant/50 h-[40%] relative group"><div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors"></div></div>
+</div>
+<!-- Graph X-Axis Labels -->
+<div class="absolute bottom-2 left-0 w-full flex justify-between px-6 font-mono-tr text-[10px] text-on-surface-variant z-10">
+<span>00:00</span>
+<span>04:00</span>
+<span>08:00</span>
+<span>12:00</span>
+<span>16:00</span>
+<span>20:00</span>
+</div>
+</div>
+</div>
+<!-- Recent Tasks / Telemetry List -->
+<div class="col-span-1 md:col-span-12 bg-surface-container-low border border-outline-variant rounded-lg overflow-hidden">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest/50">
+<h2 class="font-title-tr text-title-tr text-on-surface">Son Görevler ve Protokoller</h2>
+<button class="flex items-center gap-1 font-label-tr text-[11px] text-primary hover:text-primary-fixed uppercase tracking-widest transition-colors">
+                            Tam Liste <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="font-mono-tr text-[11px] uppercase tracking-wider text-on-surface-variant bg-surface-container">
+<th class="p-3 border-b border-outline-variant/50 font-medium">Görev ID</th>
+<th class="p-3 border-b border-outline-variant/50 font-medium">Modül</th>
+<th class="p-3 border-b border-outline-variant/50 font-medium">Açıklama</th>
+<th class="p-3 border-b border-outline-variant/50 font-medium">Sorumlu</th>
+<th class="p-3 border-b border-outline-variant/50 font-medium text-right">Durum</th>
+</tr>
+</thead>
+<tbody class="font-body-tr text-sm text-on-surface divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-highest/50 transition-colors group">
+<td class="p-3 font-mono-tr text-primary group-hover:text-primary-fixed transition-colors">TSK-8902</td>
+<td class="p-3 text-on-surface-variant">Laboratuvar-A</td>
+<td class="p-3">Hava filtre ünitesi kalibrasyonu</td>
+<td class="p-3 text-on-surface-variant">Müh. K. Yılmaz</td>
+<td class="p-3 text-right">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-primary/10 text-primary font-mono-tr text-[10px] uppercase border border-primary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Devam Ediyor
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/50 transition-colors group">
+<td class="p-3 font-mono-tr text-primary group-hover:text-primary-fixed transition-colors">TSK-8901</td>
+<td class="p-3 text-on-surface-variant">Reaktör Çekirdeği</td>
+<td class="p-3">Rutin teşhis taraması</td>
+<td class="p-3 text-on-surface-variant">Oto. Sistem</td>
+<td class="p-3 text-right">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 font-mono-tr text-[10px] uppercase border border-emerald-500/20">
+<span class="material-symbols-outlined text-[12px]">check</span> Tamamlandı
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/50 transition-colors group">
+<td class="p-3 font-mono-tr text-primary group-hover:text-primary-fixed transition-colors">TSK-8899</td>
+<td class="p-3 text-on-surface-variant">Sera Modülü</td>
+<td class="p-3">Nem sensörü değişimi</td>
+<td class="p-3 text-on-surface-variant">Bot Birimi D-4</td>
+<td class="p-3 text-right">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-variant text-on-surface-variant font-mono-tr text-[10px] uppercase border border-outline-variant">
+<span class="material-symbols-outlined text-[12px]">schedule</span> Beklemede
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

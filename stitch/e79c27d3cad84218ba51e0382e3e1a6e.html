@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modül Detayları - Güç Reaktörü Alpha</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#bc4800",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-surface": "#e1e2ed",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-container-lowest": "#0c0e16",
+                        "on-tertiary-container": "#ffede6",
+                        "on-primary-container": "#eeefff",
+                        "surface-dim": "#11131b",
+                        "background": "#11131b",
+                        "primary": "#b4c5ff",
+                        "on-surface": "#e1e2ed",
+                        "primary-container": "#2563eb",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#581e00",
+                        "on-background": "#e1e2ed",
+                        "surface-variant": "#32343d",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-error": "#690005",
+                        "outline": "#8d90a0",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-on-surface": "#2e3039",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#282a32",
+                        "outline-variant": "#434655",
+                        "surface-container": "#1d1f27",
+                        "inverse-primary": "#0053db",
+                        "on-primary": "#002a78",
+                        "on-secondary": "#233144",
+                        "secondary": "#b9c7df",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#32343d",
+                        "surface-container-low": "#191b23",
+                        "tertiary-fixed": "#ffdbcd",
+                        "tertiary": "#ffb596",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-bright": "#373942",
+                        "on-surface-variant": "#c3c6d7",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-secondary-container": "#abb9d1",
+                        "surface": "#11131b",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-container": "#3c4a5e",
+                        "surface-tint": "#b4c5ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "unit": "4px",
+                        "margin": "24px"
+                    },
+                    "fontFamily": {
+                        "display-tr": ["Inter"],
+                        "headline-tr": ["Inter"],
+                        "label-tr": ["Inter"],
+                        "title-tr": ["Inter"],
+                        "mono-tr": ["System Sans"],
+                        "body-tr": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-tr": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-tr": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-tr": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "title-tr": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "mono-tr": ["13px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-tr": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-tr text-body-tr h-screen overflow-hidden flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="docked full-width top-0 border-b border-slate-800 flex justify-between items-center w-full h-16 px-6 z-50 bg-slate-950/90 backdrop-blur-md">
+<div class="flex items-center gap-6">
+<div class="text-xl font-black text-slate-100 tracking-widest font-display-tr text-display-tr">
+                HABİTAT KONTROL
+            </div>
+<div class="hidden md:flex gap-4">
+<a class="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-2 rounded-DEFAULT" href="#">O2: %98</a>
+<a class="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-2 rounded-DEFAULT" href="#">GÜÇ: %85</a>
+<a class="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-2 rounded-DEFAULT" href="#">GIDA: %92</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-sm">search</span>
+<input class="bg-[#0F172A] border border-surface-variant rounded-DEFAULT py-1.5 pl-9 pr-3 text-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/50 focus:shadow-[0_0_8px_rgba(37,99,235,0.3)] transition-all w-64 placeholder-outline-variant font-mono-tr text-mono-tr" placeholder="Sistem Ara..." type="text"/>
+</div>
+<button class="p-2 text-primary-fixed-dim hover:bg-slate-900/50 rounded-full transition-colors duration-200 Active: scale-95 opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-primary-fixed-dim hover:bg-slate-900/50 rounded-full transition-colors duration-200 Active: scale-95 opacity-80">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</nav>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex fixed left-0 h-full w-64 border-r border-slate-800 shadow-[0_0_15px_rgba(37,99,235,0.1)] bg-slate-950 flex-col py-4 space-y-2 z-40 relative">
+<div class="px-6 py-4 mb-4 border-b border-surface-variant">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center border border-surface-variant">
+<span class="material-symbols-outlined text-primary-container">satellite_alt</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-blue-500 font-headline-tr text-headline-tr leading-none mb-1">SEKTÖR-7</h2>
+<p class="text-xs text-outline font-label-tr text-label-tr">Operasyonel Durum: Aktif</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-3 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="#">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors" data-icon="assignment_late">assignment_late</span>
+<span>Görev Panosu</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] transition-all duration-150 Press: translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="architecture" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<span>Habitat Tasarımı</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="#">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors" data-icon="groups">groups</span>
+<span>Mürettebat</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="#">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors" data-icon="timeline">timeline</span>
+<span>Kaynaklar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="#">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors" data-icon="warning">warning</span>
+<span>Uyarılar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="#">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors" data-icon="settings">settings</span>
+<span>Ayarlar</span>
+</a>
+</nav>
+<div class="mt-auto px-3 py-4 border-t border-surface-variant space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 group" href="#">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors text-[20px]" data-icon="account_circle">account_circle</span>
+<span>Profil</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-error hover:text-error-container hover:bg-error/10 transition-all duration-150 group" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span>Çıkış</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto bg-surface-container-lowest p-gutter lg:p-margin pb-24 relative">
+<!-- Contextual Header -->
+<div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-surface-variant pb-md">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="font-label-tr text-label-tr text-primary-fixed uppercase tracking-widest bg-primary-container/20 px-2 py-0.5 rounded-sm border border-primary-container/30 shadow-[0_0_8px_rgba(37,99,235,0.2)]">ENERJİ SİSTEMLERİ</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-tr text-label-tr text-outline">MODÜL ID: PWR-A-092</span>
+</div>
+<h1 class="font-display-tr text-display-tr text-on-surface m-0">Güç Reaktörü Alpha</h1>
+</div>
+<div class="flex gap-sm">
+<button class="bg-transparent border border-surface-variant text-on-surface font-label-tr text-label-tr px-4 py-2 rounded-DEFAULT hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">build</span>
+                        Bakım Başlat
+                    </button>
+<button class="bg-error-container/20 border border-error/50 text-error font-label-tr text-label-tr px-4 py-2 rounded-DEFAULT hover:bg-error-container/40 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">power_settings_new</span>
+                        Devre Dışı Bırak
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Primary Telemetry Card (Hero) -->
+<div class="md:col-span-8 bg-[#0F172A] border border-[#334155] rounded-lg p-md shadow-[0_0_15px_rgba(37,99,235,0.05)] flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<h3 class="font-title-tr text-title-tr text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">bolt</span>
+                            Çekirdek Çıkış Verileri
+                        </h3>
+<div class="flex items-center gap-2 bg-primary-container/10 px-3 py-1 rounded-full border border-primary-container/30 shadow-[0_0_8px_rgba(37,99,235,0.2)]">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-tr text-label-tr text-primary-fixed">AKTİF - OPTİMAL</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-sm mb-lg">
+<div class="bg-surface-container-high border border-surface-variant rounded-DEFAULT p-3">
+<p class="font-mono-tr text-mono-tr text-outline-variant mb-1 uppercase text-[10px]">Anlık Üretim</p>
+<p class="font-headline-tr text-headline-tr text-primary">4.2 GW</p>
+</div>
+<div class="bg-surface-container-high border border-surface-variant rounded-DEFAULT p-3">
+<p class="font-mono-tr text-mono-tr text-outline-variant mb-1 uppercase text-[10px]">Çekirdek Sıcaklığı</p>
+<p class="font-headline-tr text-headline-tr text-on-surface">840 °C</p>
+</div>
+<div class="bg-surface-container-high border border-surface-variant rounded-DEFAULT p-3">
+<p class="font-mono-tr text-mono-tr text-outline-variant mb-1 uppercase text-[10px]">Plazma Stabilitesi</p>
+<p class="font-headline-tr text-headline-tr text-on-surface">%99.8</p>
+</div>
+</div>
+<div class="flex-1 bg-surface-container-low border border-surface-variant rounded-DEFAULT p-4 relative min-h-[200px] flex items-end justify-center overflow-hidden">
+<!-- Placeholder for Graph -->
+<div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(37,99,235,0)_0%,rgba(37,99,235,0.05)_100%)]"></div>
+<div class="w-full h-full flex items-end gap-1 opacity-60">
+<div class="w-full bg-primary-container/30 h-[40%] rounded-t-sm"></div>
+<div class="w-full bg-primary-container/40 h-[50%] rounded-t-sm"></div>
+<div class="w-full bg-primary-container/30 h-[45%] rounded-t-sm"></div>
+<div class="w-full bg-primary-container/50 h-[60%] rounded-t-sm"></div>
+<div class="w-full bg-primary-container/40 h-[55%] rounded-t-sm"></div>
+<div class="w-full bg-primary-container/70 h-[80%] rounded-t-sm shadow-[0_0_10px_rgba(37,99,235,0.4)]"></div>
+<div class="w-full bg-primary-container/60 h-[75%] rounded-t-sm"></div>
+<div class="w-full bg-primary-container/50 h-[65%] rounded-t-sm"></div>
+<div class="w-full bg-primary-container/40 h-[60%] rounded-t-sm"></div>
+<div class="w-full bg-primary-container/60 h-[70%] rounded-t-sm"></div>
+</div>
+<div class="absolute top-4 right-4 font-mono-tr text-mono-tr text-primary-fixed-dim text-[10px] bg-surface-container-lowest px-2 py-1 rounded border border-surface-variant">T-MINUS 1H GRAPH</div>
+</div>
+</div>
+<!-- Systems Integration (Connections) -->
+<div class="md:col-span-4 bg-[#0F172A] border border-[#334155] rounded-lg p-md shadow-[0_0_15px_rgba(37,99,235,0.05)] flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<h3 class="font-title-tr text-title-tr text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-outline-variant">hub</span>
+                            Bağlı Sistemler
+                        </h3>
+</div>
+<div class="space-y-sm flex-1">
+<!-- Integration Item -->
+<div class="bg-surface-container-high border border-surface-variant p-3 rounded-DEFAULT flex items-center justify-between group hover:border-primary-container/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">air</span>
+<div>
+<p class="font-label-tr text-label-tr text-on-surface">O2 Geri Kazanım Ağı</p>
+<p class="font-mono-tr text-mono-tr text-outline-variant text-[10px]">Tüketim: 1.2 GW</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container text-[16px]">check_circle</span>
+</div>
+<!-- Integration Item -->
+<div class="bg-surface-container-high border border-surface-variant p-3 rounded-DEFAULT flex items-center justify-between group hover:border-primary-container/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">thermostat</span>
+<div>
+<p class="font-label-tr text-label-tr text-on-surface">Termal Kalkan B</p>
+<p class="font-mono-tr text-mono-tr text-outline-variant text-[10px]">Tüketim: 0.8 GW</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container text-[16px]">check_circle</span>
+</div>
+<!-- Integration Item -->
+<div class="bg-error-container/10 border border-error/30 p-3 rounded-DEFAULT flex items-center justify-between shadow-[0_0_8px_rgba(255,180,171,0.1)]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error text-[20px]">router</span>
+<div>
+<p class="font-label-tr text-label-tr text-error">İletişim Dizisi - Uzak</p>
+<p class="font-mono-tr text-mono-tr text-error/70 text-[10px]">Durum: Düşük Güç Uyarı</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-error text-[16px]">warning</span>
+</div>
+</div>
+<button class="mt-md w-full py-2 border border-surface-variant text-outline hover:text-on-surface hover:bg-surface-container-high rounded-DEFAULT font-label-tr text-label-tr transition-colors">
+                        Tüm Ağı Görüntüle
+                    </button>
+</div>
+<!-- Maintenance History -->
+<div class="md:col-span-12 bg-[#0F172A] border border-[#334155] rounded-lg p-md shadow-[0_0_15px_rgba(37,99,235,0.05)]">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-title-tr text-title-tr text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-outline-variant">history</span>
+                            Bakım Geçmişi &amp; Loglar
+                        </h3>
+<div class="flex gap-2">
+<span class="font-mono-tr text-mono-tr text-outline-variant text-[10px] bg-surface-container-high px-2 py-1 rounded">SON 30 GÜN</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-variant font-mono-tr text-mono-tr text-outline-variant text-[11px] uppercase">
+<th class="pb-2 font-normal pl-2">Tarih/Zaman</th>
+<th class="pb-2 font-normal">Teknisyen</th>
+<th class="pb-2 font-normal">Aksiyon</th>
+<th class="pb-2 font-normal">Durum</th>
+<th class="pb-2 font-normal text-right pr-2">Rapor</th>
+</tr>
+</thead>
+<tbody class="font-body-tr text-body-tr text-sm">
+<tr class="border-b border-surface-variant/50 hover:bg-surface-container-high/50 transition-colors">
+<td class="py-3 pl-2 font-mono-tr text-mono-tr text-outline-variant">2084.11.12 - 08:45</td>
+<td class="py-3 text-on-surface">Müh. Kaelen R.</td>
+<td class="py-3 text-outline">Soğutma Pompası Kalibrasyonu</td>
+<td class="py-3">
+<span class="inline-flex items-center gap-1 text-[11px] text-primary-fixed bg-primary-container/10 border border-primary-container/20 px-2 py-0.5 rounded-sm">
+                                            Başarılı
+                                        </span>
+</td>
+<td class="py-3 text-right pr-2">
+<button class="text-outline-variant hover:text-primary-fixed transition-colors"><span class="material-symbols-outlined text-[16px]">description</span></button>
+</td>
+</tr>
+<tr class="border-b border-surface-variant/50 hover:bg-surface-container-high/50 transition-colors">
+<td class="py-3 pl-2 font-mono-tr text-mono-tr text-outline-variant">2084.11.05 - 14:20</td>
+<td class="py-3 text-on-surface">Oto-Sistem Droid</td>
+<td class="py-3 text-outline">Rutin Teşhis Taraması</td>
+<td class="py-3">
+<span class="inline-flex items-center gap-1 text-[11px] text-primary-fixed bg-primary-container/10 border border-primary-container/20 px-2 py-0.5 rounded-sm">
+                                            Başarılı
+                                        </span>
+</td>
+<td class="py-3 text-right pr-2">
+<button class="text-outline-variant hover:text-primary-fixed transition-colors"><span class="material-symbols-outlined text-[16px]">description</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="py-3 pl-2 font-mono-tr text-mono-tr text-error/80">2084.10.28 - 02:11</td>
+<td class="py-3 text-on-surface">Müh. Sarah T.</td>
+<td class="py-3 text-outline">Acil Kapatma &amp; Yeniden Başlatma</td>
+<td class="py-3">
+<span class="inline-flex items-center gap-1 text-[11px] text-tertiary bg-tertiary-container/20 border border-tertiary-container/30 px-2 py-0.5 rounded-sm">
+                                            Uyarı - Çözüldü
+                                        </span>
+</td>
+<td class="py-3 text-right pr-2">
+<button class="text-outline-variant hover:text-primary-fixed transition-colors"><span class="material-symbols-outlined text-[16px]">description</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

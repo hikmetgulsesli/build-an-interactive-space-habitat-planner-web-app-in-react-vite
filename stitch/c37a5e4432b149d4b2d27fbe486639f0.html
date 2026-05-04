@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HABİTAT KONTROL - Ayarlar</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#bc4800",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "inverse-surface": "#e1e2ed",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "surface-container-lowest": "#0c0e16",
+                    "on-tertiary-container": "#ffede6",
+                    "on-primary-container": "#eeefff",
+                    "surface-dim": "#11131b",
+                    "background": "#11131b",
+                    "primary": "#b4c5ff",
+                    "on-surface": "#e1e2ed",
+                    "primary-container": "#2563eb",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary": "#581e00",
+                    "on-background": "#e1e2ed",
+                    "surface-variant": "#32343d",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "on-error": "#690005",
+                    "outline": "#8d90a0",
+                    "primary-fixed": "#dbe1ff",
+                    "inverse-on-surface": "#2e3039",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "error-container": "#93000a",
+                    "surface-container-high": "#282a32",
+                    "outline-variant": "#434655",
+                    "surface-container": "#1d1f27",
+                    "inverse-primary": "#0053db",
+                    "on-primary": "#002a78",
+                    "on-secondary": "#233144",
+                    "secondary": "#b9c7df",
+                    "secondary-fixed": "#d5e3fc",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "error": "#ffb4ab",
+                    "surface-container-highest": "#32343d",
+                    "surface-container-low": "#191b23",
+                    "tertiary-fixed": "#ffdbcd",
+                    "tertiary": "#ffb596",
+                    "on-tertiary-fixed": "#360f00",
+                    "surface-bright": "#373942",
+                    "on-surface-variant": "#c3c6d7",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-secondary-container": "#abb9d1",
+                    "surface": "#11131b",
+                    "on-primary-fixed": "#00174b",
+                    "secondary-container": "#3c4a5e",
+                    "surface-tint": "#b4c5ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "unit": "4px",
+                    "margin": "24px"
+            },
+            "fontFamily": {
+                    "display-tr": ["Inter"],
+                    "headline-tr": ["Inter"],
+                    "label-tr": ["Inter"],
+                    "title-tr": ["Inter"],
+                    "mono-tr": ["System Sans"],
+                    "body-tr": ["Inter"]
+            },
+            "fontSize": {
+                    "display-tr": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "headline-tr": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                    "label-tr": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                    "title-tr": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                    "mono-tr": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                    "body-tr": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-tr text-body-tr h-screen flex overflow-hidden">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col fixed left-0 h-full w-64 border-r border-slate-800 bg-slate-950 py-4 space-y-2 shadow-[0_0_15px_rgba(37,99,235,0.1)] z-40">
+<div class="px-6 pb-6 border-b border-slate-800 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-primary" data-icon="satellite_alt">satellite_alt</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-blue-500 font-headline-tr tracking-tight">SEKTÖR-7</h2>
+<p class="font-label-tr text-label-tr text-slate-400">Operasyonel Durum: Aktif</p>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col space-y-1 overflow-y-auto w-full">
+<a class="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3 mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">assignment_late</span>
+                Görev Panosu
+            </a>
+<a class="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3 mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">architecture</span>
+                Habitat Tasarımı
+            </a>
+<a class="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3 mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">groups</span>
+                Mürettebat
+            </a>
+<a class="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3 mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">timeline</span>
+                Kaynaklar
+            </a>
+<a class="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3 mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">warning</span>
+                Uyarılar
+            </a>
+<!-- Active Tab -->
+<a class="font-inter text-sm font-medium tracking-tight bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] px-4 py-3 flex items-center gap-3 translate-x-1" href="#">
+<span class="material-symbols-outlined fill">settings</span>
+                Ayarlar
+            </a>
+</div>
+<div class="mt-auto px-2 pt-4 border-t border-slate-800 space-y-1">
+<a class="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3 rounded-lg" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+                Profil
+            </a>
+<a class="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3 rounded-lg text-error hover:text-error-container" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Çıkış
+            </a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 w-full h-full relative">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full h-16 px-6 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 sticky top-0 shrink-0">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden text-slate-400 hover:text-slate-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-xl font-black text-slate-100 tracking-widest uppercase">HABİTAT KONTROL</h1>
+</div>
+<!-- Web Links -->
+<div class="hidden md:flex items-center gap-6">
+<div class="flex gap-4 border-r border-slate-800 pr-6">
+<span class="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-2 py-1 rounded">O2: %98</span>
+<span class="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-2 py-1 rounded">GÜÇ: %85</span>
+<span class="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-2 py-1 rounded">GIDA: %92</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-blue-600 dark:text-blue-500 hover:bg-slate-900/50 transition-colors duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-blue-600 dark:text-blue-500 hover:bg-slate-900/50 transition-colors duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<main class="flex-1 overflow-y-auto p-margin md:p-xl bg-background scroll-smooth">
+<div class="max-w-6xl mx-auto space-y-lg">
+<!-- Page Header -->
+<div class="flex flex-col gap-sm border-b border-surface-variant pb-md">
+<h2 class="font-display-tr text-display-tr text-on-surface">Sistem Ayarları</h2>
+<p class="font-body-tr text-body-tr text-on-surface-variant">Operasyonel tercihlerinizi, dil seçeneklerini ve yerel terminal verilerini yapılandırın.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-min">
+<!-- Theme Settings (Span 4) -->
+<div class="md:col-span-4 bg-surface-container rounded-xl border border-outline-variant p-lg flex flex-col gap-md relative overflow-hidden group hover:border-outline transition-colors">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim">palette</span>
+<h3 class="font-title-tr text-title-tr text-on-surface">Arayüz Teması</h3>
+</div>
+<p class="font-body-tr text-body-tr text-on-surface-variant mb-auto">Terminal aydınlatma modunu seçin. Gece döngüleri için karanlık mod önerilir.</p>
+<div class="flex flex-col gap-sm mt-4">
+<label class="flex items-center justify-between p-sm rounded-lg border border-primary-container bg-primary-container/10 shadow-[0_0_8px_theme(colors.primary-container/20)] cursor-pointer">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">dark_mode</span>
+<span class="font-label-tr text-label-tr text-on-surface">Karanlık (Aktif)</span>
+</div>
+<div class="w-4 h-4 rounded-full border-2 border-primary bg-primary flex items-center justify-center">
+<div class="w-1.5 h-1.5 bg-background rounded-full"></div>
+</div>
+</label>
+<label class="flex items-center justify-between p-sm rounded-lg border border-outline-variant hover:bg-surface-variant/50 cursor-pointer transition-colors">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">light_mode</span>
+<span class="font-label-tr text-label-tr text-on-surface-variant">Aydınlık</span>
+</div>
+<div class="w-4 h-4 rounded-full border-2 border-outline-variant"></div>
+</label>
+</div>
+</div>
+<!-- Language Settings (Span 4) -->
+<div class="md:col-span-4 bg-surface-container rounded-xl border border-outline-variant p-lg flex flex-col gap-md hover:border-outline transition-colors">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim">language</span>
+<h3 class="font-title-tr text-title-tr text-on-surface">Dil ve Bölge</h3>
+</div>
+<p class="font-body-tr text-body-tr text-on-surface-variant mb-auto">Sistem arayüzü ve otonom duyurular için varsayılan dili belirleyin.</p>
+<div class="mt-4 relative">
+<select class="w-full appearance-none bg-surface-dim border border-outline-variant text-on-surface font-body-tr text-body-tr rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+<option selected="" value="tr">Türkçe (Sektör Standart)</option>
+<option value="en">English (International)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">arrow_drop_down</span>
+</div>
+</div>
+<!-- Data Storage (Span 4) -->
+<div class="md:col-span-4 bg-surface-container rounded-xl border border-outline-variant p-lg flex flex-col gap-md hover:border-outline transition-colors">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-error">storage</span>
+<h3 class="font-title-tr text-title-tr text-on-surface">Veri Saklama</h3>
+</div>
+<p class="font-body-tr text-body-tr text-on-surface-variant mb-auto">Terminal önbelleğini ve geçici telemetri verilerini sıfırlayın. Kritik veriler etkilenmez.</p>
+<button class="mt-4 w-full bg-error-container/20 text-error border border-error/50 hover:bg-error hover:text-on-error font-label-tr text-label-tr uppercase py-3 rounded-lg transition-all duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+                            Yerel Depolamayı Temizle
+                        </button>
+</div>
+<!-- System Parameters (Span 12) -->
+<div class="md:col-span-12 bg-surface-container rounded-xl border border-outline-variant p-lg flex flex-col gap-lg">
+<div class="flex items-center gap-sm border-b border-surface-variant pb-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim">tune</span>
+<h3 class="font-title-tr text-title-tr text-on-surface">Sistem Parametreleri</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<!-- Param 1 -->
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between items-end">
+<label class="font-label-tr text-label-tr text-on-surface">Telemetri Yenileme Hızı</label>
+<span class="font-mono-tr text-mono-tr text-primary">1.5s</span>
+</div>
+<input class="w-full h-1 bg-surface-dim rounded-full appearance-none cursor-pointer accent-primary" max="5" min="0.5" step="0.5" type="range" value="1.5"/>
+<div class="flex justify-between text-xs text-on-surface-variant">
+<span>Yüksek Performans</span>
+<span>Veri Tasarrufu</span>
+</div>
+</div>
+<!-- Param 2 -->
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<label class="font-label-tr text-label-tr text-on-surface">Otonom Kritik Uyarı Eşiği</label>
+</div>
+<div class="flex items-center gap-4 bg-surface-dim p-2 rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-warning">warning_amber</span>
+<span class="font-body-tr text-body-tr text-on-surface flex-1">O2 seviyesi &lt;%85 altına düştüğünde manuel onaya geç</span>
+<div class="w-10 h-5 bg-primary rounded-full relative cursor-pointer shadow-[0_0_8px_theme(colors.primary/40)]">
+<div class="w-4 h-4 bg-on-primary rounded-full absolute right-0.5 top-0.5"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-surface-variant flex justify-end">
+<button class="bg-primary text-on-primary font-label-tr text-label-tr uppercase px-6 py-2.5 rounded-lg hover:bg-primary-fixed transition-colors shadow-[0_0_12px_theme(colors.primary/20)] flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                                Parametreleri Kaydet
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation (Visible only on md:hidden per "Responsive Pivot") -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-slate-950/95 backdrop-blur-md border-t border-slate-800 z-50 flex justify-around items-center h-16 pb-safe">
+<a class="flex flex-col items-center justify-center w-full h-full text-slate-500 hover:text-slate-300" href="#">
+<span class="material-symbols-outlined">assignment_late</span>
+<span class="text-[10px] font-medium mt-1">Görevler</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-slate-500 hover:text-slate-300" href="#">
+<span class="material-symbols-outlined">architecture</span>
+<span class="text-[10px] font-medium mt-1">Tasarım</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-blue-400" href="#">
+<span class="material-symbols-outlined fill text-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.5)] rounded-full">settings</span>
+<span class="text-[10px] font-medium mt-1">Ayarlar</span>
+</a>
+</nav>
+</body></html>
