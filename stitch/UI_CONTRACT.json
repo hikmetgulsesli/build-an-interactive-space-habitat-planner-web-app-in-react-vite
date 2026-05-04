@@ -1,0 +1,2383 @@
+[
+  {
+    "screenId": "e79c27d3cad84218ba51e0382e3e1a6e",
+    "screenTitle": "Modül Detayları",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "O2: %98",
+        "href": "#",
+        "line": 110
+      },
+      {
+        "type": "link",
+        "label": "GÜÇ: %85",
+        "href": "#",
+        "line": 111
+      },
+      {
+        "type": "link",
+        "label": "GIDA: %92",
+        "href": "#",
+        "line": 112
+      },
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 143
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 147
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 151
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 155
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 159
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 163
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 169
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 173
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 120
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 123
+      },
+      {
+        "type": "button",
+        "label": "Bakım Başlat",
+        "line": 192
+      },
+      {
+        "type": "button",
+        "label": "Devre Dışı Bırak",
+        "line": 196
+      },
+      {
+        "type": "button",
+        "label": "Tüm Ağı Görüntüle",
+        "line": 291
+      },
+      {
+        "type": "button",
+        "label": "description",
+        "line": 328
+      },
+      {
+        "type": "button",
+        "label": "description",
+        "line": 341
+      },
+      {
+        "type": "button",
+        "label": "description",
+        "line": 354
+      },
+      {
+        "type": "input",
+        "label": "Sistem Ara...",
+        "inputType": "text",
+        "placeholder": "Sistem Ara...",
+        "line": 118
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "O2: %98",
+        "href": "#",
+        "line": 110
+      },
+      {
+        "type": "link",
+        "label": "GÜÇ: %85",
+        "href": "#",
+        "line": 111
+      },
+      {
+        "type": "link",
+        "label": "GIDA: %92",
+        "href": "#",
+        "line": 112
+      },
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 143
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 147
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 151
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 155
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 159
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 163
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 169
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 173
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 120
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 123
+      },
+      {
+        "type": "button",
+        "label": "Bakım Başlat",
+        "line": 192
+      },
+      {
+        "type": "button",
+        "label": "Devre Dışı Bırak",
+        "line": 196
+      },
+      {
+        "type": "button",
+        "label": "Tüm Ağı Görüntüle",
+        "line": 291
+      },
+      {
+        "type": "button",
+        "label": "description",
+        "line": 328
+      },
+      {
+        "type": "button",
+        "label": "description",
+        "line": 341
+      },
+      {
+        "type": "button",
+        "label": "description",
+        "line": 354
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Sistem Ara...",
+        "inputType": "text",
+        "placeholder": "Sistem Ara...",
+        "line": 118
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 20,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "69b2d5c107b84343b60f394fbaf7739c",
+    "screenTitle": "Mürettebat Yönetimi",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 148
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 156
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 160
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 164
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 170
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 174
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 128
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 131
+      },
+      {
+        "type": "button",
+        "label": "Rapor Çıktısı",
+        "line": 195
+      },
+      {
+        "type": "button",
+        "label": "Personel Ekle",
+        "line": 199
+      },
+      {
+        "type": "input",
+        "label": "İsim veya ID numarası ile ara...",
+        "inputType": "text",
+        "placeholder": "İsim veya ID numarası ile ara...",
+        "line": 209
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 213
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 220
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 148
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 156
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 160
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 164
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 170
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 174
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 128
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 131
+      },
+      {
+        "type": "button",
+        "label": "Rapor Çıktısı",
+        "line": 195
+      },
+      {
+        "type": "button",
+        "label": "Personel Ekle",
+        "line": 199
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "İsim veya ID numarası ile ara...",
+        "inputType": "text",
+        "placeholder": "İsim veya ID numarası ile ara...",
+        "line": 209
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 213
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 220
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 15,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "57e3ea3ef289471cb3d1028d8f6554b3",
+    "screenTitle": "Modül Ekle/Düzenle",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 148
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 153
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 157
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 161
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 165
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 169
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 175
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 179
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 126
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 129
+      },
+      {
+        "type": "button",
+        "label": "İptal Et",
+        "line": 267
+      },
+      {
+        "type": "button",
+        "label": "Sisteme Kaydet",
+        "line": 270
+      },
+      {
+        "type": "input",
+        "label": "Örn: Laboratuvar-A",
+        "inputType": "text",
+        "placeholder": "Örn: Laboratuvar-A",
+        "line": 210
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 215
+      },
+      {
+        "type": "input",
+        "label": "number",
+        "inputType": "number",
+        "line": 235
+      },
+      {
+        "type": "input",
+        "label": "150",
+        "inputType": "number",
+        "placeholder": "150",
+        "line": 246
+      },
+      {
+        "type": "input",
+        "label": "radio",
+        "inputType": "radio",
+        "line": 256
+      },
+      {
+        "type": "input",
+        "label": "radio",
+        "inputType": "radio",
+        "line": 260
+      },
+      {
+        "type": "form",
+        "label": "form",
+        "line": 205
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 148
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 153
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 157
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 161
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 165
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 169
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 175
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 179
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 126
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 129
+      },
+      {
+        "type": "button",
+        "label": "İptal Et",
+        "line": 267
+      },
+      {
+        "type": "button",
+        "label": "Sisteme Kaydet",
+        "line": 270
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Örn: Laboratuvar-A",
+        "inputType": "text",
+        "placeholder": "Örn: Laboratuvar-A",
+        "line": 210
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 215
+      },
+      {
+        "type": "input",
+        "label": "number",
+        "inputType": "number",
+        "line": 235
+      },
+      {
+        "type": "input",
+        "label": "150",
+        "inputType": "number",
+        "placeholder": "150",
+        "line": 246
+      },
+      {
+        "type": "input",
+        "label": "radio",
+        "inputType": "radio",
+        "line": 256
+      },
+      {
+        "type": "input",
+        "label": "radio",
+        "inputType": "radio",
+        "line": 260
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 19,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "45ac0f9ee9eb485d98db7a0a67cab83e",
+    "screenTitle": "Habitat Tasarımı",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 127
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 132
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 137
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 141
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 145
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 149
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 155
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 159
+      },
+      {
+        "type": "button",
+        "label": "search",
+        "line": 177
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 181
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 185
+      },
+      {
+        "type": "button",
+        "label": "Yeni Modül Ekle",
+        "line": 199
+      },
+      {
+        "type": "button",
+        "label": "remove",
+        "line": 284
+      },
+      {
+        "type": "button",
+        "label": "add",
+        "line": 288
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 127
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 132
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 137
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 141
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 145
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 149
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 155
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 159
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "search",
+        "line": 177
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 181
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 185
+      },
+      {
+        "type": "button",
+        "label": "Yeni Modül Ekle",
+        "line": 199
+      },
+      {
+        "type": "button",
+        "label": "remove",
+        "line": 284
+      },
+      {
+        "type": "button",
+        "label": "add",
+        "line": 288
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 14,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "a53abe575f684d8395710446051a101e",
+    "screenTitle": "Görev Panosu",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 125
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 129
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 133
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 137
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 141
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 145
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 156
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 185
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 189
+      },
+      {
+        "type": "button",
+        "label": "YENİ GÖREV",
+        "line": 205
+      },
+      {
+        "type": "input",
+        "label": "Modül veya Görev Ara...",
+        "inputType": "text",
+        "placeholder": "Modül veya Görev Ara...",
+        "line": 181
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 125
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 129
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 133
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 137
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 141
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 145
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 156
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 185
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 189
+      },
+      {
+        "type": "button",
+        "label": "YENİ GÖREV",
+        "line": 205
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Modül veya Görev Ara...",
+        "inputType": "text",
+        "placeholder": "Modül veya Görev Ara...",
+        "line": 181
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 12,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "86dd2cc7d7514b6592c64d16ecc89207",
+    "screenTitle": "Kullanıcı Profili",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 137
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 141
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 145
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 149
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 153
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 157
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 165
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 169
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 193
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 196
+      },
+      {
+        "type": "button",
+        "label": "DOSYAYI YAZDIR",
+        "line": 212
+      },
+      {
+        "type": "button",
+        "label": "GÜNCELLE",
+        "line": 228
+      },
+      {
+        "type": "button",
+        "label": "KODU GÜNCELLE",
+        "line": 319
+      },
+      {
+        "type": "input",
+        "label": "••••••••",
+        "inputType": "password",
+        "placeholder": "••••••••",
+        "line": 312
+      },
+      {
+        "type": "input",
+        "label": "••••••••",
+        "inputType": "password",
+        "placeholder": "••••••••",
+        "line": 316
+      },
+      {
+        "type": "form",
+        "label": "form",
+        "line": 309
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 137
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 141
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 145
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 149
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 153
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 157
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 165
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 169
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 193
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 196
+      },
+      {
+        "type": "button",
+        "label": "DOSYAYI YAZDIR",
+        "line": 212
+      },
+      {
+        "type": "button",
+        "label": "GÜNCELLE",
+        "line": 228
+      },
+      {
+        "type": "button",
+        "label": "KODU GÜNCELLE",
+        "line": 319
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "••••••••",
+        "inputType": "password",
+        "placeholder": "••••••••",
+        "line": 312
+      },
+      {
+        "type": "input",
+        "label": "••••••••",
+        "inputType": "password",
+        "placeholder": "••••••••",
+        "line": 316
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 16,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "126c4d69777646c6ade936d7f4f67735",
+    "screenTitle": "Kaynak Takibi",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 139
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 149
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 154
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 159
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 164
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 171
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 175
+      },
+      {
+        "type": "button",
+        "label": "menu",
+        "line": 187
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 211
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 215
+      },
+      {
+        "type": "button",
+        "label": "24S",
+        "line": 233
+      },
+      {
+        "type": "button",
+        "label": "72S",
+        "line": 234
+      },
+      {
+        "type": "button",
+        "label": "7G",
+        "line": 235
+      },
+      {
+        "type": "button",
+        "label": "Raporu Aktar",
+        "line": 237
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 139
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 149
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 154
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 159
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 164
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 171
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 175
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "menu",
+        "line": 187
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 211
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 215
+      },
+      {
+        "type": "button",
+        "label": "24S",
+        "line": 233
+      },
+      {
+        "type": "button",
+        "label": "72S",
+        "line": 234
+      },
+      {
+        "type": "button",
+        "label": "7G",
+        "line": 235
+      },
+      {
+        "type": "button",
+        "label": "Raporu Aktar",
+        "line": 237
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 15,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "c37a5e4432b149d4b2d27fbe486639f0",
+    "screenTitle": "Ayarlar",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 131
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 135
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 139
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 143
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 147
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 158
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 162
+      },
+      {
+        "type": "link",
+        "label": "Görevler",
+        "href": "#",
+        "line": 305
+      },
+      {
+        "type": "link",
+        "label": "Tasarım",
+        "href": "#",
+        "line": 309
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 313
+      },
+      {
+        "type": "button",
+        "label": "menu",
+        "line": 174
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 187
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 190
+      },
+      {
+        "type": "button",
+        "label": "Yerel Depolamayı Temizle",
+        "line": 254
+      },
+      {
+        "type": "button",
+        "label": "Parametreleri Kaydet",
+        "line": 293
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 240
+      },
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 272
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 131
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 135
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 139
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 143
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 147
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 158
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 162
+      },
+      {
+        "type": "link",
+        "label": "Görevler",
+        "href": "#",
+        "line": 305
+      },
+      {
+        "type": "link",
+        "label": "Tasarım",
+        "href": "#",
+        "line": 309
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 313
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "menu",
+        "line": 174
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 187
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 190
+      },
+      {
+        "type": "button",
+        "label": "Yerel Depolamayı Temizle",
+        "line": 254
+      },
+      {
+        "type": "button",
+        "label": "Parametreleri Kaydet",
+        "line": 293
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 240
+      },
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 272
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 18,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "e7fe39aa93b349beb60eab1310842ada",
+    "screenTitle": "Hata Sayfası",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "button",
+        "label": "TEKRAR DENE",
+        "line": 162
+      },
+      {
+        "type": "button",
+        "label": "DESTEKLE İLETİŞİME GEÇ",
+        "line": 166
+      }
+    ],
+    "navigation": [],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "TEKRAR DENE",
+        "line": 162
+      },
+      {
+        "type": "button",
+        "label": "DESTEKLE İLETİŞİME GEÇ",
+        "line": 166
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 2,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "6f1b5cf94de04633b13a03fde14290a3",
+    "screenTitle": "Sistem Uyarıları",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 140
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 148
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 157
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 161
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 168
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 172
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 195
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 199
+      },
+      {
+        "type": "button",
+        "label": "Çözüldü",
+        "line": 273
+      },
+      {
+        "type": "button",
+        "label": "Ertele",
+        "line": 276
+      },
+      {
+        "type": "button",
+        "label": "Müdahale",
+        "line": 303
+      },
+      {
+        "type": "button",
+        "label": "Çözüldü",
+        "line": 325
+      },
+      {
+        "type": "button",
+        "label": "Ertele",
+        "line": 328
+      },
+      {
+        "type": "button",
+        "label": "Gözardı Et",
+        "line": 350
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 140
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 148
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 157
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 161
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 168
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 172
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 195
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 199
+      },
+      {
+        "type": "button",
+        "label": "Çözüldü",
+        "line": 273
+      },
+      {
+        "type": "button",
+        "label": "Ertele",
+        "line": 276
+      },
+      {
+        "type": "button",
+        "label": "Müdahale",
+        "line": 303
+      },
+      {
+        "type": "button",
+        "label": "Çözüldü",
+        "line": 325
+      },
+      {
+        "type": "button",
+        "label": "Ertele",
+        "line": 328
+      },
+      {
+        "type": "button",
+        "label": "Gözardı Et",
+        "line": 350
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 16,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "100c943acd804d42afbfd5a26f8b28a0",
+    "screenTitle": "İstatistikler",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 125
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 129
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 133
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 138
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 142
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 146
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 153
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 157
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 193
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 197
+      },
+      {
+        "type": "button",
+        "label": "Raporu İndir",
+        "line": 211
+      },
+      {
+        "type": "button",
+        "label": "O2",
+        "line": 264
+      },
+      {
+        "type": "button",
+        "label": "GÜÇ",
+        "line": 265
+      },
+      {
+        "type": "button",
+        "label": "SU",
+        "line": 266
+      },
+      {
+        "type": "button",
+        "label": "UYGULA",
+        "line": 361
+      },
+      {
+        "type": "button",
+        "label": "PROGRAMLA",
+        "line": 376
+      },
+      {
+        "type": "button",
+        "label": "ONAYLA",
+        "line": 391
+      },
+      {
+        "type": "input",
+        "label": "Sistem Ara...",
+        "inputType": "text",
+        "placeholder": "Sistem Ara...",
+        "line": 191
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 125
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 129
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 133
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 138
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 142
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 146
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 153
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 157
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 193
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 197
+      },
+      {
+        "type": "button",
+        "label": "Raporu İndir",
+        "line": 211
+      },
+      {
+        "type": "button",
+        "label": "O2",
+        "line": 264
+      },
+      {
+        "type": "button",
+        "label": "GÜÇ",
+        "line": 265
+      },
+      {
+        "type": "button",
+        "label": "SU",
+        "line": 266
+      },
+      {
+        "type": "button",
+        "label": "UYGULA",
+        "line": 361
+      },
+      {
+        "type": "button",
+        "label": "PROGRAMLA",
+        "line": 376
+      },
+      {
+        "type": "button",
+        "label": "ONAYLA",
+        "line": 391
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Sistem Ara...",
+        "inputType": "text",
+        "placeholder": "Sistem Ara...",
+        "line": 191
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 18,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "4235ae4d3be340b99fe29df4a2403eca",
+    "screenTitle": "Başlangıç Rehberi",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 140
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 145
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 150
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 154
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 158
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 162
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 169
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 173
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 210
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 214
+      },
+      {
+        "type": "button",
+        "label": "İlk Modülü Ekle",
+        "line": 244
+      },
+      {
+        "type": "input",
+        "label": "Sistem veya Modül Ara...",
+        "inputType": "text",
+        "placeholder": "Sistem veya Modül Ara...",
+        "line": 188
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 140
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 145
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 150
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 154
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 158
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 162
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 169
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 173
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 210
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 214
+      },
+      {
+        "type": "button",
+        "label": "İlk Modülü Ekle",
+        "line": 244
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "Sistem veya Modül Ara...",
+        "inputType": "text",
+        "placeholder": "Sistem veya Modül Ara...",
+        "line": 188
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 12,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "df1a19ca1bba4b09984637584028078b",
+    "screenTitle": "Ana Ekran (Dashboard)",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 132
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 136
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 140
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 148
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 159
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 163
+      },
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 194
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 198
+      },
+      {
+        "type": "button",
+        "label": "Tüm Logları Gör",
+        "line": 324
+      },
+      {
+        "type": "button",
+        "label": "O2",
+        "line": 336
+      },
+      {
+        "type": "button",
+        "label": "GÜÇ",
+        "line": 337
+      },
+      {
+        "type": "button",
+        "label": "SU",
+        "line": 338
+      },
+      {
+        "type": "button",
+        "label": "Tam Liste",
+        "line": 379
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Görev Panosu",
+        "href": "#",
+        "line": 132
+      },
+      {
+        "type": "link",
+        "label": "Habitat Tasarımı",
+        "href": "#",
+        "line": 136
+      },
+      {
+        "type": "link",
+        "label": "Mürettebat",
+        "href": "#",
+        "line": 140
+      },
+      {
+        "type": "link",
+        "label": "Kaynaklar",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "Uyarılar",
+        "href": "#",
+        "line": 148
+      },
+      {
+        "type": "link",
+        "label": "Ayarlar",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Profil",
+        "href": "#",
+        "line": 159
+      },
+      {
+        "type": "link",
+        "label": "Çıkış",
+        "href": "#",
+        "line": 163
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "notifications",
+        "line": 194
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 198
+      },
+      {
+        "type": "button",
+        "label": "Tüm Logları Gör",
+        "line": 324
+      },
+      {
+        "type": "button",
+        "label": "O2",
+        "line": 336
+      },
+      {
+        "type": "button",
+        "label": "GÜÇ",
+        "line": 337
+      },
+      {
+        "type": "button",
+        "label": "SU",
+        "line": 338
+      },
+      {
+        "type": "button",
+        "label": "Tam Liste",
+        "line": 379
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 15,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  }
+]

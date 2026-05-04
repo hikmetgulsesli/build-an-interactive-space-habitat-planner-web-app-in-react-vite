@@ -183,7 +183,7 @@ export function KaynakTakibi(props: KaynakTakibiProps) {
       <path className="drop-shadow-[0_0_3px_theme(colors.blue.400)]" d="M0,10 C20,15 40,5 60,20 C80,10 90,25 100,20" fill="none" stroke="theme(colors.blue.400)" strokeWidth="1.5"></path>
       <path d="M0,10 C20,15 40,5 60,20 C80,10 90,25 100,20 L100,100 L0,100 Z" fill="url(#o2-grad)" opacity="0.1"></path>
       <defs>
-      <lineargradient id="o2-grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="theme(colors.blue.400)"></stop><stop offset="100%" stopColor="transparent"></stop></lineargradient>
+      <linearGradient id="o2-grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="theme(colors.blue.400)"></stop><stop offset="100%" stopColor="transparent"></stop></linearGradient>
       </defs>
       </svg>
       {/* Power Line */}
