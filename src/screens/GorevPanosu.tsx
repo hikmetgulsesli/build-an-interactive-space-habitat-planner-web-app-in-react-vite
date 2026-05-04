@@ -220,7 +220,15 @@ export function GorevPanosu({ currentScreen, onNavigate, state, onAddTask, onUpd
         </div>
       ))}
       {pendingTasks.length === 0 && (
-        <div className="text-center text-on-surface-variant font-body-tr text-sm py-4">Bekleyen görev yok</div>
+        <div className="flex flex-col items-center justify-center py-8 gap-md">
+          <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+            <span className="material-symbols-outlined text-[24px] text-outline">inbox</span>
+          </div>
+          <p className="font-body-tr text-body-tr text-on-surface-variant text-center">Bekleyen görev yok</p>
+          <button onClick={() => setShowForm(true)} className="text-xs bg-primary/10 text-primary border border-primary/20 px-3 py-1.5 rounded hover:bg-primary/20 transition-colors cursor-pointer">
+            + Yeni Görev
+          </button>
+        </div>
       )}
       </div>
       </div>
@@ -267,7 +275,12 @@ export function GorevPanosu({ currentScreen, onNavigate, state, onAddTask, onUpd
         </div>
       ))}
       {activeTasks.length === 0 && (
-        <div className="text-center text-on-surface-variant font-body-tr text-sm py-4">Aktif görev yok</div>
+        <div className="flex flex-col items-center justify-center py-8 gap-md">
+          <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+            <span className="material-symbols-outlined text-[24px] text-outline">sync_disabled</span>
+          </div>
+          <p className="font-body-tr text-body-tr text-on-surface-variant text-center">Aktif görev yok</p>
+        </div>
       )}
       </div>
       </div>
@@ -298,7 +311,12 @@ export function GorevPanosu({ currentScreen, onNavigate, state, onAddTask, onUpd
         </div>
       ))}
       {completedTasks.length === 0 && (
-        <div className="text-center text-on-surface-variant font-body-tr text-sm py-4">Tamamlanmış görev yok</div>
+        <div className="flex flex-col items-center justify-center py-8 gap-md">
+          <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+            <span className="material-symbols-outlined text-[24px] text-outline">task_alt</span>
+          </div>
+          <p className="font-body-tr text-body-tr text-on-surface-variant text-center">Tamamlanmış görev yok</p>
+        </div>
       )}
       </div>
       </div>
