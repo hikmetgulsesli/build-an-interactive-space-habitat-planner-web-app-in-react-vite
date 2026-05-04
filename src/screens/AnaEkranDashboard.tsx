@@ -45,6 +45,10 @@ export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkran
       <span className="material-symbols-outlined text-[20px]">timeline</span>
       <span>Kaynaklar</span>
       </a>
+      <a className="flex items-center gap-3 w-full text-slate-500 hover:text-slate-300 font-inter text-sm font-medium tracking-tight px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=stats" onClick={(e) => { e.preventDefault(); onNavigate('stats'); }}>
+      <span className="material-symbols-outlined text-[20px]">bar_chart</span>
+      <span>İstatistikler</span>
+      </a>
       <a className="flex items-center gap-3 w-full text-slate-500 hover:text-slate-300 font-inter text-sm font-medium tracking-tight px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=alerts" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}>
       <span className="material-symbols-outlined text-[20px]">warning</span>
       <span>Uyarılar</span>

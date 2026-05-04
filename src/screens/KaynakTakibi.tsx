@@ -58,6 +58,10 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
                       Kaynaklar
                   </a>
       {/* Uyarılar */}
+      <a className="flex items-center gap-3 font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-lg" href="?screen=stats" onClick={(e) => { e.preventDefault(); onNavigate('stats'); }}>
+      <span className="material-symbols-outlined text-[20px]">bar_chart</span>
+                      İstatistikler
+                  </a>
       <a className="flex items-center gap-3 font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-lg" href="?screen=alerts" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}>
       <span className="material-symbols-outlined text-[20px]">warning</span>
                       Uyarılar
