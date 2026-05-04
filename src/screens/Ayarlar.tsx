@@ -81,6 +81,10 @@ export function Ayarlar({ currentScreen, onNavigate, state, updateSettings, rese
       <span className="material-symbols-outlined">timeline</span>
                       Kaynaklar
                   </a>
+      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3 mx-2 rounded-lg" href="?screen=stats" onClick={(e) => { e.preventDefault(); onNavigate('stats'); }}>
+      <span className="material-symbols-outlined">bar_chart</span>
+                      İstatistikler
+                  </a>
       <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3 mx-2 rounded-lg" href="?screen=alerts" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}>
       <span className="material-symbols-outlined">warning</span>
                       Uyarılar
@@ -92,7 +96,7 @@ export function Ayarlar({ currentScreen, onNavigate, state, updateSettings, rese
                   </a>
       </div>
       <div className="mt-auto px-2 pt-4 border-t border-slate-800 space-y-1">
-      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3 rounded-lg" href="?screen=settings" onClick={(e) => { e.preventDefault(); onNavigate('settings'); }}>
+      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3 rounded-lg" href="?screen=profile" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }}>
       <span className="material-symbols-outlined">account_circle</span>
                       Profil
                   </a>
@@ -116,15 +120,15 @@ export function Ayarlar({ currentScreen, onNavigate, state, updateSettings, rese
       {/* Web Links */}
       <div className="hidden md:flex items-center gap-6">
       <div className="flex gap-4 border-r border-slate-800 pr-6">
-      <span className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-2 py-1 rounded">O2: %98</span>
-      <span className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-2 py-1 rounded">GÜÇ: %85</span>
-      <span className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-2 py-1 rounded">GIDA: %92</span>
+      <span className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-2 py-1 rounded cursor-default">O2: %{(state?.resources.oxygen ?? 98).toFixed(0)}</span>
+      <span className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-2 py-1 rounded cursor-default">GÜÇ: %{(state?.resources.power ?? 85).toFixed(0)}</span>
+      <span className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-2 py-1 rounded cursor-default">GIDA: %{(state?.resources.food ?? 92).toFixed(0)}</span>
       </div>
       <div className="flex items-center gap-3">
-      <button className="text-blue-600 dark:text-blue-500 hover:bg-slate-900/50 transition-colors duration-200 p-2 rounded-full flex items-center justify-center">
+      <button onClick={() => onNavigate('alerts')} className="text-blue-600 dark:text-blue-500 hover:bg-slate-900/50 transition-colors duration-200 p-2 rounded-full flex items-center justify-center" aria-label="Bildirimler">
       <span className="material-symbols-outlined">notifications</span>
       </button>
-      <button className="text-blue-600 dark:text-blue-500 hover:bg-slate-900/50 transition-colors duration-200 p-2 rounded-full flex items-center justify-center">
+      <button onClick={() => onNavigate('profile')} className="text-blue-600 dark:text-blue-500 hover:bg-slate-900/50 transition-colors duration-200 p-2 rounded-full flex items-center justify-center" aria-label="Profil">
       <span className="material-symbols-outlined">account_circle</span>
       </button>
       </div>

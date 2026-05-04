@@ -8,14 +8,82 @@
 // 4. Replace placeholder data with props/state
 
 import { useState } from "react";
+import type { ScreenId, AppState } from '../types/domain';
 
 interface KullaniciProfiliProps {
-  currentScreen: import('../types/domain').ScreenId;
-  onNavigate: (screen: import('../types/domain').ScreenId) => void;
-  state?: import('../types/domain').AppState;
+  currentScreen: ScreenId;
+  onNavigate: (screen: ScreenId) => void;
+  state?: AppState;
 }
 
+interface SessionLog {
+  date: string;
+  ip: string;
+  module: string;
+  status: string;
+  statusType: 'success' | 'error';
+}
+
+const DEFAULT_SESSIONS: SessionLog[] = [
+  { date: '2084.11.04 - 14:32', ip: '192.168.7.104', module: 'O2_Sirkülasyon_Ana', status: 'BAŞARILI', statusType: 'success' },
+  { date: '2084.11.04 - 09:15', ip: '192.168.2.011', module: 'Reaktör_Kontrol_X', status: 'REDDEDİLDİ', statusType: 'error' },
+  { date: '2084.11.03 - 22:45', ip: '192.168.7.104', module: 'Kişisel_Oda_Erişimi', status: 'BAŞARILI', statusType: 'success' },
+  { date: '2084.11.03 - 08:00', ip: '192.168.1.005', module: 'Ana_Giriş_Portalı', status: 'BAŞARILI', statusType: 'success' },
+];
+
 export function KullaniciProfili({ currentScreen, onNavigate, state }: KullaniciProfiliProps) {
+  const [profile, setProfile] = useState({
+    name: 'Dr. Elias Vance',
+    role: 'Kıdemli İstasyon Mühendisi',
+    id: 'EV-8849-Omega',
+    department: 'Yaşam Destek Sis.',
+    location: 'Sektör-7 / Kat 4',
+  });
+  const [editingName, setEditingName] = useState(false);
+  const [editNameValue, setEditNameValue] = useState(profile.name);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [passwordUpdated, setPasswordUpdated] = useState(false);
+  const [sessions] = useState<SessionLog[]>(DEFAULT_SESSIONS);
+  const [avatarUpdated, setAvatarUpdated] = useState(false);
+
+  const handleNameSave = () => {
+    if (editNameValue.trim()) {
+      setProfile(p => ({ ...p, name: editNameValue.trim() }));
+    }
+    setEditingName(false);
+  };
+
+  const handleAvatarUpdate = () => {
+    setAvatarUpdated(true);
+    setTimeout(() => setAvatarUpdated(false), 2000);
+  };
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handlePasswordUpdate = () => {
+    if (currentPassword.length >= 4 && newPassword.length >= 4) {
+      setPasswordUpdated(true);
+      setCurrentPassword('');
+      setNewPassword('');
+      setTimeout(() => setPasswordUpdated(false), 3000);
+    } else {
+      alert('Şifre en az 4 karakter olmalıdır.');
+    }
+  };
+
+  const resources = state?.resources ?? { oxygen: 98.2, power: 85.0, water: 92.4, food: 92.0 };
+
+  const navLinkClass = (screen: ScreenId) => {
+    const base = 'flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150';
+    if (currentScreen === screen) {
+      return `${base} bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)]`;
+    }
+    return base;
+  };
+
   return (
     <>
       {/* SideNavBar (Shared Component) */}
@@ -30,35 +98,38 @@ export function KullaniciProfili({ currentScreen, onNavigate, state }: Kullanici
       </div>
       {/* Main Navigation Tabs */}
       <nav className="flex-1 flex flex-col space-y-1">
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=tasks" onClick={(e) => { e.preventDefault(); onNavigate('tasks'); }}>
+      <a className={navLinkClass('tasks')} href="?screen=tasks" onClick={(e) => { e.preventDefault(); onNavigate('tasks'); }}>
       <span className="material-symbols-outlined">assignment_late</span>
       <span>Görev Panosu</span>
       </a>
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=habitat" onClick={(e) => { e.preventDefault(); onNavigate('habitat'); }}>
+      <a className={navLinkClass('habitat')} href="?screen=habitat" onClick={(e) => { e.preventDefault(); onNavigate('habitat'); }}>
       <span className="material-symbols-outlined">architecture</span>
       <span>Habitat Tasarımı</span>
       </a>
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=crew" onClick={(e) => { e.preventDefault(); onNavigate('crew'); }}>
+      <a className={navLinkClass('crew')} href="?screen=crew" onClick={(e) => { e.preventDefault(); onNavigate('crew'); }}>
       <span className="material-symbols-outlined">groups</span>
       <span>Mürettebat</span>
       </a>
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=resources" onClick={(e) => { e.preventDefault(); onNavigate('resources'); }}>
+      <a className={navLinkClass('resources')} href="?screen=resources" onClick={(e) => { e.preventDefault(); onNavigate('resources'); }}>
       <span className="material-symbols-outlined">timeline</span>
       <span>Kaynaklar</span>
       </a>
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=alerts" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}>
+      <a className={navLinkClass('stats')} href="?screen=stats" onClick={(e) => { e.preventDefault(); onNavigate('stats'); }}>
+      <span className="material-symbols-outlined">bar_chart</span>
+      <span>İstatistikler</span>
+      </a>
+      <a className={navLinkClass('alerts')} href="?screen=alerts" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}>
       <span className="material-symbols-outlined">warning</span>
       <span>Uyarılar</span>
       </a>
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=settings" onClick={(e) => { e.preventDefault(); onNavigate('settings'); }}>
+      <a className={navLinkClass('settings')} href="?screen=settings" onClick={(e) => { e.preventDefault(); onNavigate('settings'); }}>
       <span className="material-symbols-outlined">settings</span>
       <span>Ayarlar</span>
       </a>
       </nav>
       {/* Footer Navigation Tabs */}
       <div className="mt-auto border-t border-slate-800/50 pt-4 flex flex-col space-y-1">
-      {/* ACTIVE TAB */}
-      <a className="flex items-center gap-md bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] px-6 py-3" href="?screen=profile" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }}>
+      <a className={navLinkClass('profile')} href="?screen=profile" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }}>
       <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>account_circle</span>
       <span>Profil</span>
       </a>
@@ -80,16 +151,16 @@ export function KullaniciProfili({ currentScreen, onNavigate, state }: Kullanici
       <div className="flex items-center gap-lg">
       {/* Navigation Links / Telemetry */}
       <div className="hidden lg:flex items-center gap-md border-r border-slate-800 pr-lg">
-      <span className="text-slate-400 hover:text-slate-200 cursor-pointer">O2: %98</span>
-      <span className="text-slate-400 hover:text-slate-200 cursor-pointer">GÜÇ: %85</span>
-      <span className="text-slate-400 hover:text-slate-200 cursor-pointer">GIDA: %92</span>
+      <span className="text-slate-400 hover:text-slate-200 cursor-pointer">O2: %{resources.oxygen.toFixed(0)}</span>
+      <span className="text-slate-400 hover:text-slate-200 cursor-pointer">GÜÇ: %{resources.power.toFixed(0)}</span>
+      <span className="text-slate-400 hover:text-slate-200 cursor-pointer">GIDA: %{resources.food.toFixed(0)}</span>
       </div>
       {/* Trailing Actions */}
       <div className="flex items-center gap-sm">
-      <button className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 rounded-DEFAULT transition-colors duration-200 flex items-center justify-center">
+      <button className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 rounded-DEFAULT transition-colors duration-200 flex items-center justify-center" onClick={() => onNavigate('alerts')} aria-label="Bildirimler">
       <span className="material-symbols-outlined">notifications</span>
       </button>
-      <button className="p-2 text-blue-400 border-b-2 border-blue-500 pb-1 flex items-center justify-center scale-95 opacity-80">
+      <button className="p-2 text-blue-400 border-b-2 border-blue-500 pb-1 flex items-center justify-center scale-95 opacity-80" onClick={() => onNavigate('profile')} aria-label="Profil">
       <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>account_circle</span>
       </button>
       </div>
@@ -105,7 +176,7 @@ export function KullaniciProfili({ currentScreen, onNavigate, state }: Kullanici
       <p className="font-mono-tr text-mono-tr text-on-surface-variant mt-xs">Kimlik Doğrulama Seviyesi: Alpha-1</p>
       </div>
       <div className="hidden sm:flex gap-sm">
-      <button className="px-md py-sm rounded-DEFAULT border border-outline text-on-surface hover:bg-surface-container-highest transition-colors font-label-tr text-label-tr flex items-center gap-xs">
+      <button onClick={handlePrint} className="px-md py-sm rounded-DEFAULT border border-outline text-on-surface hover:bg-surface-container-highest transition-colors font-label-tr text-label-tr flex items-center gap-xs">
       <span className="material-symbols-outlined text-[16px]">print</span>
                                   DOSYAYI YAZDIR
                               </button>
@@ -120,16 +191,29 @@ export function KullaniciProfili({ currentScreen, onNavigate, state }: Kullanici
       <div className="relative w-32 h-32 rounded-full border-2 border-primary-container p-1 mb-md">
       <div className="w-full h-full rounded-full overflow-hidden bg-surface-variant relative">
       {/* Detailed prompt for profile image */}
-      <img alt="Profile picture" className="w-full h-full object-cover grayscale opacity-90 mix-blend-luminosity" data-alt="A striking portrait of a male aerospace engineer in his late 30s, viewed head-on in a deep space control facility. The lighting is high-contrast and dramatic, dominated by cool blue glows from off-screen monitors reflecting on his face against a pitch-black background. He wears a dark, utilitarian station uniform with subtle technical insignias. The overall aesthetic is gritty, cinematic, and highly technological, fitting a corporate minimalist sci-fi UI concept." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg4U9voMMY_zuAXYjPvBepJXF-gqyoZc-kubWlkr3x02CkioEZsjfy9jr8iTt9XQN6kfq582k8xxw2YzjYc__4v5LSMZpOisfNVwxi7vReAbJhl_GuGERU8dpkhnj572mQIFWaEAfoM1sRLhypnuj6zOaygTQY1j2WxeW33Oo0T9MHnZX6xWZxvCdRoe90cZQO9AWDAY2aLq_5XlL5b0V-g21v23FeDwQjR8gweHXQ5P8jZx-j834c2bEF7c8A2w9wjEo-BemliOw" />
-      <button className="absolute bottom-0 left-0 w-full bg-surface-container-highest/90 text-on-surface py-1 text-[10px] font-label-tr uppercase tracking-widest hover:text-primary transition-colors border-t border-outline-variant backdrop-blur-sm">
-                                          GÜNCELLE
+      <img alt="Profil fotoğrafı" className="w-full h-full object-cover grayscale opacity-90 mix-blend-luminosity" data-alt="A striking portrait of a male aerospace engineer in his late 30s, viewed head-on in a deep space control facility. The lighting is high-contrast and dramatic, dominated by cool blue glows from off-screen monitors reflecting on his face against a pitch-black background. He wears a dark, utilitarian station uniform with subtle technical insignias. The overall aesthetic is gritty, cinematic, and highly technological, fitting a corporate minimalist sci-fi UI concept." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg4U9voMMY_zuAXYjPvBepJXF-gqyoZc-kubWlkr3x02CkioEZsjfy9jr8iTt9XQN6kfq582k8xxw2YzjYc__4v5LSMZpOisfNVwxi7vReAbJhl_GuGERU8dpkhnj572mQIFWaEAfoM1sRLhypnuj6zOaygTQY1j2WxeW33Oo0T9MHnZX6xWZxvCdRoe90cZQO9AWDAY2aLq_5XlL5b0V-g21v23FeDwQjR8gweHXQ5P8jZx-j834c2bEF7c8A2w9wjEo-BemliOw" />
+      <button onClick={handleAvatarUpdate} className="absolute bottom-0 left-0 w-full bg-surface-container-highest/90 text-on-surface py-1 text-[10px] font-label-tr uppercase tracking-widest hover:text-primary transition-colors border-t border-outline-variant backdrop-blur-sm">
+                                          {avatarUpdated ? 'GÜNCELLENDİ' : 'GÜNCELLE'}
                                       </button>
       </div>
       {/* Status Indicator */}
       <div className="absolute bottom-2 right-2 w-4 h-4 rounded-full bg-[#10b981] border-2 border-surface-container shadow-[0_0_8px_rgba(16,185,129,0.6)]"></div>
       </div>
-      <h2 className="font-headline-tr text-headline-tr text-on-background mb-xs">Dr. Elias Vance</h2>
-      <span className="font-title-tr text-title-tr text-secondary mb-md">Kıdemli İstasyon Mühendisi</span>
+      {editingName ? (
+        <div className="flex items-center gap-2 mb-xs">
+          <input
+            autoFocus
+            className="bg-surface border border-outline-variant rounded px-2 py-1 text-on-surface font-headline-tr text-headline-tr focus:outline-none focus:border-primary"
+            value={editNameValue}
+            onChange={(e) => setEditNameValue(e.target.value)}
+            onBlur={handleNameSave}
+            onKeyDown={(e) => { if (e.key === 'Enter') handleNameSave(); }}
+          />
+        </div>
+      ) : (
+        <h2 onClick={() => { setEditingName(true); setEditNameValue(profile.name); }} className="font-headline-tr text-headline-tr text-on-background mb-xs cursor-pointer hover:text-primary transition-colors" title="Düzenlemek için tıklayın">{profile.name}</h2>
+      )}
+      <span className="font-title-tr text-title-tr text-secondary mb-md">{profile.role}</span>
       <div className="flex items-center gap-xs px-sm py-xs bg-primary-fixed-dim/10 border border-primary/30 rounded-DEFAULT text-primary font-mono-tr text-mono-tr mb-lg">
       <span className="material-symbols-outlined text-[14px]">verified_user</span>
                                   Sistem Erişimi: AKTİF
@@ -137,15 +221,15 @@ export function KullaniciProfili({ currentScreen, onNavigate, state }: Kullanici
       <div className="w-full space-y-xs text-left border-t border-outline-variant pt-md">
       <div className="flex justify-between items-center py-xs">
       <span className="text-on-surface-variant font-mono-tr text-mono-tr">ID No:</span>
-      <span className="text-on-surface font-body-tr text-body-tr">EV-8849-Omega</span>
+      <span className="text-on-surface font-body-tr text-body-tr">{profile.id}</span>
       </div>
       <div className="flex justify-between items-center py-xs">
       <span className="text-on-surface-variant font-mono-tr text-mono-tr">Departman:</span>
-      <span className="text-on-surface font-body-tr text-body-tr">Yaşam Destek Sis.</span>
+      <span className="text-on-surface font-body-tr text-body-tr">{profile.department}</span>
       </div>
       <div className="flex justify-between items-center py-xs">
       <span className="text-on-surface-variant font-mono-tr text-mono-tr">Konum:</span>
-      <span className="text-on-surface font-body-tr text-body-tr">Sektör-7 / Kat 4</span>
+      <span className="text-on-surface font-body-tr text-body-tr">{profile.location}</span>
       </div>
       </div>
       </div>
@@ -202,19 +286,19 @@ export function KullaniciProfili({ currentScreen, onNavigate, state }: Kullanici
       <span className="material-symbols-outlined text-primary">key</span>
       <h3 className="font-title-tr text-title-tr text-on-surface">Güvenlik Protokolleri</h3>
       </div>
-      <form className="flex-1 flex flex-col gap-md mt-xs relative z-10">
+      <form className="flex-1 flex flex-col gap-md mt-xs relative z-10" onSubmit={(e) => { e.preventDefault(); handlePasswordUpdate(); }}>
       <div className="flex flex-col gap-xs">
       <label className="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-widest">Mevcut Şifre Kodu</label>
-      <input className="w-full bg-surface border border-outline-variant rounded-DEFAULT px-md py-sm text-on-surface font-mono-tr text-mono-tr focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all placeholder:text-on-surface-variant/50" placeholder="••••••••" type="password" />
+      <input className="w-full bg-surface border border-outline-variant rounded-DEFAULT px-md py-sm text-on-surface font-mono-tr text-mono-tr focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all placeholder:text-on-surface-variant/50" placeholder="••••••••" type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} />
       </div>
       <div className="flex flex-col gap-xs">
       <label className="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-widest">Yeni Şifre Kodu</label>
-      <input className="w-full bg-surface border border-outline-variant rounded-DEFAULT px-md py-sm text-on-surface font-mono-tr text-mono-tr focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all placeholder:text-on-surface-variant/50" placeholder="••••••••" type="password" />
+      <input className="w-full bg-surface border border-outline-variant rounded-DEFAULT px-md py-sm text-on-surface font-mono-tr text-mono-tr focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all placeholder:text-on-surface-variant/50" placeholder="••••••••" type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
       </div>
       <div className="mt-auto pt-sm">
-      <button className="w-full bg-primary-container text-on-primary-container rounded-DEFAULT px-md py-sm font-label-tr text-label-tr uppercase tracking-widest hover:bg-inverse-primary transition-colors shadow-[0_0_10px_rgba(37,99,235,0.2)] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)] flex items-center justify-center gap-sm" type="button">
-      <span className="material-symbols-outlined text-[18px]">update</span>
-                                                  KODU GÜNCELLE
+      <button className={`w-full bg-primary-container text-on-primary-container rounded-DEFAULT px-md py-sm font-label-tr text-label-tr uppercase tracking-widest hover:bg-inverse-primary transition-colors shadow-[0_0_10px_rgba(37,99,235,0.2)] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)] flex items-center justify-center gap-sm ${passwordUpdated ? 'opacity-80' : ''}`} type="submit">
+      <span className="material-symbols-outlined text-[18px]">{passwordUpdated ? 'check' : 'update'}</span>
+                                                  {passwordUpdated ? 'KOD GÜNCELLENDİ' : 'KODU GÜNCELLE'}
                                               </button>
       </div>
       </form>
@@ -241,30 +325,14 @@ export function KullaniciProfili({ currentScreen, onNavigate, state }: Kullanici
       </tr>
       </thead>
       <tbody className="text-on-surface">
-      <tr className="border-b border-surface-variant hover:bg-surface-variant/30 transition-colors">
-      <td className="py-sm px-xs text-secondary">2084.11.04 - 14:32</td>
-      <td className="py-sm px-xs">192.168.7.104</td>
-      <td className="py-sm px-xs">O2_Sirkülasyon_Ana</td>
-      <td className="py-sm px-xs text-right text-primary">BAŞARILI</td>
-      </tr>
-      <tr className="border-b border-surface-variant hover:bg-surface-variant/30 transition-colors">
-      <td className="py-sm px-xs text-secondary">2084.11.04 - 09:15</td>
-      <td className="py-sm px-xs">192.168.2.011</td>
-      <td className="py-sm px-xs">Reaktör_Kontrol_X</td>
-      <td className="py-sm px-xs text-right text-error">REDDEDİLDİ</td>
-      </tr>
-      <tr className="border-b border-surface-variant hover:bg-surface-variant/30 transition-colors">
-      <td className="py-sm px-xs text-secondary">2084.11.03 - 22:45</td>
-      <td className="py-sm px-xs">192.168.7.104</td>
-      <td className="py-sm px-xs">Kişisel_Oda_Erişimi</td>
-      <td className="py-sm px-xs text-right text-primary">BAŞARILI</td>
-      </tr>
-      <tr className="hover:bg-surface-variant/30 transition-colors">
-      <td className="py-sm px-xs text-secondary">2084.11.03 - 08:00</td>
-      <td className="py-sm px-xs">192.168.1.005</td>
-      <td className="py-sm px-xs">Ana_Giriş_Portalı</td>
-      <td className="py-sm px-xs text-right text-primary">BAŞARILI</td>
-      </tr>
+      {sessions.map((session, i) => (
+        <tr key={i} className="border-b border-surface-variant hover:bg-surface-variant/30 transition-colors">
+        <td className="py-sm px-xs text-secondary">{session.date}</td>
+        <td className="py-sm px-xs">{session.ip}</td>
+        <td className="py-sm px-xs">{session.module}</td>
+        <td className={`py-sm px-xs text-right ${session.statusType === 'success' ? 'text-primary' : 'text-error'}`}>{session.status}</td>
+        </tr>
+      ))}
       </tbody>
       </table>
       </div>

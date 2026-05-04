@@ -154,6 +154,16 @@ export function Istatistikler({ currentScreen, onNavigate, state }: Istatistikle
     return items.slice(0, 3);
   }, [resources, state?.alerts]);
 
+  const filteredSuggestions = useMemo(() => {
+    if (!searchQuery.trim()) return suggestions;
+    const q = searchQuery.toLowerCase();
+    return suggestions.filter(s =>
+      s.title.toLowerCase().includes(q) ||
+      s.desc.toLowerCase().includes(q) ||
+      s.priority.toLowerCase().includes(q)
+    );
+  }, [suggestions, searchQuery]);
+
   const handleDownloadReport = () => {
     const report = {
       tarih: new Date().toISOString(),
@@ -168,21 +178,18 @@ export function Istatistikler({ currentScreen, onNavigate, state }: Istatistikle
     const a = document.createElement('a');
     a.href = url;
     a.download = `sektor7-rapor-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
     a.click();
-    URL.revokeObjectURL(url);
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 1000);
     setReportDownloaded(true);
     setTimeout(() => setReportDownloaded(false), 3000);
   };
 
   const handleApply = (id: string) => {
     setAppliedIds(prev => new Set(prev).add(id));
-    setTimeout(() => {
-      setAppliedIds(prev => {
-        const next = new Set(prev);
-        next.delete(id);
-        return next;
-      });
-    }, 3000);
   };
 
   const navLinkClass = (screen: ScreenId) => {
@@ -259,7 +266,7 @@ export function Istatistikler({ currentScreen, onNavigate, state }: Istatistikle
           {/* Brand */}
           <div className="text-xl font-black text-slate-100 tracking-widest flex items-center gap-2">
             HABİTAT KONTROL
-            <span className="px-2 py-0.5 bg-blue-500/20 text-blue-400 text-[10px] rounded border border-blue-500/30 uppercase tracking-wider ml-2">İstatistik AğI</span>
+            <span className="px-2 py-0.5 bg-blue-500/20 text-blue-400 text-[10px] rounded border border-blue-500/30 uppercase tracking-wider ml-2">İstatistik Ağı</span>
           </div>
           {/* Navigation Links (Telemetry) */}
           <nav className="hidden md:flex items-center gap-6">
@@ -281,6 +288,7 @@ export function Istatistikler({ currentScreen, onNavigate, state }: Istatistikle
             <div className="relative hidden lg:block">
               <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
               <input
+                aria-label="Sistem ara"
                 className="bg-surface-container-high border border-outline-variant rounded-full py-1.5 pl-9 pr-4 text-sm font-body-tr text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-[0_0_10px_rgba(37,99,235,0)] focus:shadow-[0_0_10px_rgba(37,99,235,0.15)] transition-all w-64"
                 placeholder="Sistem Ara..."
                 type="text"
@@ -364,9 +372,9 @@ export function Istatistikler({ currentScreen, onNavigate, state }: Istatistikle
                   Haftalık Kaynak Tüketim Trendleri
                 </h3>
                 <div className="flex gap-2 bg-surface-container-lowest rounded-lg p-1 border border-outline-variant/50">
-                  <button className={`px-3 py-1 text-xs font-medium rounded ${selectedMetric === 'oxygen' ? 'bg-surface-variant text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`} onClick={() => setSelectedMetric('oxygen')}>O2</button>
-                  <button className={`px-3 py-1 text-xs font-medium rounded ${selectedMetric === 'power' ? 'bg-surface-variant text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`} onClick={() => setSelectedMetric('power')}>GÜÇ</button>
-                  <button className={`px-3 py-1 text-xs font-medium rounded ${selectedMetric === 'water' ? 'bg-surface-variant text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`} onClick={() => setSelectedMetric('water')}>SU</button>
+                  <button aria-pressed={selectedMetric === 'oxygen'} className={`px-3 py-1 text-xs font-medium rounded ${selectedMetric === 'oxygen' ? 'bg-surface-variant text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`} onClick={() => setSelectedMetric('oxygen')}>O2</button>
+                  <button aria-pressed={selectedMetric === 'power'} className={`px-3 py-1 text-xs font-medium rounded ${selectedMetric === 'power' ? 'bg-surface-variant text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`} onClick={() => setSelectedMetric('power')}>GÜÇ</button>
+                  <button aria-pressed={selectedMetric === 'water'} className={`px-3 py-1 text-xs font-medium rounded ${selectedMetric === 'water' ? 'bg-surface-variant text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`} onClick={() => setSelectedMetric('water')}>SU</button>
                 </div>
               </div>
               {/* CSS Bar Chart Representation */}
@@ -384,7 +392,7 @@ export function Istatistikler({ currentScreen, onNavigate, state }: Istatistikle
                 {weeklyData.map((value, i) => (
                   <div key={days[i]} className="flex-1 flex flex-col items-center gap-2 group cursor-pointer relative">
                     <div className="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded whitespace-nowrap pointer-events-none z-10">{days[i]}: %{value}</div>
-                    <div className={`w-full bg-primary-container/20 rounded-t-sm h-[${value}%] relative overflow-hidden group-hover:bg-primary-container/40 transition-colors`} style={{ height: `${value}%` }}>
+                    <div className="w-full bg-primary-container/20 rounded-t-sm relative overflow-hidden group-hover:bg-primary-container/40 transition-colors" style={{ height: `${value}%` }}>
                       <div className={`absolute bottom-0 w-full ${barFillColor} h-[95%] rounded-t-sm ${barShadow}`}></div>
                     </div>
                     <span className={`text-xs text-on-surface-variant ${i === 2 ? 'font-bold text-on-surface' : ''}`}>{days[i]}</span>
@@ -408,7 +416,7 @@ export function Istatistikler({ currentScreen, onNavigate, state }: Istatistikle
                 </span>
               </div>
               <div className="p-lg grid grid-cols-1 md:grid-cols-3 gap-6">
-                {suggestions.map((sugg) => (
+                {filteredSuggestions.map((sugg) => (
                   <div key={sugg.id} className="bg-surface-container-lowest border border-outline-variant/50 rounded-lg p-5 hover:border-tertiary/50 hover:shadow-[0_0_15px_rgba(255,181,150,0.1)] transition-all duration-300">
                     <div className="flex items-start justify-between mb-4">
                       <div className="w-10 h-10 rounded bg-tertiary/10 flex items-center justify-center border border-tertiary/20">

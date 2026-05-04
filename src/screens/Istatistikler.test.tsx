@@ -103,11 +103,46 @@ describe('Istatistikler', () => {
     expect(screen.getByText('İndirildi')).toBeInTheDocument();
   });
 
-  it('search input is controlled', () => {
+  it('search input is controlled and filters suggestions', () => {
     render(<Istatistikler {...defaultProps} />);
     const input = screen.getByPlaceholderText('Sistem Ara...');
-    fireEvent.change(input, { target: { value: 'test query' } });
-    expect(input).toHaveValue('test query');
+    fireEvent.change(input, { target: { value: 'Güç' } });
+    expect(input).toHaveValue('Güç');
+    // Should filter suggestions to only show power-related ones
+    expect(screen.queryByText('Su Geri Dönüşüm Filtresi')).not.toBeInTheDocument();
+    expect(screen.getByText('Güç Optimizasyonu')).toBeInTheDocument();
+  });
+
+  it('search input has aria-label for accessibility', () => {
+    render(<Istatistikler {...defaultProps} />);
+    const input = screen.getByLabelText('Sistem ara');
+    expect(input).toBeInTheDocument();
+  });
+
+  it('toggle buttons have aria-pressed for accessibility', () => {
+    render(<Istatistikler {...defaultProps} />);
+    const o2Btn = screen.getByText('O2');
+    expect(o2Btn).toHaveAttribute('aria-pressed', 'true');
+    const powerBtn = screen.getByText('GÜÇ');
+    expect(powerBtn).toHaveAttribute('aria-pressed', 'false');
+  });
+
+  it('shows correct network label without typo', () => {
+    render(<Istatistikler {...defaultProps} />);
+    expect(screen.getByText('İstatistik Ağı')).toBeInTheDocument();
+  });
+
+  it('applied state persists and does not silently revert', () => {
+    vi.useFakeTimers();
+    render(<Istatistikler {...defaultProps} />);
+    const applyBtns = screen.getAllByText('UYGULA');
+    expect(applyBtns.length).toBeGreaterThan(0);
+    fireEvent.click(applyBtns[0]);
+    expect(screen.getByText('UYGULANDI')).toBeInTheDocument();
+    // After 3.5s it should STILL show UYGULANDI (no revert)
+    vi.advanceTimersByTime(3500);
+    expect(screen.getByText('UYGULANDI')).toBeInTheDocument();
+    vi.useRealTimers();
   });
 
   it('navigates to alerts when notification icon clicked', () => {
