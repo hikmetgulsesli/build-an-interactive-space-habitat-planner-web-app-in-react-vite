@@ -54,10 +54,10 @@ export function ModulDetaylari({ currentScreen, onNavigate, state, onEditModule,
       <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-sm">search</span>
       <input className="bg-[#0F172A] border border-surface-variant rounded-DEFAULT py-1.5 pl-9 pr-3 text-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/50 focus:shadow-[0_0_8px_rgba(37,99,235,0.3)] transition-all w-64 placeholder-outline-variant font-mono-tr text-mono-tr" placeholder="Sistem Ara..." type="text" />
       </div>
-      <button className="p-2 text-primary-fixed-dim hover:bg-slate-900/50 rounded-full transition-colors duration-200 Active: scale-95 opacity-80">
+      <button className="p-2 text-primary-fixed-dim hover:bg-slate-900/50 rounded-full transition-colors duration-200 active:scale-95 active:opacity-80">
       <span className="material-symbols-outlined" data-icon="notifications">notifications</span>
       </button>
-      <button className="p-2 text-primary-fixed-dim hover:bg-slate-900/50 rounded-full transition-colors duration-200 Active: scale-95 opacity-80">
+      <button className="p-2 text-primary-fixed-dim hover:bg-slate-900/50 rounded-full transition-colors duration-200 active:scale-95 active:opacity-80">
       <span className="material-symbols-outlined" data-icon="account_circle">account_circle</span>
       </button>
       </div>
