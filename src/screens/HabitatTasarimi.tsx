@@ -8,14 +8,22 @@
 // 4. Replace placeholder data with props/state
 
 import { useState } from "react";
+import type { ScreenId, AppState, HabitatModule, ModuleType } from '../types/domain';
 
 interface HabitatTasarimiProps {
-  currentScreen: import('../types/domain').ScreenId;
-  onNavigate: (screen: import('../types/domain').ScreenId) => void;
-  state?: import('../types/domain').AppState;
+  currentScreen: ScreenId;
+  onNavigate: (screen: ScreenId) => void;
+  state?: AppState;
+  onSelectModule: (id: string) => void;
+  onAddModule: () => void;
 }
 
-export function HabitatTasarimi({ currentScreen, onNavigate, state }: HabitatTasarimiProps) {
+export function HabitatTasarimi({ currentScreen, onNavigate, state, onSelectModule, onAddModule }: HabitatTasarimiProps) {
+  const modules = state?.modules ?? [];
+  const activeCount = modules.filter(m => m.status === 'active').length;
+  const warningCount = modules.filter(m => m.status === 'warning').length;
+  const totalCapacity = modules.reduce((sum, m) => sum + (m.capacity ?? 0), 0);
+  const usagePercent = modules.length > 0 ? Math.round((modules.length / 12) * 100) : 0;
   return (
     <>
       {/* Shared Component: SideNavBar */}
@@ -105,7 +113,7 @@ export function HabitatTasarimi({ currentScreen, onNavigate, state }: HabitatTas
       <h1 className="font-display-tr text-display-tr text-on-surface">Habitat Builder</h1>
       <p className="font-body-tr text-body-tr text-on-surface-variant mt-1">Modüler mimari konfigürasyon arayüzü.</p>
       </div>
-      <button className="bg-primary-container text-on-primary-container font-label-tr text-label-tr px-md py-sm rounded-lg flex items-center gap-sm shadow-[0_0_12px_rgba(37,99,235,0.4)] hover:bg-inverse-primary transition-colors border border-primary/50">
+      <button onClick={onAddModule} className="bg-primary-container text-on-primary-container font-label-tr text-label-tr px-md py-sm rounded-lg flex items-center gap-sm shadow-[0_0_12px_rgba(37,99,235,0.4)] hover:bg-inverse-primary transition-colors border border-primary/50">
       <span className="material-symbols-outlined" data-icon="add" data-weight="fill" style={{fontVariationSettings: "'FILL' 1"}}>add</span>
                       Yeni Modül Ekle
                   </button>
@@ -119,70 +127,35 @@ export function HabitatTasarimi({ currentScreen, onNavigate, state }: HabitatTas
       <p className="font-mono-tr text-mono-tr text-outline mt-1 text-xs">Kullanılabilir yapı birimleri</p>
       </div>
       <div className="p-sm flex-1 overflow-y-auto space-y-sm">
-      {/* Inventory Item */}
-      <div className="bg-surface border border-outline-variant rounded-lg p-sm flex items-center gap-md cursor-grab hover:border-primary-fixed-dim hover:bg-surface-container-highest transition-all group">
-      <div className="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center border border-outline-variant group-hover:border-primary-fixed-dim">
-      <span className="material-symbols-outlined text-outline group-hover:text-primary-fixed-dim" data-icon="bed">bed</span>
-      </div>
-      <div className="flex-1">
-      <h4 className="font-label-tr text-label-tr text-on-surface">Yaşam Modülü</h4>
-      <div className="font-mono-tr text-mono-tr text-[10px] text-outline mt-0.5 flex gap-2">
-      <span>Kapasite: 4</span>
-      <span>Tüketim: Yüksek</span>
-      </div>
-      </div>
-      <span className="material-symbols-outlined text-outline-variant group-hover:text-primary opacity-50" data-icon="drag_indicator">drag_indicator</span>
-      </div>
-      {/* Inventory Item */}
-      <div className="bg-surface border border-outline-variant rounded-lg p-sm flex items-center gap-md cursor-grab hover:border-tertiary hover:bg-surface-container-highest transition-all group">
-      <div className="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center border border-outline-variant group-hover:border-tertiary">
-      <span className="material-symbols-outlined text-outline group-hover:text-tertiary" data-icon="bolt">bolt</span>
-      </div>
-      <div className="flex-1">
-      <h4 className="font-label-tr text-label-tr text-on-surface">Güç Kaynağı</h4>
-      <div className="font-mono-tr text-mono-tr text-[10px] text-outline mt-0.5 flex gap-2">
-      <span>Üretim: 500kW</span>
-      <span>Risk: Orta</span>
-      </div>
-      </div>
-      <span className="material-symbols-outlined text-outline-variant group-hover:text-tertiary opacity-50" data-icon="drag_indicator">drag_indicator</span>
-      </div>
-      {/* Inventory Item */}
-      <div className="bg-surface border border-outline-variant rounded-lg p-sm flex items-center gap-md cursor-grab hover:border-emerald-400 hover:bg-surface-container-highest transition-all group">
-      <div className="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center border border-outline-variant group-hover:border-emerald-400">
-      <span className="material-symbols-outlined text-outline group-hover:text-emerald-400" data-icon="eco">eco</span>
-      </div>
-      <div className="flex-1">
-      <h4 className="font-label-tr text-label-tr text-on-surface">Sera</h4>
-      <div className="font-mono-tr text-mono-tr text-[10px] text-outline mt-0.5 flex gap-2">
-      <span>O2 Katkısı: +%5</span>
-      <span>Gıda: +%2</span>
-      </div>
-      </div>
-      <span className="material-symbols-outlined text-outline-variant group-hover:text-emerald-400 opacity-50" data-icon="drag_indicator">drag_indicator</span>
-      </div>
-      {/* Inventory Item */}
-      <div className="bg-surface border border-outline-variant rounded-lg p-sm flex items-center gap-md cursor-grab hover:border-purple-400 hover:bg-surface-container-highest transition-all group">
-      <div className="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center border border-outline-variant group-hover:border-purple-400">
-      <span className="material-symbols-outlined text-outline group-hover:text-purple-400" data-icon="science">science</span>
-      </div>
-      <div className="flex-1">
-      <h4 className="font-label-tr text-label-tr text-on-surface">Laboratuvar</h4>
-      <div className="font-mono-tr text-mono-tr text-[10px] text-outline mt-0.5 flex gap-2">
-      <span>Tip: Biyokimya</span>
-      <span>Durum: Hazır</span>
-      </div>
-      </div>
-      <span className="material-symbols-outlined text-outline-variant group-hover:text-purple-400 opacity-50" data-icon="drag_indicator">drag_indicator</span>
-      </div>
+      {/* Inventory items based on actual modules */}
+      {modules.map((mod) => (
+        <div key={mod.id} className="bg-surface border border-outline-variant rounded-lg p-sm flex items-center gap-md cursor-grab hover:border-primary-fixed-dim hover:bg-surface-container-highest transition-all group">
+        <div className="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center border border-outline-variant group-hover:border-primary-fixed-dim">
+        <span className="material-symbols-outlined text-outline group-hover:text-primary-fixed-dim">{getModuleIcon(mod.type)}</span>
+        </div>
+        <div className="flex-1">
+        <h4 className="font-label-tr text-label-tr text-on-surface">{mod.name}</h4>
+        <div className="font-mono-tr text-mono-tr text-[10px] text-outline mt-0.5 flex gap-2">
+        {mod.capacity !== undefined && <span>Kapasite: {mod.capacity}</span>}
+        {mod.consumption !== undefined && <span>Tüketim: {mod.consumption}kW</span>}
+        {mod.output !== undefined && <span>Üretim: {mod.output}</span>}
+        <span className={`capitalize ${mod.status === 'active' ? 'text-emerald-400' : mod.status === 'warning' ? 'text-amber-400' : 'text-error'}`}>{mod.status}</span>
+        </div>
+        </div>
+        <span className="material-symbols-outlined text-outline-variant group-hover:text-primary opacity-50" data-icon="drag_indicator">drag_indicator</span>
+        </div>
+      ))}
+      {modules.length === 0 && (
+        <div className="text-center text-on-surface-variant font-body-tr text-sm py-4">Modül bulunmuyor</div>
+      )}
       </div>
       <div className="p-sm bg-surface-container-low border-t border-outline-variant">
       <div className="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
-      <div className="h-full bg-primary-container w-[65%]"></div>
+      <div className="h-full bg-primary-container" style={{width: `${usagePercent}%`}}></div>
       </div>
       <div className="flex justify-between mt-2 font-mono-tr text-mono-tr text-[10px] text-outline">
       <span>Ağ Kapasitesi</span>
-      <span>%65 Kullanımda</span>
+      <span>%{usagePercent} Kullanımda ({modules.length}/12)</span>
       </div>
       </div>
       </div>
@@ -202,70 +175,48 @@ export function HabitatTasarimi({ currentScreen, onNavigate, state }: HabitatTas
       <div className="relative w-[800px] h-[600px]">
       {/* Connection Lines (SVG) */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{zIndex: "0"}}>
-      {/* Core to Lab */}
-      <path d="M 400 300 L 400 150" fill="none" stroke="#434655" strokeDasharray="4 4" strokeWidth="2"></path>
-      {/* Core to Power */}
-      <path className="shadow-[0_0_8px_#bc4800]" d="M 400 300 L 200 300" fill="none" stroke="#bc4800" strokeWidth="2"></path>
-      {/* Core to Green */}
-      <path d="M 400 300 L 600 300" fill="none" stroke="#434655" strokeWidth="2"></path>
+      {modules.length > 1 && modules.map((mod, i) => (
+        i > 0 ? <line key={`conn-${mod.id}`} x1={modules[0].x ?? 400} y1={modules[0].y ?? 300} x2={mod.x ?? 400} y2={mod.y ?? 300} stroke="#434655" strokeWidth="2" strokeDasharray="4 4" /> : null
+      ))}
       </svg>
-      {/* Placed Module: Central Core (Active) */}
-      <div className="absolute top-[250px] left-[300px] w-[200px] bg-surface-container border-2 border-primary rounded-lg shadow-[0_0_20px_rgba(37,99,235,0.3)] z-10 cursor-pointer ring-1 ring-primary-container/50">
-      <div className="p-2 border-b border-primary/30 flex items-center justify-between bg-primary-container/10">
-      <div className="flex items-center gap-2">
-      <span className="material-symbols-outlined text-primary text-sm" data-icon="hub">hub</span>
-      <span className="font-label-tr text-label-tr text-primary-fixed font-bold">Merkezi Çekirdek</span>
-      </div>
-      <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_5px_#34d399]"></div>
-      </div>
-      <div className="p-3 bg-surface/50 backdrop-blur">
-      <div className="grid grid-cols-2 gap-2 text-[10px] font-mono-tr text-outline">
-      <div>DURUM: <span className="text-on-surface">AKTİF</span></div>
-      <div>YÜK: <span className="text-on-surface">%42</span></div>
-      <div>BAĞLANTI: <span className="text-primary-fixed-dim">3 NODE</span></div>
-      <div>SICAKLIK: <span className="text-on-surface">22°C</span></div>
-      </div>
-      </div>
-      </div>
-      {/* Placed Module: Lab */}
-      <div className="absolute top-[80px] left-[320px] w-[160px] bg-surface-container border border-outline-variant rounded-lg shadow-lg z-10 cursor-pointer hover:border-outline">
-      <div className="p-2 border-b border-outline-variant flex items-center justify-between">
-      <div className="flex items-center gap-2">
-      <span className="material-symbols-outlined text-purple-400 text-sm" data-icon="science">science</span>
-      <span className="font-label-tr text-[11px] text-on-surface">Laboratuvar-A</span>
-      </div>
-      </div>
-      <div className="p-2 bg-surface/50">
-      <div className="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden mt-1">
-      <div className="h-full bg-purple-500 w-[80%]"></div>
-      </div>
-      </div>
-      </div>
-      {/* Placed Module: Power (Warning State) */}
-      <div className="absolute top-[260px] left-[50px] w-[150px] bg-error-container/20 border border-tertiary rounded-lg shadow-[0_0_15px_rgba(188,72,0,0.15)] z-10 cursor-pointer">
-      <div className="p-2 border-b border-tertiary/30 flex items-center justify-between">
-      <div className="flex items-center gap-2">
-      <span className="material-symbols-outlined text-tertiary text-sm" data-icon="bolt">bolt</span>
-      <span className="font-label-tr text-[11px] text-tertiary-fixed-dim">Güç Ünitesi</span>
-      </div>
-      <span className="material-symbols-outlined text-tertiary text-xs" data-icon="warning">warning</span>
-      </div>
-      <div className="p-2 bg-surface/50">
-      <div className="text-[10px] font-mono-tr text-tertiary animate-pulse">ÇIKIŞ DALGALANMASI</div>
-      </div>
-      </div>
-      {/* Placed Module: Greenhouse */}
-      <div className="absolute top-[260px] left-[600px] w-[150px] bg-surface-container border border-outline-variant rounded-lg shadow-lg z-10 cursor-pointer hover:border-emerald-400/50">
-      <div className="p-2 border-b border-outline-variant flex items-center justify-between">
-      <div className="flex items-center gap-2">
-      <span className="material-symbols-outlined text-emerald-400 text-sm" data-icon="eco">eco</span>
-      <span className="font-label-tr text-[11px] text-on-surface">Sera-1</span>
-      </div>
-      </div>
-      <div className="p-2 bg-surface/50 text-[10px] font-mono-tr text-outline">
-                                  O2 Üretimi: Normal
-                              </div>
-      </div>
+      {/* Dynamic Placed Modules */}
+      {modules.map((mod) => (
+        <div
+          key={mod.id}
+          className={`absolute w-[180px] bg-surface-container border-2 rounded-lg shadow-lg z-10 cursor-pointer ring-1 transition-all hover:scale-[1.02] ${
+            mod.status === 'active' ? 'border-primary shadow-[0_0_20px_rgba(37,99,235,0.3)] ring-primary-container/50' :
+            mod.status === 'warning' ? 'border-tertiary shadow-[0_0_15px_rgba(188,72,0,0.15)]' :
+            'border-error shadow-[0_0_15px_rgba(255,0,0,0.15)]'
+          }`}
+          style={{ top: `${mod.y ?? 250}px`, left: `${mod.x ?? 300}px` }}
+          onClick={() => onSelectModule(mod.id)}
+        >
+        <div className={`p-2 border-b flex items-center justify-between ${
+          mod.status === 'active' ? 'border-primary/30 bg-primary-container/10' :
+          mod.status === 'warning' ? 'border-tertiary/30' : 'border-error/30'
+        }`}>
+        <div className="flex items-center gap-2">
+        <span className={`material-symbols-outlined text-sm ${
+          mod.status === 'active' ? 'text-primary' : mod.status === 'warning' ? 'text-tertiary' : 'text-error'
+        }`}>{getModuleIcon(mod.type)}</span>
+        <span className={`font-label-tr text-label-tr font-bold text-[11px] ${
+          mod.status === 'active' ? 'text-primary-fixed' : mod.status === 'warning' ? 'text-tertiary-fixed-dim' : 'text-error'
+        }`}>{mod.name}</span>
+        </div>
+        <div className={`w-2 h-2 rounded-full shadow-[0_0_5px_${
+          mod.status === 'active' ? '#34d399' : mod.status === 'warning' ? '#f59e0b' : '#ef4444'
+        }]`} style={{backgroundColor: mod.status === 'active' ? '#34d399' : mod.status === 'warning' ? '#f59e0b' : '#ef4444'}}></div>
+        </div>
+        <div className="p-3 bg-surface/50 backdrop-blur">
+        <div className="grid grid-cols-2 gap-2 text-[10px] font-mono-tr text-outline">
+        <div>DURUM: <span className="text-on-surface uppercase">{mod.status}</span></div>
+        {mod.consumption !== undefined && <div>YÜK: <span className="text-on-surface">%{mod.consumption}</span></div>}
+        {mod.capacity !== undefined && <div>KAPASİTE: <span className="text-primary-fixed-dim">{mod.capacity}</span></div>}
+        {mod.output !== undefined && <div>ÇIKIŞ: <span className="text-on-surface">{mod.output}</span></div>}
+        </div>
+        </div>
+        </div>
+      ))}
       {/* Empty Slot Drop Zone */}
       <div className="absolute top-[450px] left-[325px] w-[150px] h-[80px] border-2 border-dashed border-outline-variant rounded-lg flex items-center justify-center bg-surface-container-lowest/50 z-0">
       <span className="font-mono-tr text-[10px] text-outline-variant uppercase tracking-widest">Bağlantı Noktası</span>
@@ -276,4 +227,17 @@ export function HabitatTasarimi({ currentScreen, onNavigate, state }: HabitatTas
       </main>
     </>
   );
+}
+
+function getModuleIcon(type: ModuleType): string {
+  const icons: Record<ModuleType, string> = {
+    living: 'bed',
+    power: 'bolt',
+    greenhouse: 'eco',
+    lab: 'science',
+    core: 'hub',
+    medical: 'medical_services',
+    storage: 'inventory_2',
+  };
+  return icons[type] ?? 'help';
 }
