@@ -1,51 +1,44 @@
-import { useState, useEffect } from "react";
-import type { ScreenId, AppState } from '../types/domain';
+// AUTO-GENERATED from Stitch — DO NOT modify layout or CSS
+// Screen: Hata Sayfası
+// 
+// AGENT INSTRUCTIONS:
+// 1. DO NOT change className values or layout structure
+// 2. Add useState for dynamic values (replace hardcoded text)
+// 3. Add onClick/onChange handlers to interactive elements
+// 4. Replace placeholder data with props/state
+
+import { useState } from "react";
 
 interface HataSayfasiProps {
-  currentScreen: ScreenId;
-  onNavigate: (screen: ScreenId) => void;
-  state?: AppState;
-  onRetry?: () => void;
+  currentScreen: import('../types/domain').ScreenId;
+  onNavigate: (screen: import('../types/domain').ScreenId) => void;
+  state?: import('../types/domain').AppState;
   errorCode?: string;
   errorMessage?: string;
+  onRetry?: () => void;
 }
 
-export function HataSayfasi({ currentScreen, onNavigate, state, onRetry, errorCode, errorMessage }: HataSayfasiProps) {
-  const [timestamp, setTimestamp] = useState(new Date().toISOString());
+export function HataSayfasi({ currentScreen, onNavigate, state, errorCode, errorMessage, onRetry }: HataSayfasiProps) {
   const [isRetrying, setIsRetrying] = useState(false);
-  const [supportOpened, setSupportOpened] = useState(false);
-
-  useEffect(() => {
-    setTimestamp(new Date().toISOString());
-  }, [currentScreen]);
+  const [showSupport, setShowSupport] = useState(false);
+  const [timestamp] = useState(() => new Date().toISOString());
 
   const handleRetry = () => {
     setIsRetrying(true);
-    setTimeout(() => {
-      setIsRetrying(false);
-      if (onRetry) {
-        onRetry();
-      } else {
-        onNavigate('dashboard');
-      }
-    }, 1500);
+    if (onRetry) {
+      onRetry();
+    } else {
+      onNavigate('dashboard');
+    }
   };
-
-  const handleSupport = () => {
-    setSupportOpened(true);
-  };
-
-  const displayCode = errorCode || '0x8F4A2_TIMEOUT';
-  const displayMessage = errorMessage || 'Habitat ana kontrol modülü ile senkronizasyon kaybedildi. Kritik yaşam destek verileri şu anda okunamıyor. Lütfen iletişim portlarını kontrol edin.';
-
   return (
-    <div className="flex items-center justify-center min-h-screen relative">
+    <>
       {/* Atmospheric background glow */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
       <div className="w-[600px] h-[600px] bg-error-container rounded-full blur-[150px] opacity-20"></div>
       </div>
       {/* Main Content Canvas (Navigation Suppressed per Logic rules for Error/Dead-end pages) */}
-      <main className="relative z-10 w-full max-w-2xl px-4">
+      <main className="relative z-10 w-full max-w-2xl">
       {/* Error Card (Bento/Glassmorphism inspired HUD panel) */}
       <div className="bg-surface/90 backdrop-blur-md border border-outline rounded-xl shadow-[0_0_40px_rgba(255,180,171,0.08)] overflow-hidden relative">
       {/* Decorative HUD Brackets */}
@@ -77,7 +70,7 @@ export function HataSayfasi({ currentScreen, onNavigate, state, onRetry, errorCo
                           BAĞLANTI KESİLDİ
                       </h1>
       <p className="font-body-tr text-body-tr text-on-surface-variant max-w-md mb-xl">
-                          {displayMessage}
+                          Habitat ana kontrol modülü ile senkronizasyon kaybedildi. Kritik yaşam destek verileri şu anda okunamıyor. Lütfen iletişim portlarını kontrol edin.
                       </p>
       {/* Technical Details Code Block */}
       <div className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-md text-left mb-xl overflow-x-auto relative group">
@@ -85,53 +78,61 @@ export function HataSayfasi({ currentScreen, onNavigate, state, onRetry, errorCo
                               HATA_KAYDI.LOG
                           </div>
       <code className="font-mono-tr text-mono-tr text-error/80 block mt-xs whitespace-pre">
-      [ERR_CODE]: {displayCode}
-      [MODULE]: Telemetry.Core.DataStream
-      [TRACE_ID]: 8f9a2b4c-7d1e-4568-b902-1c3d4e5f6a7b
-      [TIMESTAMP]: <span>{timestamp}</span>
-      [DETAIL]: Handshake failed at gateway S7-ALPHA. No response from remote host.
+      <span data-testid="err-code">[ERR_CODE]: {errorCode || '0x8F4A2_TIMEOUT'}</span>
+      <span>[MODULE]: Telemetry.Core.DataStream</span>
+      <span>[TRACE_ID]: 8f9a2b4c-7d1e-4568-b902-1c3d4e5f6a7b</span>
+      <span>[TIMESTAMP]: <span>{timestamp}</span></span>
+      <span data-testid="err-detail">[DETAIL]: {errorMessage || 'Handshake failed at gateway S7-ALPHA. No response from remote host.'}</span>
                           </code>
       </div>
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-md w-full sm:w-auto">
-      <button
-        onClick={handleRetry}
-        disabled={isRetrying}
-        className="bg-primary-container hover:bg-primary-container/80 text-on-primary-container border border-primary/50 px-xl py-md rounded-lg font-label-tr text-label-tr uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-sm shadow-[0_0_15px_rgba(37,99,235,0.2)] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-      >
-      <span className={`material-symbols-outlined text-[18px] ${isRetrying ? 'animate-spin' : ''}`}>{isRetrying ? 'sync' : 'refresh'}</span>
+      <button onClick={handleRetry} disabled={isRetrying} className="bg-primary-container hover:bg-primary-container/80 text-on-primary-container border border-primary/50 px-xl py-md rounded-lg font-label-tr text-label-tr uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-sm shadow-[0_0_15px_rgba(37,99,235,0.2)] cursor-pointer disabled:opacity-60">
+      <span className="material-symbols-outlined text-[18px]">refresh</span>
                               {isRetrying ? 'YENİDEN BAĞLANILIYOR...' : 'TEKRAR DENE'}
                           </button>
-      <button
-        onClick={handleSupport}
-        className="bg-transparent hover:bg-surface-container-high text-on-surface border border-outline px-xl py-md rounded-lg font-label-tr text-label-tr uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-sm cursor-pointer"
-      >
+      <button onClick={() => setShowSupport(true)} className="bg-transparent hover:bg-surface-container-high text-on-surface border border-outline px-xl py-md rounded-lg font-label-tr text-label-tr uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-sm cursor-pointer">
       <span className="material-symbols-outlined text-[18px]">support_agent</span>
                               DESTEKLE İLETİŞİME GEÇ
                           </button>
       </div>
-      {/* Support Modal */}
-      {supportOpened && (
-        <div className="mt-lg w-full bg-surface-container border border-outline-variant rounded-lg p-md text-left">
-          <div className="flex justify-between items-start mb-md">
-            <h3 className="font-title-tr text-title-tr text-on-surface">Destek İletişimi</h3>
-            <button onClick={() => setSupportOpened(false)} className="text-on-surface-variant hover:text-on-surface transition-colors" aria-label="Kapat">
-              <span className="material-symbols-outlined">close</span>
-            </button>
-          </div>
-          <div className="space-y-sm font-body-tr text-body-tr text-on-surface-variant">
-            <p><span className="text-on-surface font-medium">Komuta Merkezi:</span> komuta@sektor7.uzay</p>
-            <p><span className="text-on-surface font-medium">Teknik Destek:</span> teknik@sektor7.uzay</p>
-            <p><span className="text-on-surface font-medium">Acil Hat:</span> #77-ACIL-DESTEK</p>
-          </div>
-          <button onClick={() => setSupportOpened(false)} className="mt-md w-full py-2 bg-primary-container text-on-primary-container rounded hover:bg-inverse-primary transition-colors text-sm font-label-tr uppercase tracking-widest">
-            Anladım
-          </button>
-        </div>
-      )}
       </div>
       </div>
       </main>
-    </div>
+      {/* Support Modal */}
+      {showSupport && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setShowSupport(false)}>
+        <div className="bg-surface-container-high border border-outline rounded-xl p-xl max-w-md w-full mx-4 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between mb-md">
+        <h3 className="font-title-tr text-title-tr text-on-surface">Destek İletişimi</h3>
+        <button onClick={() => setShowSupport(false)} aria-label="Kapat" className="text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
+        <span className="material-symbols-outlined">close</span>
+        </button>
+        </div>
+        <div className="space-y-sm">
+        <div className="flex items-center gap-md p-sm bg-surface-container-low rounded-lg">
+        <span className="material-symbols-outlined text-primary">email</span>
+        <div>
+        <p className="font-label-tr text-label-tr text-on-surface">Komuta Merkezi</p>
+        <p className="font-mono-tr text-mono-tr text-on-surface-variant">komuta@sektor7.uzay</p>
+        </div>
+        </div>
+        <div className="flex items-center gap-md p-sm bg-surface-container-low rounded-lg">
+        <span className="material-symbols-outlined text-primary">email</span>
+        <div>
+        <p className="font-label-tr text-label-tr text-on-surface">Teknik Destek</p>
+        <p className="font-mono-tr text-mono-tr text-on-surface-variant">teknik@sektor7.uzay</p>
+        </div>
+        </div>
+        </div>
+        <div className="mt-lg flex justify-end">
+        <button onClick={() => setShowSupport(false)} className="bg-primary-container text-on-primary-container px-md py-sm rounded-lg font-label-tr text-label-tr uppercase tracking-widest hover:bg-inverse-primary transition-colors cursor-pointer">
+        Anladım
+        </button>
+        </div>
+        </div>
+        </div>
+      )}
+    </>
   );
 }
