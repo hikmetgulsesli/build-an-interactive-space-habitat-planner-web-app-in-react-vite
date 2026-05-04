@@ -8,14 +8,52 @@
 // 4. Replace placeholder data with props/state
 
 import { useState } from "react";
+import type { ScreenId, AppState, Task, TaskStatus } from '../types/domain';
 
 interface GorevPanosuProps {
-  currentScreen: import('../types/domain').ScreenId;
-  onNavigate: (screen: import('../types/domain').ScreenId) => void;
-  state?: import('../types/domain').AppState;
+  currentScreen: ScreenId;
+  onNavigate: (screen: ScreenId) => void;
+  state?: AppState;
+  onAddTask: (task: Task) => void;
+  onUpdateTask: (id: string, updates: Partial<Task>) => void;
+  onRemoveTask: (id: string) => void;
 }
 
-export function GorevPanosu({ currentScreen, onNavigate, state }: GorevPanosuProps) {
+export function GorevPanosu({ currentScreen, onNavigate, state, onAddTask, onUpdateTask, onRemoveTask }: GorevPanosuProps) {
+  const [showForm, setShowForm] = useState(false);
+  const [formTitle, setFormTitle] = useState('');
+  const [formModule, setFormModule] = useState('');
+  const [formAssignee, setFormAssignee] = useState('');
+  const [formError, setFormError] = useState('');
+
+  const tasks = state?.tasks ?? [];
+  const pendingTasks = tasks.filter(t => t.status === 'pending');
+  const activeTasks = tasks.filter(t => t.status === 'in-progress');
+  const completedTasks = tasks.filter(t => t.status === 'completed');
+
+  const handleAddTask = () => {
+    if (!formTitle.trim() || !formModule.trim()) {
+      setFormError('Görev başlığı ve modül zorunludur.');
+      return;
+    }
+    const newTask: Task = {
+      id: `TSK-${Date.now().toString().slice(-4)}`,
+      title: formTitle.trim(),
+      module: formModule.trim(),
+      assignee: formAssignee.trim() || 'Atanmadı',
+      status: 'pending',
+    };
+    onAddTask(newTask);
+    setFormTitle('');
+    setFormModule('');
+    setFormAssignee('');
+    setFormError('');
+    setShowForm(false);
+  };
+
+  const moveTask = (task: Task, newStatus: TaskStatus) => {
+    onUpdateTask(task.id, { status: newStatus });
+  };
   return (
     <>
       {/* SIDE NAVIGATION */}
@@ -115,12 +153,36 @@ export function GorevPanosu({ currentScreen, onNavigate, state }: GorevPanosuPro
       <h2 className="font-display-tr text-display-tr text-on-background mb-xs">Operasyon Panosu</h2>
       <p className="font-body-tr text-body-tr text-on-surface-variant">Sektör-7 Habitat bakım ve mühendislik görev takibi.</p>
       </div>
-      <button className="bg-primary-container text-on-primary-container font-label-tr text-label-tr px-md py-sm rounded flex items-center gap-2 hover:brightness-110 transition-all shadow-[0_0_10px_rgba(37,99,235,0.2)]">
+      <button onClick={() => setShowForm(true)} className="bg-primary-container text-on-primary-container font-label-tr text-label-tr px-md py-sm rounded flex items-center gap-2 hover:brightness-110 transition-all shadow-[0_0_10px_rgba(37,99,235,0.2)]">
       <span className="material-symbols-outlined text-sm">add</span>
                           YENİ GÖREV
                       </button>
       </div>
       {/* Kanban Board Grid */}
+      {showForm && (
+        <div className="mb-lg bg-surface-container border border-primary/30 rounded-xl p-md shadow-[0_0_15px_rgba(37,99,235,0.1)] relative z-10">
+        <h3 className="font-title-tr text-title-tr text-on-surface mb-md">Yeni Görev</h3>
+        {formError && <p className="text-error text-sm mb-md">{formError}</p>}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
+        <div className="flex flex-col gap-2">
+        <label className="text-xs text-on-surface-variant uppercase">Başlık</label>
+        <input value={formTitle} onChange={(e) => setFormTitle(e.target.value)} className="bg-surface-container-lowest border border-outline-variant rounded px-3 py-2 text-on-surface focus:outline-none focus:border-primary" placeholder="Görev açıklaması" />
+        </div>
+        <div className="flex flex-col gap-2">
+        <label className="text-xs text-on-surface-variant uppercase">Modül</label>
+        <input value={formModule} onChange={(e) => setFormModule(e.target.value)} className="bg-surface-container-lowest border border-outline-variant rounded px-3 py-2 text-on-surface focus:outline-none focus:border-primary" placeholder="Örn: Laboratuvar-A" />
+        </div>
+        <div className="flex flex-col gap-2">
+        <label className="text-xs text-on-surface-variant uppercase">Sorumlu</label>
+        <input value={formAssignee} onChange={(e) => setFormAssignee(e.target.value)} className="bg-surface-container-lowest border border-outline-variant rounded px-3 py-2 text-on-surface focus:outline-none focus:border-primary" placeholder="İsim" />
+        </div>
+        </div>
+        <div className="flex gap-2 mt-md">
+        <button onClick={() => { setShowForm(false); setFormError(''); }} className="px-4 py-2 border border-outline-variant text-on-surface rounded hover:bg-surface-container transition-colors text-sm">İptal</button>
+        <button onClick={handleAddTask} className="px-4 py-2 bg-primary-container text-on-primary-container rounded hover:bg-inverse-primary transition-colors text-sm">Ekle</button>
+        </div>
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter h-[calc(100%-80px)] relative z-10">
       {/* Column 1: Bekleyen */}
       <div className="flex flex-col bg-surface-container-low border border-surface-container-highest rounded-xl p-md">
@@ -129,108 +191,84 @@ export function GorevPanosu({ currentScreen, onNavigate, state }: GorevPanosuPro
       <span className="w-2 h-2 rounded-full bg-outline"></span>
       <h3 className="font-title-tr text-title-tr text-on-surface">Bekleyen</h3>
       </div>
-      <span className="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded font-mono-tr text-mono-tr text-xs">3</span>
+      <span className="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded font-mono-tr text-mono-tr text-xs">{pendingTasks.length}</span>
       </div>
       <div className="flex flex-col gap-sm overflow-y-auto pr-1 custom-scrollbar">
-      {/* Task Card 1 */}
-      <div className="bg-surface-container border border-outline-variant hover:border-outline rounded p-md flex flex-col gap-sm transition-colors cursor-pointer group">
-      <div className="flex items-start justify-between">
-      <span className="bg-surface-variant text-on-surface px-1.5 py-0.5 rounded text-[10px] font-mono-tr uppercase tracking-wider border border-outline-variant">GÜÇ SİSTEMİ</span>
-      <span className="material-symbols-outlined text-outline-variant group-hover:text-outline text-sm">more_horiz</span>
-      </div>
-      <h4 className="font-title-tr text-base text-on-background leading-tight">Güneş Paneli Dizi-A Kalibrasyonu</h4>
-      <div className="flex items-center gap-md mt-1">
-      <div className="flex items-center gap-1 text-on-surface-variant text-xs">
-      <span className="material-symbols-outlined text-[14px]">schedule</span>
-      <span>02:30:00</span>
-      </div>
-      <div className="flex items-center gap-1 text-error text-xs font-medium">
-      <span className="material-symbols-outlined text-[14px]">warning</span>
-      <span>Kritik</span>
-      </div>
-      </div>
-      <div className="flex items-center justify-between mt-sm border-t border-outline-variant/30 pt-sm">
-      <div className="flex items-center gap-2">
-      <div className="w-6 h-6 rounded-full overflow-hidden border border-outline">
-      <img alt="Mühendis Avatarı" className="w-full h-full object-cover" data-alt="A small, circular avatar portrait of a male aerospace engineer in a dark control room setting. His face is lit by the cool blue light of a monitor. The image has a low-contrast, muted cinematic tone fitting a deep-space operational interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAszCnktEfoNrQ98q6SsDmxQWSz05zdLVqhTQhEhGNs-MPNIhiFSrqKCfFxIO-v2-N6VUBfFFj9BDuzZU3TnLqOsh49JvYyuifp2l-IEU9UWXiX22XM5xKMEmLLlQ6Pdw45FDQUkqhVTLEHcZVpdsZ7bvKlFCHBAGclqYWB0gxXd80kw5X63pbLYNnCrfpBK3h-VEbjj6xu8ZENJLQSiW8NVGmtuZsC-Qm2EuL4b7l-f2WNk04E8JVZX6EZfpSJ66CJkbkzgLop8T8" />
-      </div>
-      <span className="font-mono-tr text-[11px] text-on-surface-variant">Müh. Yılmaz</span>
-      </div>
-      <span className="font-mono-tr text-[10px] text-outline">ID: T-892</span>
-      </div>
-      </div>
-      {/* Task Card 2 */}
-      <div className="bg-surface-container border border-outline-variant hover:border-outline rounded p-md flex flex-col gap-sm transition-colors cursor-pointer group">
-      <div className="flex items-start justify-between">
-      <span className="bg-surface-variant text-on-surface px-1.5 py-0.5 rounded text-[10px] font-mono-tr uppercase tracking-wider border border-outline-variant">YAŞAM DESTEK</span>
-      <span className="material-symbols-outlined text-outline-variant group-hover:text-outline text-sm">more_horiz</span>
-      </div>
-      <h4 className="font-title-tr text-base text-on-background leading-tight">Oksijen Filtresi Değişimi Modül-3</h4>
-      <div className="flex items-center gap-md mt-1">
-      <div className="flex items-center gap-1 text-on-surface-variant text-xs">
-      <span className="material-symbols-outlined text-[14px]">schedule</span>
-      <span>00:45:00</span>
-      </div>
-      <div className="flex items-center gap-1 text-primary text-xs font-medium">
-      <span className="material-symbols-outlined text-[14px]">info</span>
-      <span>Normal</span>
+      {pendingTasks.map((task) => (
+        <div key={task.id} className="bg-surface-container border border-outline-variant hover:border-outline rounded p-md flex flex-col gap-sm transition-colors cursor-pointer group">
+        <div className="flex items-start justify-between">
+        <span className="bg-surface-variant text-on-surface px-1.5 py-0.5 rounded text-[10px] font-mono-tr uppercase tracking-wider border border-outline-variant">{task.module}</span>
+        <button onClick={() => onRemoveTask(task.id)} className="material-symbols-outlined text-outline-variant group-hover:text-error text-sm" aria-label="Görevi Sil">delete</button>
+        </div>
+        <h4 className="font-title-tr text-base text-on-background leading-tight">{task.title}</h4>
+        <div className="flex items-center gap-md mt-1">
+        <div className="flex items-center gap-1 text-primary text-xs font-medium">
+        <span className="material-symbols-outlined text-[14px]">info</span>
+        <span>Normal</span>
+        </div>
+        </div>
+        <div className="flex items-center justify-between mt-sm border-t border-outline-variant/30 pt-sm">
+        <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center border border-outline border-dashed text-[10px] text-on-surface-variant font-mono-tr">
+        {task.assignee.charAt(0)}
+        </div>
+        <span className="font-mono-tr text-[11px] text-on-surface-variant">{task.assignee}</span>
+        </div>
+        <span className="font-mono-tr text-[10px] text-outline">{task.id}</span>
+        </div>
+        <button onClick={() => moveTask(task, 'in-progress')} className="mt-1 text-xs bg-primary/10 text-primary border border-primary/20 px-2 py-1 rounded hover:bg-primary/20 transition-colors">Başlat</button>
+        </div>
+      ))}
+      {pendingTasks.length === 0 && (
+        <div className="text-center text-on-surface-variant font-body-tr text-sm py-4">Bekleyen görev yok</div>
+      )}
       </div>
       </div>
-      <div className="flex items-center justify-between mt-sm border-t border-outline-variant/30 pt-sm">
-      <div className="flex items-center gap-2">
-      <div className="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center border border-outline border-dashed text-[10px] text-on-surface-variant font-mono-tr">
-                                              +
-                                          </div>
-      <span className="font-mono-tr text-[11px] text-on-surface-variant italic">Atanmadı</span>
-      </div>
-      <span className="font-mono-tr text-[10px] text-outline">ID: T-894</span>
-      </div>
-      </div>
-      </div>
-      </div>
-      {/* Column 2: Aktif (ACTIVE STATE) */}
+      {/* Column 2: Aktif */}
       <div className="flex flex-col bg-surface-container-low border border-primary/20 rounded-xl p-md relative shadow-[0_0_30px_rgba(37,99,235,0.05)]">
-      {/* Subtle Glow Background for Active Column */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none rounded-xl"></div>
       <div className="flex items-center justify-between mb-md border-b border-primary/20 pb-sm relative z-10">
       <div className="flex items-center gap-2">
       <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_5px_var(--tw-colors-primary)]"></span>
       <h3 className="font-title-tr text-title-tr text-primary">Aktif</h3>
       </div>
-      <span className="bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded font-mono-tr text-mono-tr text-xs">2</span>
+      <span className="bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded font-mono-tr text-mono-tr text-xs">{activeTasks.length}</span>
       </div>
       <div className="flex flex-col gap-sm overflow-y-auto pr-1 custom-scrollbar relative z-10">
-      {/* Active Task Card 1 */}
-      <div className="bg-surface-container border border-primary/50 shadow-[0_0_15px_rgba(37,99,235,0.15)] rounded p-md flex flex-col gap-sm cursor-pointer">
-      <div className="flex items-start justify-between">
-      <span className="bg-primary-container text-on-primary-container px-1.5 py-0.5 rounded text-[10px] font-mono-tr uppercase tracking-wider">İLETİŞİM</span>
-      <span className="material-symbols-outlined text-primary text-sm">satellite_alt</span>
-      </div>
-      <h4 className="font-title-tr text-base text-on-background leading-tight">Dünya ile Veri Senkronizasyonu</h4>
-      {/* Progress Bar for Active Task */}
-      <div className="w-full bg-surface-variant rounded-full h-1 mt-1 mb-1 overflow-hidden">
-      <div className="bg-primary h-1 rounded-full w-[65%] shadow-[0_0_5px_var(--tw-colors-primary)]"></div>
-      </div>
-      <div className="flex items-center justify-between mt-1">
-      <div className="flex items-center gap-1 text-primary-fixed-dim text-xs">
-      <span className="material-symbols-outlined text-[14px]">sync</span>
-      <span>Devam Ediyor (%65)</span>
-      </div>
-      <div className="flex items-center gap-1 text-error text-xs font-medium">
-      <span className="material-symbols-outlined text-[14px]">priority_high</span>
-      <span>Yüksek</span>
-      </div>
-      </div>
-      <div className="flex items-center justify-between mt-sm border-t border-primary/20 pt-sm">
-      <div className="flex items-center gap-2">
-      <div className="w-6 h-6 rounded-full overflow-hidden border border-primary">
-      <img alt="İletişim Subayı" className="w-full h-full object-cover" data-alt="A small, circular avatar portrait of a female communications officer. She is illuminated by the stark, clinical light of a high-tech console interface against a pitch-black background. The mood is focused and serious, fitting a mission-critical space operation interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWxtLfDKt4778pfk2CM21bOr08moY6yDlEPxixVeb4Coo0E0YnlbSsx34ugAMALztHDvLfnGx_6cXT1Uq6nHTit8l2wAC1HQ0Tg6HVKfP5VHqheSTibWxxSLy49o16w8Mq90OYC-ZlO6jdjE1-RUwv5JfdyO1W1wS4clgM3y_g3tomI3XPvIlUudKWwIxF6gxK4V6saAB8ecMmIBT2Nkhr6gJxbmt7hgQsZiG9PzJxhFIw6pLvTqCo0-OAsZkaELiULDa1mt7h7hE" />
-      </div>
-      <span className="font-mono-tr text-[11px] text-primary-fixed-dim">Sb. Demir</span>
-      </div>
-      <span className="font-mono-tr text-[10px] text-primary/60">ID: C-112</span>
-      </div>
-      </div>
+      {activeTasks.map((task) => (
+        <div key={task.id} className="bg-surface-container border border-primary/50 shadow-[0_0_15px_rgba(37,99,235,0.15)] rounded p-md flex flex-col gap-sm cursor-pointer">
+        <div className="flex items-start justify-between">
+        <span className="bg-primary-container text-on-primary-container px-1.5 py-0.5 rounded text-[10px] font-mono-tr uppercase tracking-wider">{task.module}</span>
+        <span className="material-symbols-outlined text-primary text-sm">satellite_alt</span>
+        </div>
+        <h4 className="font-title-tr text-base text-on-background leading-tight">{task.title}</h4>
+        <div className="w-full bg-surface-variant rounded-full h-1 mt-1 mb-1 overflow-hidden">
+        <div className="bg-primary h-1 rounded-full w-[65%] shadow-[0_0_5px_var(--tw-colors-primary)]"></div>
+        </div>
+        <div className="flex items-center justify-between mt-1">
+        <div className="flex items-center gap-1 text-primary-fixed-dim text-xs">
+        <span className="material-symbols-outlined text-[14px]">sync</span>
+        <span>Devam Ediyor</span>
+        </div>
+        </div>
+        <div className="flex items-center justify-between mt-sm border-t border-primary/20 pt-sm">
+        <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center border border-primary text-[10px] text-on-surface-variant font-mono-tr">
+        {task.assignee.charAt(0)}
+        </div>
+        <span className="font-mono-tr text-[11px] text-primary-fixed-dim">{task.assignee}</span>
+        </div>
+        <span className="font-mono-tr text-[10px] text-primary/60">{task.id}</span>
+        </div>
+        <div className="flex gap-2 mt-1">
+        <button onClick={() => moveTask(task, 'pending')} className="text-xs bg-surface-variant text-on-surface-variant border border-outline-variant px-2 py-1 rounded hover:bg-surface-container transition-colors">Beklemeye Al</button>
+        <button onClick={() => moveTask(task, 'completed')} className="text-xs bg-primary/10 text-primary border border-primary/20 px-2 py-1 rounded hover:bg-primary/20 transition-colors">Tamamla</button>
+        </div>
+        </div>
+      ))}
+      {activeTasks.length === 0 && (
+        <div className="text-center text-on-surface-variant font-body-tr text-sm py-4">Aktif görev yok</div>
+      )}
       </div>
       </div>
       {/* Column 3: Tamamlanmış */}
@@ -240,37 +278,28 @@ export function GorevPanosu({ currentScreen, onNavigate, state }: GorevPanosuPro
       <span className="w-2 h-2 rounded-full bg-secondary"></span>
       <h3 className="font-title-tr text-title-tr text-on-surface-variant">Tamamlanmış</h3>
       </div>
-      <span className="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded font-mono-tr text-mono-tr text-xs">12</span>
+      <span className="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded font-mono-tr text-mono-tr text-xs">{completedTasks.length}</span>
       </div>
       <div className="flex flex-col gap-sm overflow-y-auto pr-1 custom-scrollbar">
-      {/* Completed Task Card 1 */}
-      <div className="bg-surface-container border border-outline-variant/50 rounded p-md flex flex-col gap-sm">
-      <div className="flex items-start justify-between">
-      <span className="bg-surface-variant text-on-surface-variant px-1.5 py-0.5 rounded text-[10px] font-mono-tr uppercase tracking-wider">HİDRO-TARIM</span>
-      <span className="material-symbols-outlined text-secondary text-sm">check_circle</span>
-      </div>
-      <h4 className="font-title-tr text-base text-on-surface-variant line-through decoration-outline-variant/50 leading-tight">Bölüm-B Su Pompası Bakımı</h4>
-      <div className="flex items-center gap-md mt-1">
-      <div className="flex items-center gap-1 text-on-surface-variant/50 text-xs">
-      <span className="material-symbols-outlined text-[14px]">done_all</span>
-      <span>Tamamlandı (08:00)</span>
-      </div>
-      </div>
-      </div>
-      {/* Completed Task Card 2 */}
-      <div className="bg-surface-container border border-outline-variant/50 rounded p-md flex flex-col gap-sm">
-      <div className="flex items-start justify-between">
-      <span className="bg-surface-variant text-on-surface-variant px-1.5 py-0.5 rounded text-[10px] font-mono-tr uppercase tracking-wider">GÜVENLİK</span>
-      <span className="material-symbols-outlined text-secondary text-sm">check_circle</span>
-      </div>
-      <h4 className="font-title-tr text-base text-on-surface-variant line-through decoration-outline-variant/50 leading-tight">Hava Kilidi Conta Denetimi</h4>
-      <div className="flex items-center gap-md mt-1">
-      <div className="flex items-center gap-1 text-on-surface-variant/50 text-xs">
-      <span className="material-symbols-outlined text-[14px]">done_all</span>
-      <span>Tamamlandı (Dün)</span>
-      </div>
-      </div>
-      </div>
+      {completedTasks.map((task) => (
+        <div key={task.id} className="bg-surface-container border border-outline-variant/50 rounded p-md flex flex-col gap-sm">
+        <div className="flex items-start justify-between">
+        <span className="bg-surface-variant text-on-surface-variant px-1.5 py-0.5 rounded text-[10px] font-mono-tr uppercase tracking-wider">{task.module}</span>
+        <span className="material-symbols-outlined text-secondary text-sm">check_circle</span>
+        </div>
+        <h4 className="font-title-tr text-base text-on-surface-variant line-through decoration-outline-variant/50 leading-tight">{task.title}</h4>
+        <div className="flex items-center gap-md mt-1">
+        <div className="flex items-center gap-1 text-on-surface-variant/50 text-xs">
+        <span className="material-symbols-outlined text-[14px]">done_all</span>
+        <span>Tamamlandı</span>
+        </div>
+        </div>
+        <button onClick={() => moveTask(task, 'pending')} className="mt-1 text-xs bg-surface-variant text-on-surface-variant border border-outline-variant px-2 py-1 rounded hover:bg-surface-container transition-colors">Yeniden Aç</button>
+        </div>
+      ))}
+      {completedTasks.length === 0 && (
+        <div className="text-center text-on-surface-variant font-body-tr text-sm py-4">Tamamlanmış görev yok</div>
+      )}
       </div>
       </div>
       </div>
