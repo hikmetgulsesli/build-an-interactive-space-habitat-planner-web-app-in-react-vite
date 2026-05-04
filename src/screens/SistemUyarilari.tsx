@@ -153,15 +153,7 @@ export function SistemUyarilari({ currentScreen, onNavigate, state, onDismissAle
       <div className="flex flex-col gap-sm">
       <h3 className="font-label-tr text-label-tr text-outline uppercase border-b border-outline-variant pb-xs mb-xs">Aktif Bildirim Logu</h3>
       {alerts.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-12 gap-md">
-          <div className="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
-            <span className="material-symbols-outlined text-[32px] text-outline">check_circle</span>
-          </div>
-          <div className="text-center">
-            <p className="font-title-tr text-title-tr text-on-surface-variant mb-1">Sistem Stabil</p>
-            <p className="font-body-tr text-body-tr text-on-surface-variant/60 max-w-sm">Aktif uyarı bulunmuyor. Tüm sistemler nominal çalışma aralığında.</p>
-          </div>
-        </div>
+        <div className="text-center text-on-surface-variant font-body-tr py-8">Aktif uyarı bulunmuyor</div>
       )}
       {alerts.map((alert) => {
         const isCritical = alert.level === 'critical';

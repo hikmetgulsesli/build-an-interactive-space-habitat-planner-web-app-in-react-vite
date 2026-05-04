@@ -26,7 +26,7 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       {/* Header */}
       <div className="px-6 pb-6 pt-2 border-b border-slate-800 mb-4">
       <div className="flex items-center gap-3">
-      <div className="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-outline-variant shadow-[0_0_8px_rgba(180,197,255,0.5)]">
+      <div className="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-outline-variant shadow-[0_0_8px_theme(colors.primary-container)]">
       <span className="material-symbols-outlined text-primary" style={{fontVariationSettings: "'FILL' 1"}}>hub</span>
       </div>
       <div>
@@ -116,7 +116,7 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       <div className="flex items-center gap-4">
       <button className="text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 p-2 rounded-full relative active:scale-95 active:opacity-80">
       <span className="material-symbols-outlined">notifications</span>
-      <span className="absolute top-1 right-2 w-2 h-2 rounded-full bg-error shadow-[0_0_4px_rgba(239,68,68,0.6)]"></span>
+      <span className="absolute top-1 right-2 w-2 h-2 rounded-full bg-error shadow-[0_0_4px_theme(colors.error)]"></span>
       </button>
       <button className="text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 p-2 rounded-full active:scale-95 active:opacity-80">
       <span className="material-symbols-outlined">account_circle</span>
@@ -140,7 +140,7 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       <button onClick={() => setTimeRange('72s')} className={`px-3 py-1.5 text-xs font-medium rounded-md ${timeRange === '72s' ? 'bg-surface-variant text-on-background shadow-sm' : 'text-on-surface-variant hover:text-on-background'}`}>72S</button>
       <button onClick={() => setTimeRange('7g')} className={`px-3 py-1.5 text-xs font-medium rounded-md ${timeRange === '7g' ? 'bg-surface-variant text-on-background shadow-sm' : 'text-on-surface-variant hover:text-on-background'}`}>7G</button>
       </div>
-      <button className="flex items-center gap-2 bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-tr text-label-tr hover:brightness-110 transition-all shadow-[0_0_10px_rgba(180,197,255,0.3)]">
+      <button className="flex items-center gap-2 bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-tr text-label-tr hover:brightness-110 transition-all shadow-[0_0_10px_theme(colors.primary-container)/30]">
       <span className="material-symbols-outlined text-[18px]">download</span>
                               Raporu Aktar
                           </button>
@@ -180,7 +180,7 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       <span>T-72</span>
       <span>T-48</span>
       <span>T-24</span>
-      <span className="text-primary font-bold shadow-[0_0_8px_rgba(180,197,255,0.5)]">ŞİMDİ</span>
+      <span className="text-primary font-bold shadow-[0_0_8px_theme(colors.primary-container)]">ŞİMDİ</span>
       <span>T+24</span>
       </div>
       {/* Lines (Simulated with SVG inside HTML context for structural accuracy without external images) */}
@@ -191,18 +191,18 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       </div>
       {/* O2 Line */}
       <svg className="w-full h-full absolute inset-0 z-10" preserveAspectRatio="none" viewBox="0 0 100 100">
-      <path className="drop-shadow-[0_0_3px_rgba(96,165,250,0.6)]" d="M0,10 C20,15 40,5 60,20 C80,10 90,25 100,20" fill="none" stroke="#60a5fa" strokeWidth="1.5"></path>
+      <path className="drop-shadow-[0_0_3px_theme(colors.blue.400)]" d="M0,10 C20,15 40,5 60,20 C80,10 90,25 100,20" fill="none" stroke="theme(colors.blue.400)" strokeWidth="1.5"></path>
       <path d="M0,10 C20,15 40,5 60,20 C80,10 90,25 100,20 L100,100 L0,100 Z" fill="url(#o2-grad)" opacity="0.1"></path>
       <defs>
-      <linearGradient id="o2-grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#60a5fa"></stop><stop offset="100%" stopColor="transparent"></stop></linearGradient>
+      <linearGradient id="o2-grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="theme(colors.blue.400)"></stop><stop offset="100%" stopColor="transparent"></stop></linearGradient>
       </defs>
       </svg>
       {/* Power Line */}
       <svg className="w-full h-full absolute inset-0 z-10" preserveAspectRatio="none" viewBox="0 0 100 100">
-      <path d="M0,40 C15,35 30,50 50,45 C70,60 85,30 100,50" fill="none" stroke="#fbbf24" strokeDasharray="4 2" strokeWidth="1.5"></path>
+      <path d="M0,40 C15,35 30,50 50,45 C70,60 85,30 100,50" fill="none" stroke="theme(colors.amber.400)" strokeDasharray="4 2" strokeWidth="1.5"></path>
       </svg>
       {/* Current Time Marker */}
-      <div className="absolute top-0 bottom-0 left-[75%] w-px bg-primary/40 shadow-[0_0_5px_rgba(180,197,255,0.5)]"></div>
+      <div className="absolute top-0 bottom-0 left-[75%] w-px bg-primary/40 shadow-[0_0_5px_theme(colors.primary-container)]"></div>
       </div>
       </div>
       </div>
@@ -267,7 +267,7 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       <div className="flex-1 flex flex-col justify-center items-center relative">
       {/* Circular Progress Simulation */}
       <div className="w-40 h-40 rounded-full border-[8px] border-surface-container-high flex items-center justify-center relative shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
-      <div className="absolute inset-0 rounded-full border-[8px] border-blue-500 border-t-transparent border-r-transparent -rotate-45" style={{boxShadow: "0 0 15px rgba(59,130,246,0.5)"}}></div>
+      <div className="absolute inset-0 rounded-full border-[8px] border-blue-500 border-t-transparent border-r-transparent -rotate-45" style={{boxShadow: "0 0 15px theme(colors.blue.500)"}}></div>
       <div className="text-center">
       <div className="text-4xl font-display-tr text-on-background">{resources.oxygen.toFixed(0)}<span className="text-xl text-outline">%</span></div>
       <div className="text-[10px] text-blue-400 uppercase tracking-widest mt-1">{resources.oxygen > 95 ? 'Optimum' : resources.oxygen > 80 ? 'Normal' : 'Kritik'}</div>
