@@ -9,9 +9,13 @@
 
 import { useState } from "react";
 
-interface HataSayfasiProps {}
+interface HataSayfasiProps {
+  currentScreen: import('../types/domain').ScreenId;
+  onNavigate: (screen: import('../types/domain').ScreenId) => void;
+  state?: import('../types/domain').AppState;
+}
 
-export function HataSayfasi(props: HataSayfasiProps) {
+export function HataSayfasi({ currentScreen, onNavigate, state }: HataSayfasiProps) {
   return (
     <>
       {/* Atmospheric background glow */}

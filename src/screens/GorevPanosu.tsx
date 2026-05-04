@@ -9,9 +9,13 @@
 
 import { useState } from "react";
 
-interface GorevPanosuProps {}
+interface GorevPanosuProps {
+  currentScreen: import('../types/domain').ScreenId;
+  onNavigate: (screen: import('../types/domain').ScreenId) => void;
+  state?: import('../types/domain').AppState;
+}
 
-export function GorevPanosu(props: GorevPanosuProps) {
+export function GorevPanosu({ currentScreen, onNavigate, state }: GorevPanosuProps) {
   return (
     <>
       {/* SIDE NAVIGATION */}
@@ -31,38 +35,38 @@ export function GorevPanosu(props: GorevPanosuProps) {
       {/* Navigation Links */}
       <nav className="flex-1 px-2 flex flex-col gap-1">
       {/* Active Tab: Görev Panosu */}
-      <a className="font-inter text-sm font-medium tracking-tight bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] hover:bg-slate-900 transition-all duration-150 px-4 py-3 flex items-center gap-3" href="#">
+      <a className="font-inter text-sm font-medium tracking-tight bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] hover:bg-slate-900 transition-all duration-150 px-4 py-3 flex items-center gap-3" href="?screen=tasks" onClick={(e) => { e.preventDefault(); onNavigate('tasks'); }}>
       <span className="material-symbols-outlined" data-icon="assignment_late">assignment_late</span>
                       Görev Panosu
                   </a>
-      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="#">
+      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="?screen=habitat" onClick={(e) => { e.preventDefault(); onNavigate('habitat'); }}>
       <span className="material-symbols-outlined" data-icon="architecture">architecture</span>
                       Habitat Tasarımı
                   </a>
-      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="#">
+      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="?screen=crew" onClick={(e) => { e.preventDefault(); onNavigate('crew'); }}>
       <span className="material-symbols-outlined" data-icon="groups">groups</span>
                       Mürettebat
                   </a>
-      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="#">
+      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="?screen=resources" onClick={(e) => { e.preventDefault(); onNavigate('resources'); }}>
       <span className="material-symbols-outlined" data-icon="timeline">timeline</span>
                       Kaynaklar
                   </a>
-      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="#">
+      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="?screen=alerts" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}>
       <span className="material-symbols-outlined" data-icon="warning">warning</span>
                       Uyarılar
                   </a>
-      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="#">
+      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="?screen=settings" onClick={(e) => { e.preventDefault(); onNavigate('settings'); }}>
       <span className="material-symbols-outlined" data-icon="settings">settings</span>
                       Ayarlar
                   </a>
       </nav>
       {/* Footer Actions */}
       <div className="px-2 mt-auto flex flex-col gap-1 border-t border-slate-800 pt-4">
-      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="#">
+      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="?screen=profile" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }}>
       <span className="material-symbols-outlined" data-icon="account_circle">account_circle</span>
                       Profil
                   </a>
-      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="#">
+      <a className="font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 flex items-center gap-3" href="?screen=dashboard" onClick={(e) => { e.preventDefault(); onNavigate('dashboard'); }}>
       <span className="material-symbols-outlined" data-icon="logout">logout</span>
                       Çıkış
                   </a>
