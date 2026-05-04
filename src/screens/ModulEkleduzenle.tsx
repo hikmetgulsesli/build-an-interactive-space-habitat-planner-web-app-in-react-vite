@@ -9,9 +9,13 @@
 
 import { useState } from "react";
 
-interface ModulEkleduzenleProps {}
+interface ModulEkleduzenleProps {
+  currentScreen: import('../types/domain').ScreenId;
+  onNavigate: (screen: import('../types/domain').ScreenId) => void;
+  state?: import('../types/domain').AppState;
+}
 
-export function ModulEkleduzenle(props: ModulEkleduzenleProps) {
+export function ModulEkleduzenle({ currentScreen, onNavigate, state }: ModulEkleduzenleProps) {
   return (
     <>
       {/* TopNavBar (JSON Controlled) */}
@@ -48,38 +52,38 @@ export function ModulEkleduzenle(props: ModulEkleduzenleProps) {
       <div className="font-inter text-xs font-medium tracking-tight text-slate-500">Operasyonel Durum: Aktif</div>
       </div>
       <div className="flex-1 flex flex-col space-y-1 px-2">
-      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="#">
+      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="?screen=tasks" onClick={(e) => { e.preventDefault(); onNavigate('tasks'); }}>
       <span className="material-symbols-outlined text-lg">assignment_late</span>
                           Görev Panosu
                       </a>
       {/* Active Nav Item */}
-      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] px-4 py-3 rounded-l active:translate-x-1" href="#">
+      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] px-4 py-3 rounded-l active:translate-x-1" href="?screen=habitat" onClick={(e) => { e.preventDefault(); onNavigate('habitat'); }}>
       <span className="material-symbols-outlined text-lg">architecture</span>
                           Habitat Tasarımı
                       </a>
-      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="#">
+      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="?screen=crew" onClick={(e) => { e.preventDefault(); onNavigate('crew'); }}>
       <span className="material-symbols-outlined text-lg">groups</span>
                           Mürettebat
                       </a>
-      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="#">
+      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="?screen=resources" onClick={(e) => { e.preventDefault(); onNavigate('resources'); }}>
       <span className="material-symbols-outlined text-lg">timeline</span>
                           Kaynaklar
                       </a>
-      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="#">
+      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="?screen=alerts" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}>
       <span className="material-symbols-outlined text-lg">warning</span>
                           Uyarılar
                       </a>
-      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="#">
+      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="?screen=settings" onClick={(e) => { e.preventDefault(); onNavigate('settings'); }}>
       <span className="material-symbols-outlined text-lg">settings</span>
                           Ayarlar
                       </a>
       </div>
       <div className="px-2 pt-4 border-t border-slate-800 mt-auto mb-16">
-      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="#">
+      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="?screen=profile" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }}>
       <span className="material-symbols-outlined text-lg">account_circle</span>
                           Profil
                       </a>
-      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="#">
+      <a className="flex items-center gap-md font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded active:translate-x-1" href="?screen=dashboard" onClick={(e) => { e.preventDefault(); onNavigate('dashboard'); }}>
       <span className="material-symbols-outlined text-lg">logout</span>
                           Çıkış
                       </a>

@@ -9,9 +9,13 @@
 
 import { useState } from "react";
 
-interface BaslangicRehberiProps {}
+interface BaslangicRehberiProps {
+  currentScreen: import('../types/domain').ScreenId;
+  onNavigate: (screen: import('../types/domain').ScreenId) => void;
+  state?: import('../types/domain').AppState;
+}
 
-export function BaslangicRehberi(props: BaslangicRehberiProps) {
+export function BaslangicRehberi({ currentScreen, onNavigate, state }: BaslangicRehberiProps) {
   return (
     <>
       {/* SideNavBar (Shared Component) */}
@@ -27,40 +31,40 @@ export function BaslangicRehberi(props: BaslangicRehberiProps) {
       {/* Navigation Links */}
       <div className="flex-1 flex flex-col space-y-1 px-2">
       {/* Inactive */}
-      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight group" href="#">
+      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight group" href="?screen=tasks" onClick={(e) => { e.preventDefault(); onNavigate('tasks'); }}>
       <span className="material-symbols-outlined group-hover:scale-110 transition-transform">assignment_late</span>
       <span>Görev Panosu</span>
       </a>
       {/* Active (Intent: Setting up new habitat -> Architecture/Design) */}
-      <a className="flex items-center gap-3 bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] px-4 py-3 rounded-l-DEFAULT font-inter text-sm font-medium tracking-tight translate-x-1" href="#">
+      <a className="flex items-center gap-3 bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] px-4 py-3 rounded-l-DEFAULT font-inter text-sm font-medium tracking-tight translate-x-1" href="?screen=habitat" onClick={(e) => { e.preventDefault(); onNavigate('habitat'); }}>
       <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>architecture</span>
       <span>Habitat Tasarımı</span>
       </a>
       {/* Inactive */}
-      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight group" href="#">
+      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight group" href="?screen=crew" onClick={(e) => { e.preventDefault(); onNavigate('crew'); }}>
       <span className="material-symbols-outlined group-hover:scale-110 transition-transform">groups</span>
       <span>Mürettebat</span>
       </a>
-      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight group" href="#">
+      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight group" href="?screen=resources" onClick={(e) => { e.preventDefault(); onNavigate('resources'); }}>
       <span className="material-symbols-outlined group-hover:scale-110 transition-transform">timeline</span>
       <span>Kaynaklar</span>
       </a>
-      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight group" href="#">
+      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight group" href="?screen=alerts" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}>
       <span className="material-symbols-outlined group-hover:scale-110 transition-transform">warning</span>
       <span>Uyarılar</span>
       </a>
-      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight group" href="#">
+      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight group" href="?screen=settings" onClick={(e) => { e.preventDefault(); onNavigate('settings'); }}>
       <span className="material-symbols-outlined group-hover:scale-110 transition-transform">settings</span>
       <span>Ayarlar</span>
       </a>
       </div>
       {/* Footer Links */}
       <div className="mt-auto px-2 flex flex-col space-y-1 pt-4 border-t border-slate-800/50">
-      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight" href="#">
+      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight" href="?screen=profile" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }}>
       <span className="material-symbols-outlined">account_circle</span>
       <span>Profil</span>
       </a>
-      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight" href="#">
+      <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT font-inter text-sm font-medium tracking-tight" href="?screen=dashboard" onClick={(e) => { e.preventDefault(); onNavigate('dashboard'); }}>
       <span className="material-symbols-outlined">logout</span>
       <span>Çıkış</span>
       </a>

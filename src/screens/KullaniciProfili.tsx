@@ -9,9 +9,13 @@
 
 import { useState } from "react";
 
-interface KullaniciProfiliProps {}
+interface KullaniciProfiliProps {
+  currentScreen: import('../types/domain').ScreenId;
+  onNavigate: (screen: import('../types/domain').ScreenId) => void;
+  state?: import('../types/domain').AppState;
+}
 
-export function KullaniciProfili(props: KullaniciProfiliProps) {
+export function KullaniciProfili({ currentScreen, onNavigate, state }: KullaniciProfiliProps) {
   return (
     <>
       {/* SideNavBar (Shared Component) */}
@@ -26,27 +30,27 @@ export function KullaniciProfili(props: KullaniciProfiliProps) {
       </div>
       {/* Main Navigation Tabs */}
       <nav className="flex-1 flex flex-col space-y-1">
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=tasks" onClick={(e) => { e.preventDefault(); onNavigate('tasks'); }}>
       <span className="material-symbols-outlined">assignment_late</span>
       <span>Görev Panosu</span>
       </a>
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=habitat" onClick={(e) => { e.preventDefault(); onNavigate('habitat'); }}>
       <span className="material-symbols-outlined">architecture</span>
       <span>Habitat Tasarımı</span>
       </a>
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=crew" onClick={(e) => { e.preventDefault(); onNavigate('crew'); }}>
       <span className="material-symbols-outlined">groups</span>
       <span>Mürettebat</span>
       </a>
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=resources" onClick={(e) => { e.preventDefault(); onNavigate('resources'); }}>
       <span className="material-symbols-outlined">timeline</span>
       <span>Kaynaklar</span>
       </a>
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=alerts" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}>
       <span className="material-symbols-outlined">warning</span>
       <span>Uyarılar</span>
       </a>
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=settings" onClick={(e) => { e.preventDefault(); onNavigate('settings'); }}>
       <span className="material-symbols-outlined">settings</span>
       <span>Ayarlar</span>
       </a>
@@ -54,11 +58,11 @@ export function KullaniciProfili(props: KullaniciProfiliProps) {
       {/* Footer Navigation Tabs */}
       <div className="mt-auto border-t border-slate-800/50 pt-4 flex flex-col space-y-1">
       {/* ACTIVE TAB */}
-      <a className="flex items-center gap-md bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] px-6 py-3" href="#">
+      <a className="flex items-center gap-md bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] px-6 py-3" href="?screen=profile" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }}>
       <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>account_circle</span>
       <span>Profil</span>
       </a>
-      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="#">
+      <a className="flex items-center gap-md text-slate-500 hover:text-slate-300 px-6 py-3 hover:bg-slate-900 transition-all duration-150" href="?screen=dashboard" onClick={(e) => { e.preventDefault(); onNavigate('dashboard'); }}>
       <span className="material-symbols-outlined">logout</span>
       <span>Çıkış</span>
       </a>

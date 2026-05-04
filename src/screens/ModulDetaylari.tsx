@@ -9,9 +9,13 @@
 
 import { useState } from "react";
 
-interface ModulDetaylariProps {}
+interface ModulDetaylariProps {
+  currentScreen: import('../types/domain').ScreenId;
+  onNavigate: (screen: import('../types/domain').ScreenId) => void;
+  state?: import('../types/domain').AppState;
+}
 
-export function ModulDetaylari(props: ModulDetaylariProps) {
+export function ModulDetaylari({ currentScreen, onNavigate, state }: ModulDetaylariProps) {
   return (
     <>
       {/* TopNavBar */}
@@ -21,9 +25,9 @@ export function ModulDetaylari(props: ModulDetaylariProps) {
                       HABİTAT KONTROL
                   </div>
       <div className="hidden md:flex gap-4">
-      <a className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-2 rounded-DEFAULT" href="#">O2: %98</a>
-      <a className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-2 rounded-DEFAULT" href="#">GÜÇ: %85</a>
-      <a className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-2 rounded-DEFAULT" href="#">GIDA: %92</a>
+      <a className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-2 rounded-DEFAULT" href="?screen=tasks" onClick={(e) => { e.preventDefault(); onNavigate('tasks'); }}>O2: %98</a>
+      <a className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-2 rounded-DEFAULT" href="?screen=habitat" onClick={(e) => { e.preventDefault(); onNavigate('habitat'); }}>GÜÇ: %85</a>
+      <a className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-2 rounded-DEFAULT" href="?screen=crew" onClick={(e) => { e.preventDefault(); onNavigate('crew'); }}>GIDA: %92</a>
       </div>
       </div>
       <div className="flex items-center gap-4">
@@ -54,37 +58,37 @@ export function ModulDetaylari(props: ModulDetaylariProps) {
       </div>
       </div>
       <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
-      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="#">
+      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="?screen=resources" onClick={(e) => { e.preventDefault(); onNavigate('resources'); }}>
       <span className="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors" data-icon="assignment_late">assignment_late</span>
       <span>Görev Panosu</span>
       </a>
-      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] transition-all duration-150 Press: translate-x-1" href="#">
+      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] transition-all duration-150 Press: translate-x-1" href="?screen=alerts" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}>
       <span className="material-symbols-outlined" data-icon="architecture" style={{fontVariationSettings: "'FILL' 1"}}>architecture</span>
       <span>Habitat Tasarımı</span>
       </a>
-      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="#">
+      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="?screen=settings" onClick={(e) => { e.preventDefault(); onNavigate('settings'); }}>
       <span className="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors" data-icon="groups">groups</span>
       <span>Mürettebat</span>
       </a>
-      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="#">
+      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="?screen=profile" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }}>
       <span className="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors" data-icon="timeline">timeline</span>
       <span>Kaynaklar</span>
       </a>
-      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="#">
+      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="?screen=dashboard" onClick={(e) => { e.preventDefault(); onNavigate('dashboard'); }}>
       <span className="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors" data-icon="warning">warning</span>
       <span>Uyarılar</span>
       </a>
-      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="#">
+      <a className="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 Press: translate-x-1 group" href="?screen=settings" onClick={(e) => { e.preventDefault(); onNavigate('settings'); }}>
       <span className="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors" data-icon="settings">settings</span>
       <span>Ayarlar</span>
       </a>
       </nav>
       <div className="mt-auto px-3 py-4 border-t border-surface-variant space-y-1">
-      <a className="flex items-center gap-3 px-4 py-2 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 group" href="#">
+      <a className="flex items-center gap-3 px-4 py-2 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-slate-500 hover:text-slate-300 hover:bg-slate-900 transition-all duration-150 group" href="?screen=profile" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }}>
       <span className="material-symbols-outlined text-outline-variant group-hover:text-primary-fixed-dim transition-colors text-[20px]" data-icon="account_circle">account_circle</span>
       <span>Profil</span>
       </a>
-      <a className="flex items-center gap-3 px-4 py-2 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-error hover:text-error-container hover:bg-error/10 transition-all duration-150 group" href="#">
+      <a className="flex items-center gap-3 px-4 py-2 rounded-DEFAULT font-inter text-sm font-medium tracking-tight text-error hover:text-error-container hover:bg-error/10 transition-all duration-150 group" href="?screen=dashboard" onClick={(e) => { e.preventDefault(); onNavigate('dashboard'); }}>
       <span className="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
       <span>Çıkış</span>
       </a>
