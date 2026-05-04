@@ -250,7 +250,21 @@ export function MurettebatYonetimi({ currentScreen, onNavigate, state, onAddCrew
         </article>
       ))}
       {filteredCrew.length === 0 && !showForm && (
-        <div className="col-span-full text-center text-on-surface-variant font-body-tr py-8">Personel bulunmuyor</div>
+        <div className="col-span-full text-center text-on-surface-variant font-body-tr py-8">
+          {crew.length === 0 ? (
+            <>
+              <p className="font-display-tr text-title-tr text-on-surface mb-sm">Personel Bulunmuyor</p>
+              <p className="font-body-tr text-body-tr text-on-surface-variant">Mürettebat listesi boş. Yeni personel ekleyerek ekibi oluşturun.</p>
+            </>
+          ) : (
+            <>
+              <p className="font-body-tr text-body-tr text-on-surface-variant mb-md">Filtreleme kriterlerine uygun personel bulunamadı.</p>
+              <button onClick={() => { setSearch(''); setRoleFilter(''); setStatusFilter(''); }} className="bg-primary-container text-on-primary-container font-label-tr text-label-tr px-md py-sm rounded-lg hover:bg-inverse-primary transition-colors border border-primary/50 cursor-pointer">
+                Filtreleri Temizle
+              </button>
+            </>
+          )}
+        </div>
       )}
       {/* Add New Card Slot */}
       {!showForm && (

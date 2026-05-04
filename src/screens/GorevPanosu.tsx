@@ -220,7 +220,12 @@ export function GorevPanosu({ currentScreen, onNavigate, state, onAddTask, onUpd
         </div>
       ))}
       {pendingTasks.length === 0 && (
-        <div className="text-center text-on-surface-variant font-body-tr text-sm py-4">Bekleyen görev yok</div>
+        <div className="text-center text-on-surface-variant font-body-tr text-sm py-4">
+          <p className="mb-sm">Bekleyen görev yok</p>
+          <button onClick={() => setShowForm(true)} className="text-primary hover:text-primary-fixed-dim transition-colors cursor-pointer font-label-tr text-label-tr">
+            + Yeni Görev
+          </button>
+        </div>
       )}
       </div>
       </div>
