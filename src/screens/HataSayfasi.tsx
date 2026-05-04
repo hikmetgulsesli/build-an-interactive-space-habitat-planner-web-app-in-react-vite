@@ -24,8 +24,8 @@ export function HataSayfasi({ currentScreen, onNavigate, state, errorCode, error
   const [timestamp] = useState(() => new Date().toISOString());
 
   const handleRetry = () => {
+    setIsRetrying(true);
     if (onRetry) {
-      setIsRetrying(true);
       onRetry();
     } else {
       onNavigate('dashboard');
@@ -78,11 +78,11 @@ export function HataSayfasi({ currentScreen, onNavigate, state, errorCode, error
                               HATA_KAYDI.LOG
                           </div>
       <code className="font-mono-tr text-mono-tr text-error/80 block mt-xs whitespace-pre">
-      [ERR_CODE]: {errorCode || '0x8F4A2_TIMEOUT'}
-      [MODULE]: Telemetry.Core.DataStream
-      [TRACE_ID]: 8f9a2b4c-7d1e-4568-b902-1c3d4e5f6a7b
-      [TIMESTAMP]: <span>{timestamp}</span>
-      [DETAIL]: {errorMessage || 'Handshake failed at gateway S7-ALPHA. No response from remote host.'}
+      <span data-testid="err-code">[ERR_CODE]: {errorCode || '0x8F4A2_TIMEOUT'}</span>
+      <span>[MODULE]: Telemetry.Core.DataStream</span>
+      <span>[TRACE_ID]: 8f9a2b4c-7d1e-4568-b902-1c3d4e5f6a7b</span>
+      <span>[TIMESTAMP]: <span>{timestamp}</span></span>
+      <span data-testid="err-detail">[DETAIL]: {errorMessage || 'Handshake failed at gateway S7-ALPHA. No response from remote host.'}</span>
                           </code>
       </div>
       {/* Action Buttons */}
