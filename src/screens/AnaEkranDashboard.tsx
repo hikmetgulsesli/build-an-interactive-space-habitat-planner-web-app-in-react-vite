@@ -216,7 +216,12 @@ export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkran
         </div>
       ))}
       {(!state?.alerts || state.alerts.length === 0) && (
-        <div className="p-3 text-center text-on-surface-variant font-body-tr text-sm">Aktif uyarı bulunmuyor</div>
+        <div className="flex flex-col items-center justify-center py-6 gap-sm">
+          <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+            <span className="material-symbols-outlined text-[20px] text-outline">check_circle</span>
+          </div>
+          <p className="font-body-tr text-[13px] text-on-surface-variant text-center">Aktif uyarı bulunmuyor</p>
+        </div>
       )}
       </div>
       <button className="w-full mt-md py-2 border border-outline-variant text-on-surface-variant font-label-tr text-label-tr uppercase tracking-widest rounded hover:bg-surface-container-highest transition-colors" onClick={() => onNavigate('alerts')}>Tüm Logları Gör</button>
@@ -311,7 +316,14 @@ export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkran
         </tr>
       ))}
       {(!state?.tasks || state.tasks.length === 0) && (
-        <tr><td colSpan={5} className="p-3 text-center text-on-surface-variant">Görev bulunmuyor</td></tr>
+        <tr><td colSpan={5}>
+          <div className="flex flex-col items-center justify-center py-8 gap-sm">
+            <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+              <span className="material-symbols-outlined text-[20px] text-outline">inbox</span>
+            </div>
+            <p className="font-body-tr text-sm text-on-surface-variant text-center">Görev bulunmuyor</p>
+          </div>
+        </td></tr>
       )}
       </tbody>
       </table>

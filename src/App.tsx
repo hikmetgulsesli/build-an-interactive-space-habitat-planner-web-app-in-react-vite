@@ -117,7 +117,13 @@ export default function App() {
         />
       );
     case 'error':
-      return <HataSayfasi {...commonProps} state={state} />;
+      return (
+        <HataSayfasi
+          {...commonProps}
+          state={state}
+          onRetry={() => navigate('dashboard')}
+        />
+      );
     default:
       return <AnaEkranDashboard {...commonProps} state={state} />;
   }

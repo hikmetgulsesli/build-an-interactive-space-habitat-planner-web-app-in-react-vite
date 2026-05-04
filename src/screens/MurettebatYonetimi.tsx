@@ -250,7 +250,29 @@ export function MurettebatYonetimi({ currentScreen, onNavigate, state, onAddCrew
         </article>
       ))}
       {filteredCrew.length === 0 && !showForm && (
-        <div className="col-span-full text-center text-on-surface-variant font-body-tr py-8">Personel bulunmuyor</div>
+        <div className="col-span-full flex flex-col items-center justify-center py-12 gap-md">
+          <div className="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+            <span className="material-symbols-outlined text-[32px] text-outline">groups_off</span>
+          </div>
+          <div className="text-center">
+            <p className="font-title-tr text-title-tr text-on-surface-variant mb-1">Personel Bulunmuyor</p>
+            <p className="font-body-tr text-body-tr text-on-surface-variant/60 max-w-sm">
+              {search || roleFilter || statusFilter ? 'Filtreleme kriterlerine uygun personel bulunamadı.' : 'Mürettebat listesi boş. Yeni personel ekleyerek ekibi oluşturun.'}
+            </p>
+          </div>
+          {!search && !roleFilter && !statusFilter && (
+            <button onClick={() => setShowForm(true)} className="mt-2 bg-primary-container text-on-primary-container font-label-tr text-label-tr px-md py-sm rounded-lg flex items-center gap-sm hover:bg-inverse-primary transition-colors cursor-pointer">
+              <span className="material-symbols-outlined text-[18px]">person_add</span>
+              Personel Ekle
+            </button>
+          )}
+          {(search || roleFilter || statusFilter) && (
+            <button onClick={() => { setSearch(''); setRoleFilter(''); setStatusFilter(''); }} className="mt-2 border border-outline-variant text-on-surface-variant font-label-tr text-label-tr px-md py-sm rounded-lg flex items-center gap-sm hover:bg-surface-container transition-colors cursor-pointer">
+              <span className="material-symbols-outlined text-[18px]">filter_alt_off</span>
+              Filtreleri Temizle
+            </button>
+          )}
+        </div>
       )}
       {/* Add New Card Slot */}
       {!showForm && (
