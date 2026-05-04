@@ -7,15 +7,57 @@
 // 3. Add onClick/onChange handlers to interactive elements
 // 4. Replace placeholder data with props/state
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import type { ScreenId, AppState, HabitatModule, ModuleType, ModuleStatus } from '../types/domain';
 
 interface ModulEkleduzenleProps {
-  currentScreen: import('../types/domain').ScreenId;
-  onNavigate: (screen: import('../types/domain').ScreenId) => void;
-  state?: import('../types/domain').AppState;
+  currentScreen: ScreenId;
+  onNavigate: (screen: ScreenId) => void;
+  state?: AppState;
+  onSaveModule: (module: HabitatModule) => void;
+  onCancel: () => void;
 }
 
-export function ModulEkleduzenle({ currentScreen, onNavigate, state }: ModulEkleduzenleProps) {
+export function ModulEkleduzenle({ currentScreen, onNavigate, state, onSaveModule, onCancel }: ModulEkleduzenleProps) {
+  const editingModule = state?.selectedModuleId ? state.modules.find(m => m.id === state.selectedModuleId) : undefined;
+
+  const [name, setName] = useState(editingModule?.name ?? '');
+  const [type, setType] = useState<ModuleType>(editingModule?.type ?? 'living');
+  const [status, setStatus] = useState<ModuleStatus>(editingModule?.status ?? 'active');
+  const [capacity, setCapacity] = useState(editingModule?.capacity ?? 0);
+  const [consumption, setConsumption] = useState(editingModule?.consumption ?? 0);
+  const [output, setOutput] = useState(editingModule?.output ?? 0);
+  const [error, setError] = useState('');
+
+  const moduleId = editingModule?.id ?? `mod-${Date.now()}`;
+
+  const handleSave = () => {
+    if (!name.trim()) {
+      setError('Modül ismi zorunludur.');
+      return;
+    }
+    if (capacity <= 0) {
+      setError('Kapasite değeri 0\'dan büyük olmalıdır.');
+      return;
+    }
+    const module: HabitatModule = {
+      id: moduleId,
+      name: name.trim(),
+      type,
+      status,
+      capacity,
+      consumption,
+      output,
+      x: editingModule?.x ?? Math.floor(Math.random() * 500) + 50,
+      y: editingModule?.y ?? Math.floor(Math.random() * 300) + 50,
+    };
+    onSaveModule(module);
+  };
+
+  const handleCancel = () => {
+    setError('');
+    onCancel();
+  };
   return (
     <>
       {/* TopNavBar (JSON Controlled) */}
@@ -97,7 +139,7 @@ export function ModulEkleduzenle({ currentScreen, onNavigate, state }: ModulEkle
       <p className="font-body-tr text-body-tr text-on-surface-variant">Habitat şebekesine yeni bir yaşam veya destek ünitesi ekleyin.</p>
       </div>
       <div className="font-mono-tr text-mono-tr text-outline px-md py-xs border border-outline-variant bg-surface-container rounded-DEFAULT">
-                          ID: SYS-NEW-MDL
+                          ID: {moduleId}
                       </div>
       </header>
       {/* Grid Layout for Form and Preview */}
@@ -109,23 +151,29 @@ export function ModulEkleduzenle({ currentScreen, onNavigate, state }: ModulEkle
       <span className="material-symbols-outlined text-primary">edit_document</span>
                                   Temel Parametreler
                               </h2>
-      <form className="space-y-lg">
+      {error && (
+        <p className="font-label-tr text-label-tr text-error mb-md flex items-center gap-xs">
+        <span className="material-symbols-outlined text-[14px]">error</span>{error}
+        </p>
+      )}
+      <form className="space-y-lg" onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
       {/* Row 1: Name & Type */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
       <div className="flex flex-col gap-xs">
       <label className="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-wider" htmlFor="module_name">Modül İsmi <span className="text-error">*</span></label>
-      <input className="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-md py-sm font-body-tr text-body-tr text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-outline" id="module_name" placeholder="Örn: Laboratuvar-A" type="text" />
+      <input value={name} onChange={(e) => { setName(e.target.value); setError(''); }} className="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-md py-sm font-body-tr text-body-tr text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-outline" id="module_name" placeholder="Örn: Laboratuvar-A" type="text" />
       </div>
       <div className="flex flex-col gap-xs">
       <label className="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-wider" htmlFor="module_type">Modül Sınıfı <span className="text-error">*</span></label>
       <div className="relative">
-      <select className="appearance-none w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-md py-sm font-body-tr text-body-tr text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" id="module_type">
-      <option disabled={true} selected={true} value="">Sınıf Seçiniz</option>
-      <option value="o2">O2 Üreticisi (Sınıf 1)</option>
-      <option value="storage">Erzak Deposu (Sınıf 2)</option>
-      <option value="power">Enerji Reaktörü (Sınıf 1)</option>
-      <option value="water">Su Arıtma Tesisi (Sınıf 2)</option>
-      <option value="crew">Mürettebat Kabini (Sınıf 3)</option>
+      <select value={type} onChange={(e) => setType(e.target.value as ModuleType)} className="appearance-none w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-md py-sm font-body-tr text-body-tr text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" id="module_type">
+      <option value="living">Yaşam Modülü</option>
+      <option value="power">Enerji Reaktörü</option>
+      <option value="greenhouse">Sera</option>
+      <option value="lab">Laboratuvar</option>
+      <option value="core">Merkezi Çekirdek</option>
+      <option value="medical">Tıbbi Ünite</option>
+      <option value="storage">Depo</option>
       </select>
       <span className="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
       </div>
@@ -133,48 +181,57 @@ export function ModulEkleduzenle({ currentScreen, onNavigate, state }: ModulEkle
       </div>
       {/* Row 2: Capacity & Power */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-md pt-md border-t border-surface-variant">
-      {/* Error State Example */}
       <div className="flex flex-col gap-xs">
       <label className="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-wider flex justify-between" htmlFor="capacity">
       <span>Kapasite / Hacim <span className="text-error">*</span></span>
       </label>
       <div className="relative">
-      <input aria-invalid="true" className="w-full bg-surface-container-lowest border border-error rounded-DEFAULT pl-md pr-12 py-sm font-mono-tr text-mono-tr text-on-surface focus:outline-none focus:border-error focus:ring-1 focus:ring-error transition-all" id="capacity" type="number" value="0" />
+      <input value={capacity} onChange={(e) => setCapacity(parseInt(e.target.value) || 0)} className={`w-full bg-surface-container-lowest border rounded-DEFAULT pl-md pr-12 py-sm font-mono-tr text-mono-tr text-on-surface focus:outline-none focus:ring-1 transition-all ${capacity <= 0 ? 'border-error focus:border-error focus:ring-error' : 'border-outline-variant focus:border-primary focus:ring-primary'}`} id="capacity" type="number" min="1" />
       <span className="absolute right-sm top-1/2 -translate-y-1/2 font-mono-tr text-mono-tr text-outline border-l border-outline-variant pl-sm pointer-events-none">m³</span>
       </div>
-      <p className="font-label-tr text-label-tr text-error mt-xs flex items-center gap-xs">
+      {capacity <= 0 && <p className="font-label-tr text-label-tr text-error mt-xs flex items-center gap-xs">
       <span className="material-symbols-outlined text-[14px]">error</span>
                                               Kapasite değeri 0'dan büyük olmalıdır.
-                                          </p>
+                                          </p>}
       </div>
       <div className="flex flex-col gap-xs">
-      <label className="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-wider" htmlFor="power_draw">Nominal Enerji Tüketimi <span className="text-error">*</span></label>
+      <label className="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-wider" htmlFor="power_draw">Nominal Enerji Tüketimi</label>
       <div className="relative">
-      <input className="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT pl-md pr-12 py-sm font-mono-tr text-mono-tr text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" id="power_draw" placeholder="150" type="number" />
+      <input value={consumption} onChange={(e) => setConsumption(parseInt(e.target.value) || 0)} className="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT pl-md pr-12 py-sm font-mono-tr text-mono-tr text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" id="power_draw" placeholder="150" type="number" />
       <span className="absolute right-sm top-1/2 -translate-y-1/2 font-mono-tr text-mono-tr text-outline border-l border-outline-variant pl-sm pointer-events-none">kW</span>
       </div>
       </div>
       </div>
-      {/* Row 3: Status & Notes */}
+      {/* Row 3: Output */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-md pt-md border-t border-surface-variant">
+      <div className="flex flex-col gap-xs">
+      <label className="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-wider" htmlFor="output">Üretim / Çıkış</label>
+      <div className="relative">
+      <input value={output} onChange={(e) => setOutput(parseInt(e.target.value) || 0)} className="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT pl-md pr-12 py-sm font-mono-tr text-mono-tr text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" id="output" placeholder="0" type="number" />
+      <span className="absolute right-sm top-1/2 -translate-y-1/2 font-mono-tr text-mono-tr text-outline border-l border-outline-variant pl-sm pointer-events-none">kW</span>
+      </div>
+      </div>
+      </div>
+      {/* Row 4: Status */}
       <div className="pt-md border-t border-surface-variant">
       <label className="font-label-tr text-label-tr text-on-surface-variant uppercase tracking-wider block mb-sm">Ağ Durumu</label>
       <div className="flex gap-md">
       <label className="flex items-center gap-sm cursor-pointer p-sm border border-outline-variant rounded-DEFAULT bg-surface-container hover:bg-surface-container-high transition-colors flex-1 justify-center">
-      <input checked={true} className="text-primary bg-surface-container-lowest border-outline-variant focus:ring-primary" name="status" type="radio" value="active" />
+      <input checked={status === 'active'} onChange={() => setStatus('active')} className="text-primary bg-surface-container-lowest border-outline-variant focus:ring-primary" name="status" type="radio" value="active" />
       <span className="font-label-tr text-label-tr text-on-surface">Derhal Aktifleştir</span>
       </label>
       <label className="flex items-center gap-sm cursor-pointer p-sm border border-outline-variant rounded-DEFAULT bg-surface-container hover:bg-surface-container-high transition-colors flex-1 justify-center opacity-70">
-      <input className="text-primary bg-surface-container-lowest border-outline-variant focus:ring-primary" name="status" type="radio" value="standby" />
+      <input checked={status === 'offline'} onChange={() => setStatus('offline')} className="text-primary bg-surface-container-lowest border-outline-variant focus:ring-primary" name="status" type="radio" value="offline" />
       <span className="font-label-tr text-label-tr text-on-surface">Beklemeye Al (Standby)</span>
       </label>
       </div>
       </div>
       {/* Actions */}
       <div className="flex justify-end gap-md pt-lg border-t border-surface-variant mt-xl">
-      <button className="px-lg py-sm font-label-tr text-label-tr uppercase tracking-wider text-on-surface border border-outline-variant rounded-DEFAULT hover:bg-surface-container transition-colors" type="button">
+      <button onClick={handleCancel} className="px-lg py-sm font-label-tr text-label-tr uppercase tracking-wider text-on-surface border border-outline-variant rounded-DEFAULT hover:bg-surface-container transition-colors" type="button">
                                           İptal Et
                                       </button>
-      <button className="px-lg py-sm font-label-tr text-label-tr uppercase tracking-wider bg-primary-container text-on-primary-container rounded-DEFAULT hover:bg-inverse-primary transition-colors flex items-center gap-sm shadow-[0_0_10px_rgba(37,99,235,0.2)] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)]" type="button">
+      <button onClick={handleSave} className="px-lg py-sm font-label-tr text-label-tr uppercase tracking-wider bg-primary-container text-on-primary-container rounded-DEFAULT hover:bg-inverse-primary transition-colors flex items-center gap-sm shadow-[0_0_10px_rgba(37,99,235,0.2)] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)]" type="button">
       <span className="material-symbols-outlined text-[18px]">memory</span>
                                           Sisteme Kaydet
                                       </button>

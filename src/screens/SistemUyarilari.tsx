@@ -13,9 +13,14 @@ interface SistemUyarilariProps {
   currentScreen: import('../types/domain').ScreenId;
   onNavigate: (screen: import('../types/domain').ScreenId) => void;
   state?: import('../types/domain').AppState;
+  onDismissAlert?: (id: string) => void;
 }
 
-export function SistemUyarilari({ currentScreen, onNavigate, state }: SistemUyarilariProps) {
+export function SistemUyarilari({ currentScreen, onNavigate, state, onDismissAlert }: SistemUyarilariProps) {
+  const alerts = state?.alerts ?? [];
+  const criticalCount = alerts.filter(a => a.level === 'critical').length;
+  const warningCount = alerts.filter(a => a.level === 'warning').length;
+  const infoCount = alerts.filter(a => a.level === 'info').length;
   return (
     <>
       {/* SideNavBar (Shared Component JSON) */}
@@ -50,7 +55,7 @@ export function SistemUyarilari({ currentScreen, onNavigate, state }: SistemUyar
                   </a>
       {/* Active Tab */}
       <a className="flex items-center gap-3 bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.3)] px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-l-DEFAULT" href="?screen=alerts" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}>
-      <span className="material-symbols-filled">warning</span>
+      <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>warning</span>
                       Uyarılar
                   </a>
       <a className="flex items-center gap-3 text-slate-500 hover:text-slate-300 px-4 py-3 hover:bg-slate-900 transition-all duration-150 rounded-DEFAULT" href="?screen=settings" onClick={(e) => { e.preventDefault(); onNavigate('settings'); }}>
@@ -104,7 +109,7 @@ export function SistemUyarilari({ currentScreen, onNavigate, state }: SistemUyar
       {/* Page Header */}
       <div className="flex flex-col gap-xs">
       <h2 className="font-display-tr text-display-tr text-on-surface flex items-center gap-sm">
-      <span className="material-symbols-filled text-error">warning</span>
+      <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>warning</span>
                               Sistem Uyarıları
                           </h2>
       <p className="font-mono-tr text-mono-tr text-on-surface-variant uppercase tracking-widest">
@@ -117,17 +122,17 @@ export function SistemUyarilari({ currentScreen, onNavigate, state }: SistemUyar
       <div className="bg-error-container border border-error/50 rounded-lg p-md flex items-center justify-between shadow-[0_0_15px_rgba(255,180,171,0.05)]">
       <div>
       <p className="font-label-tr text-label-tr text-on-error-container/80 uppercase">Kritik Arızalar</p>
-      <p className="font-display-tr text-[32px] font-bold text-on-error-container leading-none mt-1">02</p>
+      <p className="font-display-tr text-[32px] font-bold text-on-error-container leading-none mt-1">{String(criticalCount).padStart(2, '0')}</p>
       </div>
       <div className="w-12 h-12 rounded-full bg-error/10 flex items-center justify-center text-error">
-      <span className="material-symbols-filled text-[28px]">crisis_alert</span>
+      <span className="material-symbols-outlined text-[28px]">crisis_alert</span>
       </div>
       </div>
       {/* Moderate Stats */}
       <div className="bg-surface-container border border-tertiary/30 rounded-lg p-md flex items-center justify-between">
       <div>
       <p className="font-label-tr text-label-tr text-on-surface-variant uppercase">Orta Seviye</p>
-      <p className="font-display-tr text-[32px] font-bold text-tertiary leading-none mt-1">05</p>
+      <p className="font-display-tr text-[32px] font-bold text-tertiary leading-none mt-1">{String(warningCount).padStart(2, '0')}</p>
       </div>
       <div className="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
       <span className="material-symbols-outlined text-[28px]">error</span>
@@ -137,7 +142,7 @@ export function SistemUyarilari({ currentScreen, onNavigate, state }: SistemUyar
       <div className="bg-surface-container border border-outline-variant rounded-lg p-md flex items-center justify-between">
       <div>
       <p className="font-label-tr text-label-tr text-on-surface-variant uppercase">Düşük Seviye / Bilgi</p>
-      <p className="font-display-tr text-[32px] font-bold text-secondary leading-none mt-1">14</p>
+      <p className="font-display-tr text-[32px] font-bold text-secondary leading-none mt-1">{String(infoCount).padStart(2, '0')}</p>
       </div>
       <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
       <span className="material-symbols-outlined text-[28px]">info</span>
@@ -147,106 +152,39 @@ export function SistemUyarilari({ currentScreen, onNavigate, state }: SistemUyar
       {/* Alerts List/Grid */}
       <div className="flex flex-col gap-sm">
       <h3 className="font-label-tr text-label-tr text-outline uppercase border-b border-outline-variant pb-xs mb-xs">Aktif Bildirim Logu</h3>
-      {/* Critical Alert Card 1 */}
-      <div className="bg-surface-container-high rounded-lg border border-error/40 p-0 flex flex-col sm:flex-row relative overflow-hidden group shadow-[0_0_12px_rgba(255,180,171,0.08)]">
-      {/* Left Accent Line */}
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-error shadow-[0_0_8px_rgba(255,180,171,0.8)]"></div>
-      <div className="p-md flex-1 flex flex-col gap-xs pl-lg">
-      <div className="flex items-center gap-sm font-mono-tr text-mono-tr text-error">
-      <span className="material-symbols-filled text-[16px] animate-pulse">emergency</span>
-      <span>KRİTİK</span>
-      <span className="text-on-surface-variant">•</span>
-      <span className="text-on-surface-variant">Modül: Yaşam Destek (A-Blok)</span>
-      <span className="ml-auto text-on-surface-variant">T-Eksi: 00:04:12</span>
-      </div>
-      <h4 className="font-title-tr text-title-tr text-on-surface">O2 Sirkülasyon Pompası Arızası</h4>
-      <p className="font-body-tr text-body-tr text-on-surface-variant">
-                                      Ana basınç hattında %40 oranında ani düşüş tespit edildi. Yedek sistemler devrede ancak kapasite sınırında çalışıyor. Acil mühendislik müdahalesi gereklidir.
-                                  </p>
-      </div>
-      <div className="p-md bg-surface-container-highest border-l border-outline-variant flex sm:flex-col items-center justify-center gap-sm">
-      <button className="w-full sm:w-auto px-lg py-sm bg-error text-on-error rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:bg-[#ffcdc7] transition-colors shadow-[0_0_10px_rgba(255,180,171,0.2)]">
-                                      Çözüldü
-                                  </button>
-      <button className="w-full sm:w-auto px-lg py-sm border border-outline text-on-surface rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:bg-surface-variant transition-colors">
-                                      Ertele
-                                  </button>
-      </div>
-      </div>
-      {/* Critical Alert Card 2 (Personnel) */}
-      <div className="bg-surface-container-high rounded-lg border border-error/40 p-0 flex flex-col sm:flex-row relative overflow-hidden group shadow-[0_0_12px_rgba(255,180,171,0.08)]">
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-error shadow-[0_0_8px_rgba(255,180,171,0.8)]"></div>
-      <div className="p-md flex-1 flex flex-col gap-xs pl-lg">
-      <div className="flex items-center gap-sm font-mono-tr text-mono-tr text-error">
-      <span className="material-symbols-filled text-[16px]">monitor_heart</span>
-      <span>KRİTİK SAĞLIK</span>
-      <span className="text-on-surface-variant">•</span>
-      <span className="text-on-surface-variant">Personel: Müh. K. Yılmaz (ID: 4492)</span>
-      <span className="ml-auto text-on-surface-variant">T-Eksi: 00:12:05</span>
-      </div>
-      <div className="flex items-start gap-md mt-sm">
-      <img className="w-16 h-16 rounded-DEFAULT object-cover border border-outline-variant grayscale sepia-[.2] hue-rotate-[180deg]" data-alt="A close up, low-angle portrait of an astronaut engineer in a sleek, high-tech dark space suit inside a dimly lit space station corridor. The lighting is extremely dramatic, casting deep, sharp shadows across the visor and highlighting the worn metallic textures of the life support rig. The mood is tense, urgent, and serious, perfectly suited for a sci-fi UI dashboard. The color palette relies heavily on deep navy blacks and stark whites, punctuated by a faint, warning-red LED reflection on the helmet visor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClpp4JCJbGLCBM0vjGomMGGKwJ-lwVcCH9clU0Md4mKeSYoMN-2q2Mc6E9imkI5JsfYzzR0irLEaV6x0EIdD_ISoZCxdzaYIT2pdWIsF17K3rahsCt2Wf9GTaqyWSR6A15rf0p72Ip8igsyudggVjolniwdeZ18aofN9CoocAXEY6afIdxN1IHLqxddRLhAp0AywitX2Mr0DGaZ_YVCGV86QrsWrB2Ep8ZCitgRWcFonWbucSidZUJ-MA3wykAqr87TdddTH_EsPQ" />
-      <div>
-      <h4 className="font-title-tr text-title-tr text-on-surface">Anormal Vital Bulgular - Sektör 4 Dış Yüzey</h4>
-      <p className="font-body-tr text-body-tr text-on-surface-variant mt-1">
-                                              EVA görevi sırasında kalp ritminde düzensizlik ve kask içi CO2 seviyesinde sınır aşımı tespit edildi. Otomatik geri dönüş protokolü öneriliyor.
-                                          </p>
-      </div>
-      </div>
-      </div>
-      <div className="p-md bg-surface-container-highest border-l border-outline-variant flex sm:flex-col items-center justify-center gap-sm">
-      <button className="w-full sm:w-auto px-lg py-sm bg-error text-on-error rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:bg-[#ffcdc7] transition-colors shadow-[0_0_10px_rgba(255,180,171,0.2)] flex items-center justify-center gap-2">
-      <span className="material-symbols-outlined text-[18px]">medical_services</span> Müdahale
-                                  </button>
-      </div>
-      </div>
-      {/* Moderate Alert Card */}
-      <div className="bg-surface-container rounded-lg border border-tertiary/30 p-0 flex flex-col sm:flex-row relative overflow-hidden group hover:bg-surface-container-high transition-colors">
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-tertiary/50"></div>
-      <div className="p-md flex-1 flex flex-col gap-xs pl-lg">
-      <div className="flex items-center gap-sm font-mono-tr text-mono-tr text-tertiary">
-      <span className="material-symbols-outlined text-[16px]">warning</span>
-      <span>ORTA</span>
-      <span className="text-on-surface-variant">•</span>
-      <span className="text-on-surface-variant">Modül: Hidroponik Bahçe</span>
-      <span className="ml-auto text-on-surface-variant">T-Eksi: 02:45:10</span>
-      </div>
-      <h4 className="font-title-tr text-title-tr text-on-surface">Nutrient Akışında Dalgalanma</h4>
-      <p className="font-body-tr text-body-tr text-on-surface-variant">
-                                      B-Sektörü bitki yetiştirme ünitelerine giden sıvı besin pompası #2'de basınç dalgalanmaları gözlemleniyor. Verim düşüşü riski.
-                                  </p>
-      </div>
-      <div className="p-md border-t sm:border-t-0 sm:border-l border-outline-variant flex sm:flex-col items-center justify-center gap-sm">
-      <button className="w-full sm:w-auto px-lg py-sm bg-tertiary-container text-on-tertiary-container rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:brightness-110 transition-all">
-                                      Çözüldü
-                                  </button>
-      <button className="w-full sm:w-auto px-lg py-sm border border-outline text-on-surface rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:bg-surface-variant transition-colors">
-                                      Ertele
-                                  </button>
-      </div>
-      </div>
-      {/* Low Alert Card */}
-      <div className="bg-surface-container rounded-lg border border-outline-variant/50 p-0 flex flex-col sm:flex-row relative overflow-hidden group hover:bg-surface-container-high transition-colors opacity-80 hover:opacity-100">
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-secondary/30"></div>
-      <div className="p-md flex-1 flex flex-col gap-xs pl-lg">
-      <div className="flex items-center gap-sm font-mono-tr text-mono-tr text-secondary">
-      <span className="material-symbols-outlined text-[16px]">info</span>
-      <span>DÜŞÜK</span>
-      <span className="text-on-surface-variant">•</span>
-      <span className="text-on-surface-variant">Sistem: Yapay Zeka Çekirdeği</span>
-      <span className="ml-auto text-on-surface-variant">T-Eksi: 05:12:00</span>
-      </div>
-      <h4 className="font-title-tr text-title-tr text-on-surface">Rutin Diagnostik Gecikmesi</h4>
-      <p className="font-body-tr text-body-tr text-on-surface-variant">
-                                      Alt-sistemlerin günlük otomatik kontrol protokolü planlanan süreden %5 daha uzun sürdü. Performans logları kaydedildi.
-                                  </p>
-      </div>
-      <div className="p-md border-t sm:border-t-0 sm:border-l border-outline-variant flex sm:flex-col items-center justify-center gap-sm">
-      <button className="w-full sm:w-auto px-lg py-sm border border-outline text-on-surface rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:bg-surface-variant transition-colors">
-                                      Gözardı Et
-                                  </button>
-      </div>
-      </div>
+      {alerts.length === 0 && (
+        <div className="text-center text-on-surface-variant font-body-tr py-8">Aktif uyarı bulunmuyor</div>
+      )}
+      {alerts.map((alert) => {
+        const isCritical = alert.level === 'critical';
+        const isWarning = alert.level === 'warning';
+        const accentColor = isCritical ? 'error' : isWarning ? 'tertiary' : 'secondary';
+        const icon = isCritical ? 'emergency' : isWarning ? 'warning' : 'info';
+        const label = isCritical ? 'KRİTİK' : isWarning ? 'ORTA' : 'DÜŞÜK';
+        return (
+          <div key={alert.id} className={`bg-surface-container-high rounded-lg border border-${accentColor}/40 p-0 flex flex-col sm:flex-row relative overflow-hidden group shadow-[0_0_12px_rgba(255,180,171,0.08)]`}>
+            <div className={`absolute left-0 top-0 bottom-0 w-1 bg-${accentColor} shadow-[0_0_8px_${isCritical ? 'rgba(255,180,171,0.8)' : 'transparent'}]`}></div>
+            <div className="p-md flex-1 flex flex-col gap-xs pl-lg">
+              <div className={`flex items-center gap-sm font-mono-tr text-mono-tr text-${accentColor}`}>
+                <span className={`material-symbols-outlined text-[16px] ${isCritical ? 'animate-pulse' : ''}`}>{icon}</span>
+                <span>{label}</span>
+                <span className="text-on-surface-variant">•</span>
+                <span className="text-on-surface-variant">Kod: {alert.code}</span>
+                <span className="ml-auto text-on-surface-variant">{new Date(alert.timestamp).toLocaleString('tr-TR')}</span>
+              </div>
+              <h4 className="font-title-tr text-title-tr text-on-surface">{alert.message}</h4>
+              {alert.moduleId && <p className="font-body-tr text-body-tr text-on-surface-variant">Modül ID: {alert.moduleId}</p>}
+            </div>
+            <div className="p-md bg-surface-container-highest border-l border-outline-variant flex sm:flex-col items-center justify-center gap-sm">
+              {onDismissAlert && (
+                <button onClick={() => onDismissAlert(alert.id)} className={`w-full sm:w-auto px-lg py-sm ${isCritical ? 'bg-error text-on-error' : isWarning ? 'bg-tertiary-container text-on-tertiary-container' : 'border border-outline text-on-surface'} rounded-DEFAULT font-label-tr text-label-tr uppercase tracking-widest hover:bg-surface-variant transition-colors`}>
+                  Çözüldü
+                </button>
+              )}
+            </div>
+          </div>
+        );
+      })}
       </div>
       </div>
       </div>

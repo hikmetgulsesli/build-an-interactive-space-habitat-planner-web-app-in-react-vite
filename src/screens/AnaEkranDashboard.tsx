@@ -7,12 +7,13 @@
 // 3. Add onClick/onChange handlers to interactive elements
 // 4. Replace placeholder data with props/state
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import type { ScreenId, AppState, Task, Alert } from '../types/domain';
 
 interface AnaEkranDashboardProps {
-  currentScreen: import('../types/domain').ScreenId;
-  onNavigate: (screen: import('../types/domain').ScreenId) => void;
-  state?: import('../types/domain').AppState;
+  currentScreen: ScreenId;
+  onNavigate: (screen: ScreenId) => void;
+  state?: AppState;
 }
 
 export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkranDashboardProps) {
@@ -77,15 +78,15 @@ export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkran
       <div className="hidden md:flex space-x-6 items-center">
       <div className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-1.5 rounded flex items-center gap-2">
       <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_5px_rgba(59,130,246,0.8)]"></div>
-                          O2: %98
+                          O2: %{state?.resources.oxygen.toFixed(1) ?? '98.0'}
                       </div>
       <div className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-1.5 rounded flex items-center gap-2">
       <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_5px_rgba(245,158,11,0.8)]"></div>
-                          GÜÇ: %85
+                          GÜÇ: %{state?.resources.power.toFixed(0) ?? '85'}
                       </div>
       <div className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 hover:bg-slate-900/50 transition-colors duration-200 px-3 py-1.5 rounded flex items-center gap-2">
       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,0.8)]"></div>
-                          GIDA: %92
+                          GIDA: %{state?.resources.food.toFixed(0) ?? '92'}
                       </div>
       </div>
       {/* Trailing Icon Actions */}
@@ -110,7 +111,7 @@ export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkran
       </div>
       <div className="font-mono-tr text-mono-tr text-on-surface-variant flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-outline-variant rounded">
       <span className="material-symbols-outlined text-[16px] text-primary">sync</span>
-                              SON GÜNCELLEME: 14:42 TZT
+                              SON GÜNCELLEME: {new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })} TZT
                           </div>
       </div>
       {/* Metrics Bento Grid */}
@@ -122,12 +123,12 @@ export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkran
       <span className="material-symbols-outlined text-primary text-[20px]">air</span>
       </div>
       <div className="z-10 mt-auto">
-      <div className="font-display-tr text-display-tr text-on-surface mb-2">%98.2</div>
+      <div className="font-display-tr text-display-tr text-on-surface mb-2">%{state?.resources.oxygen.toFixed(1) ?? '98.2'}</div>
       <div className="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
-      <div className="h-full bg-primary shadow-[0_0_8px_var(--tw-colors-primary)] rounded-full" style={{width: "98.2%"}}></div>
+      <div className="h-full bg-primary shadow-[0_0_8px_var(--tw-colors-primary)] rounded-full" style={{width: `${state?.resources.oxygen ?? 98.2}%`}}></div>
       </div>
       <div className="font-mono-tr text-[10px] text-primary mt-2 uppercase tracking-wider flex items-center gap-1">
-      <span className="material-symbols-outlined text-[12px]">check_circle</span> Optimal Seviye
+      <span className="material-symbols-outlined text-[12px]">check_circle</span> {state && state.resources.oxygen > 95 ? 'Optimal Seviye' : state && state.resources.oxygen > 80 ? 'Normal Seviye' : 'Düşük Seviye'}
                               </div>
       </div>
       </div>
@@ -139,12 +140,12 @@ export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkran
       <span className="material-symbols-outlined text-amber-500 text-[20px]">bolt</span>
       </div>
       <div className="z-10 mt-auto">
-      <div className="font-display-tr text-display-tr text-on-surface mb-2">%85.0</div>
+      <div className="font-display-tr text-display-tr text-on-surface mb-2">%{state?.resources.power.toFixed(1) ?? '85.0'}</div>
       <div className="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
-      <div className="h-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)] rounded-full" style={{width: "85%"}}></div>
+      <div className="h-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)] rounded-full" style={{width: `${state?.resources.power ?? 85}%`}}></div>
       </div>
       <div className="font-mono-tr text-[10px] text-amber-500 mt-2 uppercase tracking-wider flex items-center gap-1">
-      <span className="material-symbols-outlined text-[12px]">trending_down</span> Tüketim Yüksek
+      <span className="material-symbols-outlined text-[12px]">trending_down</span> {state && state.resources.power > 80 ? 'Tüketim Yüksek' : 'Kritik Seviye'}
                               </div>
       </div>
       </div>
@@ -156,9 +157,9 @@ export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkran
       <span className="material-symbols-outlined text-cyan-500 text-[20px]">water_drop</span>
       </div>
       <div className="z-10 mt-auto">
-      <div className="font-display-tr text-display-tr text-on-surface mb-2">%92.4</div>
+      <div className="font-display-tr text-display-tr text-on-surface mb-2">%{state?.resources.water.toFixed(1) ?? '92.4'}</div>
       <div className="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
-      <div className="h-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.5)] rounded-full" style={{width: "92.4%"}}></div>
+      <div className="h-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.5)] rounded-full" style={{width: `${state?.resources.water ?? 92.4}%`}}></div>
       </div>
       <div className="font-mono-tr text-[10px] text-cyan-500 mt-2 uppercase tracking-wider flex items-center gap-1">
       <span className="material-symbols-outlined text-[12px]">check_circle</span> Filtreleme Aktif
@@ -173,14 +174,14 @@ export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkran
       <span className="material-symbols-outlined text-error text-[20px]">thermostat</span>
       </div>
       <div className="z-10 mt-auto">
-      <div className="font-display-tr text-display-tr text-on-surface mb-2">22.4°C</div>
+      <div className="font-display-tr text-display-tr text-on-surface mb-2">{state?.resources.temperature.toFixed(1) ?? '22.4'}°C</div>
       <div className="w-full flex gap-1 h-1">
       <div className="h-full w-1/4 bg-surface-container-highest rounded-full"></div>
       <div className="h-full w-1/2 bg-error shadow-[0_0_8px_var(--tw-colors-error)] rounded-full"></div>
       <div className="h-full w-1/4 bg-surface-container-highest rounded-full"></div>
       </div>
       <div className="font-mono-tr text-[10px] text-error mt-2 uppercase tracking-wider flex items-center gap-1">
-      <span className="material-symbols-outlined text-[12px]">warning</span> Regülasyon Gerekli
+      <span className="material-symbols-outlined text-[12px]">warning</span> {state && state.resources.temperature > 25 ? 'Sıcaklık Yüksek' : state && state.resources.temperature < 18 ? 'Sıcaklık Düşük' : 'Regülasyon Gerekli'}
                               </div>
       </div>
       </div>
@@ -192,35 +193,29 @@ export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkran
       <span className="material-symbols-outlined text-error text-[20px]" style={{fontVariationSettings: "'FILL' 1"}}>error</span>
                                       Aktif Uyarılar
                                   </h2>
-      <span className="px-2 py-0.5 bg-error-container text-on-error-container font-mono-tr text-[10px] rounded">3 KRİTİK</span>
+      <span className="px-2 py-0.5 bg-error-container text-on-error-container font-mono-tr text-[10px] rounded">{state?.alerts.filter(a => a.level === 'critical').length ?? 0} KRİTİK</span>
       </div>
       <div className="flex-1 flex flex-col gap-2 overflow-y-auto pr-1">
-      {/* Alert Item */}
-      <div className="p-3 bg-surface/50 border border-error/20 rounded hover:border-error/50 transition-colors group cursor-pointer">
-      <div className="flex justify-between items-start mb-1">
-      <span className="font-label-tr text-label-tr text-error font-bold tracking-wider">HATA KODU: TH-092</span>
-      <span className="font-mono-tr text-[10px] text-on-surface-variant group-hover:text-on-surface">12 dk önce</span>
+      {(state?.alerts ?? []).slice(0, 3).map((alert) => (
+        <div key={alert.id} className={`p-3 bg-surface/50 border rounded hover:border-opacity-50 transition-colors group cursor-pointer ${
+          alert.level === 'critical' ? 'border-error/20 hover:border-error/50' : alert.level === 'warning' ? 'border-amber-500/20 hover:border-amber-500/50' : 'border-outline-variant/50 hover:border-primary/50'
+        }`} onClick={() => onNavigate('alerts')}>
+        <div className="flex justify-between items-start mb-1">
+        <span className={`font-label-tr text-label-tr font-bold tracking-wider ${
+          alert.level === 'critical' ? 'text-error' : alert.level === 'warning' ? 'text-amber-500' : 'text-primary'
+        }`}>{alert.code}</span>
+        <span className="font-mono-tr text-[10px] text-on-surface-variant group-hover:text-on-surface">
+          {Math.floor((Date.now() - new Date(alert.timestamp).getTime()) / 60000)} dk önce
+        </span>
+        </div>
+        <p className="font-body-tr text-[13px] text-on-surface-variant leading-tight">{alert.message}</p>
+        </div>
+      ))}
+      {(!state?.alerts || state.alerts.length === 0) && (
+        <div className="p-3 text-center text-on-surface-variant font-body-tr text-sm">Aktif uyarı bulunmuyor</div>
+      )}
       </div>
-      <p className="font-body-tr text-[13px] text-on-surface-variant leading-tight">Sektör-7C Termal regülatör yanıt vermiyor. Manuel müdahale bekleniyor.</p>
-      </div>
-      {/* Alert Item */}
-      <div className="p-3 bg-surface/50 border border-amber-500/20 rounded hover:border-amber-500/50 transition-colors group cursor-pointer">
-      <div className="flex justify-between items-start mb-1">
-      <span className="font-label-tr text-label-tr text-amber-500 font-bold tracking-wider">UYARI: PWR-LVL</span>
-      <span className="font-mono-tr text-[10px] text-on-surface-variant group-hover:text-on-surface">45 dk önce</span>
-      </div>
-      <p className="font-body-tr text-[13px] text-on-surface-variant leading-tight">Yedek jeneratör 2 kapasite altına düştü. Yük dengeleme önerilir.</p>
-      </div>
-      {/* Alert Item */}
-      <div className="p-3 bg-surface/50 border border-outline-variant/50 rounded hover:border-primary/50 transition-colors group cursor-pointer">
-      <div className="flex justify-between items-start mb-1">
-      <span className="font-label-tr text-label-tr text-primary font-bold tracking-wider">BİLGİ: COM-SYNC</span>
-      <span className="font-mono-tr text-[10px] text-on-surface-variant group-hover:text-on-surface">2 saat önce</span>
-      </div>
-      <p className="font-body-tr text-[13px] text-on-surface-variant leading-tight">Dünya ile telemetri senkronizasyonu tamamlandı. Paket kaybı: %0.01.</p>
-      </div>
-      </div>
-      <button className="w-full mt-md py-2 border border-outline-variant text-on-surface-variant font-label-tr text-label-tr uppercase tracking-widest rounded hover:bg-surface-container-highest transition-colors">Tüm Logları Gör</button>
+      <button className="w-full mt-md py-2 border border-outline-variant text-on-surface-variant font-label-tr text-label-tr uppercase tracking-widest rounded hover:bg-surface-container-highest transition-colors" onClick={() => onNavigate('alerts')}>Tüm Logları Gör</button>
       </div>
       </div>
       {/* Main Chart Area */}
@@ -291,39 +286,29 @@ export function AnaEkranDashboard({ currentScreen, onNavigate, state }: AnaEkran
       </tr>
       </thead>
       <tbody className="font-body-tr text-sm text-on-surface divide-y divide-outline-variant/30">
-      <tr className="hover:bg-surface-container-highest/50 transition-colors group">
-      <td className="p-3 font-mono-tr text-primary group-hover:text-primary-fixed transition-colors">TSK-8902</td>
-      <td className="p-3 text-on-surface-variant">Laboratuvar-A</td>
-      <td className="p-3">Hava filtre ünitesi kalibrasyonu</td>
-      <td className="p-3 text-on-surface-variant">Müh. K. Yılmaz</td>
-      <td className="p-3 text-right">
-      <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-primary/10 text-primary font-mono-tr text-[10px] uppercase border border-primary/20">
-      <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Devam Ediyor
-                                              </span>
-      </td>
-      </tr>
-      <tr className="hover:bg-surface-container-highest/50 transition-colors group">
-      <td className="p-3 font-mono-tr text-primary group-hover:text-primary-fixed transition-colors">TSK-8901</td>
-      <td className="p-3 text-on-surface-variant">Reaktör Çekirdeği</td>
-      <td className="p-3">Rutin teşhis taraması</td>
-      <td className="p-3 text-on-surface-variant">Oto. Sistem</td>
-      <td className="p-3 text-right">
-      <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 font-mono-tr text-[10px] uppercase border border-emerald-500/20">
-      <span className="material-symbols-outlined text-[12px]">check</span> Tamamlandı
-                                              </span>
-      </td>
-      </tr>
-      <tr className="hover:bg-surface-container-highest/50 transition-colors group">
-      <td className="p-3 font-mono-tr text-primary group-hover:text-primary-fixed transition-colors">TSK-8899</td>
-      <td className="p-3 text-on-surface-variant">Sera Modülü</td>
-      <td className="p-3">Nem sensörü değişimi</td>
-      <td className="p-3 text-on-surface-variant">Bot Birimi D-4</td>
-      <td className="p-3 text-right">
-      <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-variant text-on-surface-variant font-mono-tr text-[10px] uppercase border border-outline-variant">
-      <span className="material-symbols-outlined text-[12px]">schedule</span> Beklemede
-                                              </span>
-      </td>
-      </tr>
+      {(state?.tasks ?? []).slice(0, 5).map((task) => (
+        <tr key={task.id} className="hover:bg-surface-container-highest/50 transition-colors group">
+        <td className="p-3 font-mono-tr text-primary group-hover:text-primary-fixed transition-colors">{task.id}</td>
+        <td className="p-3 text-on-surface-variant">{task.module}</td>
+        <td className="p-3">{task.title}</td>
+        <td className="p-3 text-on-surface-variant">{task.assignee}</td>
+        <td className="p-3 text-right">
+        <span className={`inline-flex items-center gap-1 px-2 py-1 rounded font-mono-tr text-[10px] uppercase border ${
+          task.status === 'in-progress' ? 'bg-primary/10 text-primary border-primary/20' :
+          task.status === 'completed' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
+          'bg-surface-variant text-on-surface-variant border-outline-variant'
+        }`}>
+        {task.status === 'in-progress' && <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>}
+        {task.status === 'completed' && <span className="material-symbols-outlined text-[12px]">check</span>}
+        {task.status === 'pending' && <span className="material-symbols-outlined text-[12px]">schedule</span>}
+        {task.status === 'in-progress' ? 'Devam Ediyor' : task.status === 'completed' ? 'Tamamlandı' : 'Beklemede'}
+        </span>
+        </td>
+        </tr>
+      ))}
+      {(!state?.tasks || state.tasks.length === 0) && (
+        <tr><td colSpan={5} className="p-3 text-center text-on-surface-variant">Görev bulunmuyor</td></tr>
+      )}
       </tbody>
       </table>
       </div>

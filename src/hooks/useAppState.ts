@@ -245,6 +245,18 @@ export function useAppState() {
     localStorage.removeItem('habitat-app-state');
   }, []);
 
+  const setSelectedModuleId = useCallback((id: string | undefined) => {
+    setState((prev) => ({ ...prev, selectedModuleId: id }));
+  }, []);
+
+  const setSelectedCrewId = useCallback((id: string | undefined) => {
+    setState((prev) => ({ ...prev, selectedCrewId: id }));
+  }, []);
+
+  const setSelectedTaskId = useCallback((id: string | undefined) => {
+    setState((prev) => ({ ...prev, selectedTaskId: id }));
+  }, []);
+
   return {
     state,
     navigate,
@@ -253,16 +265,19 @@ export function useAppState() {
     addModule,
     updateModule,
     removeModule,
+    setSelectedModuleId,
     setCrew,
     addCrew,
     updateCrew,
     removeCrew,
+    setSelectedCrewId,
     setAlerts,
     dismissAlert,
     setTasks,
     addTask,
     updateTask,
     removeTask,
+    setSelectedTaskId,
     updateSettings,
     resetState,
   };

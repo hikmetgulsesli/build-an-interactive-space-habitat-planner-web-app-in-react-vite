@@ -75,6 +75,9 @@ export interface AppSettings {
 
 export interface AppState {
   currentScreen: ScreenId;
+  selectedModuleId?: string;
+  selectedCrewId?: string;
+  selectedTaskId?: string;
   modules: HabitatModule[];
   crew: CrewMember[];
   resources: ResourceMetric;

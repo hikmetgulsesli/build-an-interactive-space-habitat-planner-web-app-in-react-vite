@@ -8,14 +8,17 @@
 // 4. Replace placeholder data with props/state
 
 import { useState } from "react";
+import type { ScreenId, AppState } from '../types/domain';
 
 interface KaynakTakibiProps {
-  currentScreen: import('../types/domain').ScreenId;
-  onNavigate: (screen: import('../types/domain').ScreenId) => void;
-  state?: import('../types/domain').AppState;
+  currentScreen: ScreenId;
+  onNavigate: (screen: ScreenId) => void;
+  state?: AppState;
 }
 
 export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiProps) {
+  const resources = state?.resources ?? { oxygen: 98.2, power: 85.0, water: 92.4, food: 92.0, temperature: 22.4 };
+  const [timeRange, setTimeRange] = useState<'24s' | '72s' | '7g'>('24s');
   return (
     <>
       {/* SideNavBar (from JSON) */}
@@ -94,15 +97,15 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       <div className="hidden lg:flex items-center gap-8">
       <div className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 cursor-default flex items-center gap-2">
       <span className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]"></span>
-                          O2: %98
+                          O2: %{resources.oxygen.toFixed(0)}
                       </div>
       <div className="font-inter tracking-tighter text-xs font-bold uppercase text-blue-400 border-b-2 border-blue-500 pb-1 cursor-default flex items-center gap-2">
       <span className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]"></span>
-                          GÜÇ: %85
+                          GÜÇ: %{resources.power.toFixed(0)}
                       </div>
       <div className="font-inter tracking-tighter text-xs font-bold uppercase text-slate-400 hover:text-slate-200 cursor-default flex items-center gap-2">
       <span className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]"></span>
-                          GIDA: %92
+                          GIDA: %{resources.food.toFixed(0)}
                       </div>
       </div>
       {/* Trailing Icons */}
@@ -129,9 +132,9 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       </div>
       <div className="flex items-center gap-3">
       <div className="flex items-center bg-surface-container border border-outline-variant rounded-lg p-1">
-      <button className="px-3 py-1.5 text-xs font-medium rounded-md bg-surface-variant text-on-background shadow-sm">24S</button>
-      <button className="px-3 py-1.5 text-xs font-medium rounded-md text-on-surface-variant hover:text-on-background">72S</button>
-      <button className="px-3 py-1.5 text-xs font-medium rounded-md text-on-surface-variant hover:text-on-background">7G</button>
+      <button onClick={() => setTimeRange('24s')} className={`px-3 py-1.5 text-xs font-medium rounded-md ${timeRange === '24s' ? 'bg-surface-variant text-on-background shadow-sm' : 'text-on-surface-variant hover:text-on-background'}`}>24S</button>
+      <button onClick={() => setTimeRange('72s')} className={`px-3 py-1.5 text-xs font-medium rounded-md ${timeRange === '72s' ? 'bg-surface-variant text-on-background shadow-sm' : 'text-on-surface-variant hover:text-on-background'}`}>72S</button>
+      <button onClick={() => setTimeRange('7g')} className={`px-3 py-1.5 text-xs font-medium rounded-md ${timeRange === '7g' ? 'bg-surface-variant text-on-background shadow-sm' : 'text-on-surface-variant hover:text-on-background'}`}>7G</button>
       </div>
       <button className="flex items-center gap-2 bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-tr text-label-tr hover:brightness-110 transition-all shadow-[0_0_10px_theme(colors.primary-container)/30]">
       <span className="material-symbols-outlined text-[18px]">download</span>
@@ -216,16 +219,16 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       <div className="grid grid-cols-3 gap-4 mb-6">
       <div className="bg-surface-container-high rounded-lg p-4 border border-outline-variant/50">
       <div className="text-xs text-on-surface-variant mb-1">Mevcut Çıkış</div>
-      <div className="text-2xl font-display-tr text-on-background">4.2 <span className="text-sm text-outline">MW</span></div>
+      <div className="text-2xl font-display-tr text-on-background">{resources.power.toFixed(1)} <span className="text-sm text-outline">%</span></div>
       </div>
       <div className="bg-surface-container-high rounded-lg p-4 border border-outline-variant/50">
       <div className="text-xs text-on-surface-variant mb-1">Kalan Süre (Tam Yük)</div>
-      <div className="text-2xl font-display-tr text-amber-400">14<span className="text-sm text-outline">S</span> 22<span className="text-sm text-outline">D</span></div>
+      <div className="text-2xl font-display-tr text-amber-400">{Math.max(1, Math.floor(resources.power / 10))}<span className="text-sm text-outline">S</span> {Math.floor((resources.power % 10) * 6)}<span className="text-sm text-outline">D</span></div>
       </div>
       <div className="bg-surface-container-high rounded-lg p-4 border border-outline-variant/50">
       <div className="text-xs text-on-surface-variant mb-1">Tüketim Trendi</div>
       <div className="text-2xl font-display-tr text-error flex items-center gap-1">
-      <span className="material-symbols-outlined text-[20px]">trending_up</span> +8.4%
+      <span className="material-symbols-outlined text-[20px]">trending_up</span> +{((100 - resources.power) / 10).toFixed(1)}%
                                   </div>
       </div>
       </div>
@@ -262,25 +265,25 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       <div className="w-40 h-40 rounded-full border-[8px] border-surface-container-high flex items-center justify-center relative shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
       <div className="absolute inset-0 rounded-full border-[8px] border-blue-500 border-t-transparent border-r-transparent -rotate-45" style={{boxShadow: "0 0 15px theme(colors.blue.500)"}}></div>
       <div className="text-center">
-      <div className="text-4xl font-display-tr text-on-background">98<span className="text-xl text-outline">%</span></div>
-      <div className="text-[10px] text-blue-400 uppercase tracking-widest mt-1">Optimum</div>
+      <div className="text-4xl font-display-tr text-on-background">{resources.oxygen.toFixed(0)}<span className="text-xl text-outline">%</span></div>
+      <div className="text-[10px] text-blue-400 uppercase tracking-widest mt-1">{resources.oxygen > 95 ? 'Optimum' : resources.oxygen > 80 ? 'Normal' : 'Kritik'}</div>
       </div>
       </div>
       </div>
       <div className="mt-6 space-y-3">
       <div className="flex justify-between items-center text-sm">
       <span className="text-on-surface-variant">Üretim Hızı</span>
-      <span className="text-on-background font-mono-tr">+1.2% / S</span>
+      <span className="text-on-background font-mono-tr">+{(resources.oxygen / 80).toFixed(1)}% / S</span>
       </div>
       <div className="w-full bg-surface-container-highest rounded-full h-1.5">
-      <div className="bg-blue-400 h-1.5 rounded-full" style={{width: "75%"}}></div>
+      <div className="bg-blue-400 h-1.5 rounded-full" style={{width: `${Math.min(100, resources.oxygen)}%`}}></div>
       </div>
       <div className="flex justify-between items-center text-sm pt-2">
       <span className="text-on-surface-variant">Tüketim Hızı</span>
-      <span className="text-on-background font-mono-tr">-0.8% / S</span>
+      <span className="text-on-background font-mono-tr">-{((100 - resources.oxygen) / 50).toFixed(1)}% / S</span>
       </div>
       <div className="w-full bg-surface-container-highest rounded-full h-1.5">
-      <div className="bg-slate-400 h-1.5 rounded-full" style={{width: "45%"}}></div>
+      <div className="bg-slate-400 h-1.5 rounded-full" style={{width: `${Math.min(100, 100 - resources.oxygen)}%`}}></div>
       </div>
       </div>
       </div>
@@ -292,10 +295,10 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       <div className="flex-1">
       <div className="flex justify-between items-end mb-2">
       <h3 className="font-title-tr text-title-tr text-on-background">Su Geri Kazanım</h3>
-      <span className="text-sm font-bold text-cyan-400">88% Verim</span>
+      <span className="text-sm font-bold text-cyan-400">{resources.water.toFixed(0)}% Verim</span>
       </div>
       <div className="w-full bg-surface-container-highest rounded-full h-2 shadow-inner">
-      <div className="bg-cyan-500 h-2 rounded-full relative" style={{width: "88%"}}>
+      <div className="bg-cyan-500 h-2 rounded-full relative" style={{width: `${resources.water}%`}}>
       <div className="absolute right-0 top-0 bottom-0 w-4 bg-white/30 rounded-full blur-[2px]"></div>
       </div>
       </div>
@@ -311,15 +314,13 @@ export function KaynakTakibi({ currentScreen, onNavigate, state }: KaynakTakibiP
       <div className="flex-1 z-10">
       <div className="flex justify-between items-end mb-1">
       <h3 className="font-title-tr text-title-tr text-on-background">Biyolojik Stok</h3>
-      <span className="text-xl font-display-tr text-on-background">92<span className="text-sm text-outline">G</span></span>
+      <span className="text-xl font-display-tr text-on-background">{resources.food.toFixed(0)}<span className="text-sm text-outline">G</span></span>
       </div>
       <p className="text-[11px] text-on-surface-variant mb-2">Tahmini tükenme süresi.</p>
       <div className="flex gap-1">
-      <div className="h-1 flex-1 bg-emerald-500 rounded-full"></div>
-      <div className="h-1 flex-1 bg-emerald-500 rounded-full"></div>
-      <div className="h-1 flex-1 bg-emerald-500 rounded-full"></div>
-      <div className="h-1 flex-1 bg-emerald-500 rounded-full"></div>
-      <div className="h-1 flex-1 bg-surface-container-high rounded-full"></div>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div key={i} className={`h-1 flex-1 rounded-full ${i < Math.ceil(resources.food / 20) ? 'bg-emerald-500' : 'bg-surface-container-high'}`}></div>
+      ))}
       </div>
       </div>
       </div>
