@@ -152,7 +152,7 @@ export function Ayarlar({ currentScreen, onNavigate, state, updateSettings, rese
       </div>
       <p className="font-body-tr text-body-tr text-on-surface-variant mb-auto">Terminal aydınlatma modunu seçin. Gece döngüleri için karanlık mod önerilir.</p>
       <div className="flex flex-col gap-sm mt-4">
-      <label className={`flex items-center justify-between p-sm rounded-lg border cursor-pointer transition-colors ${settings.theme === 'dark' ? 'border-primary-container bg-primary-container/10 shadow-[0_0_8px_theme(colors.primary-container/20)]' : 'border-outline-variant hover:bg-surface-variant/50'}`} onClick={() => handleThemeChange('dark')}>
+      <label className={`flex items-center justify-between p-sm rounded-lg border cursor-pointer transition-colors ${settings.theme === 'dark' ? 'border-primary-container bg-primary-container/10 shadow-[0_0_8px_rgba(180,197,255,0.2)]' : 'border-outline-variant hover:bg-surface-variant/50'}`} onClick={() => handleThemeChange('dark')}>
       <div className="flex items-center gap-md">
       <span className="material-symbols-outlined text-primary">dark_mode</span>
       <span className="font-label-tr text-label-tr text-on-surface">Karanlık {settings.theme === 'dark' && '(Aktif)'}</span>
@@ -161,7 +161,7 @@ export function Ayarlar({ currentScreen, onNavigate, state, updateSettings, rese
       {settings.theme === 'dark' && <div className="w-1.5 h-1.5 bg-background rounded-full"></div>}
       </div>
       </label>
-      <label className={`flex items-center justify-between p-sm rounded-lg border cursor-pointer transition-colors ${settings.theme === 'light' ? 'border-primary-container bg-primary-container/10 shadow-[0_0_8px_theme(colors.primary-container/20)]' : 'border-outline-variant hover:bg-surface-variant/50'}`} onClick={() => handleThemeChange('light')}>
+      <label className={`flex items-center justify-between p-sm rounded-lg border cursor-pointer transition-colors ${settings.theme === 'light' ? 'border-primary-container bg-primary-container/10 shadow-[0_0_8px_rgba(180,197,255,0.2)]' : 'border-outline-variant hover:bg-surface-variant/50'}`} onClick={() => handleThemeChange('light')}>
       <div className="flex items-center gap-md">
       <span className="material-symbols-outlined text-on-surface-variant">light_mode</span>
       <span className="font-label-tr text-label-tr text-on-surface-variant">Aydınlık {settings.theme === 'light' && '(Aktif)'}</span>
@@ -226,14 +226,14 @@ export function Ayarlar({ currentScreen, onNavigate, state, updateSettings, rese
       <div onClick={handleThresholdToggle} className="flex items-center gap-4 bg-surface-dim p-2 rounded-lg border border-outline-variant cursor-pointer">
       <span className="material-symbols-outlined text-warning">warning_amber</span>
       <span className="font-body-tr text-body-tr text-on-surface flex-1">O2 seviyesi &lt;%85 altına düştüğünde manuel onaya geç</span>
-      <div className={`w-10 h-5 rounded-full relative cursor-pointer shadow-[0_0_8px_theme(colors.primary/40)] transition-colors ${settings.criticalThreshold ? 'bg-primary' : 'bg-surface-container-highest'}`}>
+      <div className={`w-10 h-5 rounded-full relative cursor-pointer shadow-[0_0_8px_rgba(180,197,255,0.4)] transition-colors ${settings.criticalThreshold ? 'bg-primary' : 'bg-surface-container-highest'}`}>
       <div className={`w-4 h-4 bg-on-primary rounded-full absolute top-0.5 transition-all ${settings.criticalThreshold ? 'right-0.5' : 'left-0.5'}`}></div>
       </div>
       </div>
       </div>
       </div>
       <div className="mt-4 pt-4 border-t border-surface-variant flex justify-end">
-      <button onClick={handleSave} className="bg-primary text-on-primary font-label-tr text-label-tr uppercase px-6 py-2.5 rounded-lg hover:bg-primary-fixed transition-colors shadow-[0_0_12px_theme(colors.primary/20)] flex items-center gap-2">
+      <button onClick={handleSave} className="bg-primary text-on-primary font-label-tr text-label-tr uppercase px-6 py-2.5 rounded-lg hover:bg-primary-fixed transition-colors shadow-[0_0_12px_rgba(180,197,255,0.2)] flex items-center gap-2">
       <span className="material-symbols-outlined text-[18px]">{saved ? 'check' : 'save'}</span>
                                       {saved ? 'Kaydedildi' : 'Parametreleri Kaydet'}
                                   </button>
