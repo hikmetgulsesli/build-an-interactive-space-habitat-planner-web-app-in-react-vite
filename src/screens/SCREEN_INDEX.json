@@ -1,0 +1,119 @@
+[
+  {
+    "screenId": "e79c27d3cad84218ba51e0382e3e1a6e",
+    "title": "Modül Detayları",
+    "componentName": "ModulDetaylari",
+    "file": "src/screens/ModulDetaylari.tsx",
+    "buttons": 8,
+    "inputs": 1,
+    "links": 11
+  },
+  {
+    "screenId": "69b2d5c107b84343b60f394fbaf7739c",
+    "title": "Mürettebat Yönetimi",
+    "componentName": "MurettebatYonetimi",
+    "file": "src/screens/MurettebatYonetimi.tsx",
+    "buttons": 4,
+    "inputs": 1,
+    "links": 8
+  },
+  {
+    "screenId": "57e3ea3ef289471cb3d1028d8f6554b3",
+    "title": "Modül Ekle/Düzenle",
+    "componentName": "ModulEkleduzenle",
+    "file": "src/screens/ModulEkleduzenle.tsx",
+    "buttons": 4,
+    "inputs": 5,
+    "links": 8
+  },
+  {
+    "screenId": "45ac0f9ee9eb485d98db7a0a67cab83e",
+    "title": "Habitat Tasarımı",
+    "componentName": "HabitatTasarimi",
+    "file": "src/screens/HabitatTasarimi.tsx",
+    "buttons": 6,
+    "inputs": 0,
+    "links": 8
+  },
+  {
+    "screenId": "a53abe575f684d8395710446051a101e",
+    "title": "Görev Panosu",
+    "componentName": "GorevPanosu",
+    "file": "src/screens/GorevPanosu.tsx",
+    "buttons": 3,
+    "inputs": 1,
+    "links": 8
+  },
+  {
+    "screenId": "86dd2cc7d7514b6592c64d16ecc89207",
+    "title": "Kullanıcı Profili",
+    "componentName": "KullaniciProfili",
+    "file": "src/screens/KullaniciProfili.tsx",
+    "buttons": 5,
+    "inputs": 2,
+    "links": 8
+  },
+  {
+    "screenId": "126c4d69777646c6ade936d7f4f67735",
+    "title": "Kaynak Takibi",
+    "componentName": "KaynakTakibi",
+    "file": "src/screens/KaynakTakibi.tsx",
+    "buttons": 7,
+    "inputs": 0,
+    "links": 8
+  },
+  {
+    "screenId": "c37a5e4432b149d4b2d27fbe486639f0",
+    "title": "Ayarlar",
+    "componentName": "Ayarlar",
+    "file": "src/screens/Ayarlar.tsx",
+    "buttons": 5,
+    "inputs": 1,
+    "links": 11
+  },
+  {
+    "screenId": "e7fe39aa93b349beb60eab1310842ada",
+    "title": "Hata Sayfası",
+    "componentName": "HataSayfasi",
+    "file": "src/screens/HataSayfasi.tsx",
+    "buttons": 2,
+    "inputs": 0,
+    "links": 0
+  },
+  {
+    "screenId": "6f1b5cf94de04633b13a03fde14290a3",
+    "title": "Sistem Uyarıları",
+    "componentName": "SistemUyarilari",
+    "file": "src/screens/SistemUyarilari.tsx",
+    "buttons": 8,
+    "inputs": 0,
+    "links": 8
+  },
+  {
+    "screenId": "100c943acd804d42afbfd5a26f8b28a0",
+    "title": "İstatistikler",
+    "componentName": "Istatistikler",
+    "file": "src/screens/Istatistikler.tsx",
+    "buttons": 9,
+    "inputs": 1,
+    "links": 8
+  },
+  {
+    "screenId": "4235ae4d3be340b99fe29df4a2403eca",
+    "title": "Başlangıç Rehberi",
+    "componentName": "BaslangicRehberi",
+    "file": "src/screens/BaslangicRehberi.tsx",
+    "buttons": 3,
+    "inputs": 1,
+    "links": 8
+  },
+  {
+    "screenId": "df1a19ca1bba4b09984637584028078b",
+    "title": "Ana Ekran (Dashboard)",
+    "componentName": "AnaEkranDashboard",
+    "file": "src/screens/AnaEkranDashboard.tsx",
+    "buttons": 7,
+    "inputs": 0,
+    "links": 8
+  }
+]
