@@ -152,7 +152,7 @@ export function Ayarlar({ currentScreen, onNavigate, state, updateSettings, rese
       </div>
       <p className="font-body-tr text-body-tr text-on-surface-variant mb-auto">Terminal aydınlatma modunu seçin. Gece döngüleri için karanlık mod önerilir.</p>
       <div className="flex flex-col gap-sm mt-4">
-      <label className={`flex items-center justify-between p-sm rounded-lg border cursor-pointer transition-colors ${settings.theme === 'dark' ? 'border-primary-container bg-primary-container/10 shadow-[0_0_8px_rgba(180,197,255,0.2)]' : 'border-outline-variant hover:bg-surface-variant/50'}`} onClick={() => handleThemeChange('dark')}>
+      <label className={`flex items-center justify-between p-sm rounded-lg border cursor-pointer transition-colors ${settings.theme === 'dark' ? 'border-primary-container bg-primary-container/10 shadow-[0_0_8px_rgba(37,99,235,0.2)]' : 'border-outline-variant hover:bg-surface-variant/50'}`} onClick={() => handleThemeChange('dark')}>
       <div className="flex items-center gap-md">
       <span className="material-symbols-outlined text-primary">dark_mode</span>
       <span className="font-label-tr text-label-tr text-on-surface">Karanlık {settings.theme === 'dark' && '(Aktif)'}</span>
@@ -161,7 +161,7 @@ export function Ayarlar({ currentScreen, onNavigate, state, updateSettings, rese
       {settings.theme === 'dark' && <div className="w-1.5 h-1.5 bg-background rounded-full"></div>}
       </div>
       </label>
-      <label className={`flex items-center justify-between p-sm rounded-lg border cursor-pointer transition-colors ${settings.theme === 'light' ? 'border-primary-container bg-primary-container/10 shadow-[0_0_8px_rgba(180,197,255,0.2)]' : 'border-outline-variant hover:bg-surface-variant/50'}`} onClick={() => handleThemeChange('light')}>
+      <label className={`flex items-center justify-between p-sm rounded-lg border cursor-pointer transition-colors ${settings.theme === 'light' ? 'border-primary-container bg-primary-container/10 shadow-[0_0_8px_rgba(37,99,235,0.2)]' : 'border-outline-variant hover:bg-surface-variant/50'}`} onClick={() => handleThemeChange('light')}>
       <div className="flex items-center gap-md">
       <span className="material-symbols-outlined text-on-surface-variant">light_mode</span>
       <span className="font-label-tr text-label-tr text-on-surface-variant">Aydınlık {settings.theme === 'light' && '(Aktif)'}</span>
