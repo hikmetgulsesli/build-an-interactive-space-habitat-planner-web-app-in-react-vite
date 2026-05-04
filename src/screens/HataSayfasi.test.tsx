@@ -20,7 +20,7 @@ describe('HataSayfasi', () => {
       />
     );
     expect(screen.getByText(/0xCUSTOM_ERR/)).toBeInTheDocument();
-    expect(screen.getByText('Özel hata mesajı.')).toBeInTheDocument();
+    expect(screen.getByTestId('err-detail')).toHaveTextContent('Özel hata mesajı.');
   });
 
   it('updates timestamp dynamically', () => {
