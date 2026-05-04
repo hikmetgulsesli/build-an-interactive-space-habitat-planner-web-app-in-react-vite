@@ -146,16 +146,11 @@ export function HabitatTasarimi({ currentScreen, onNavigate, state, onSelectModu
         </div>
       ))}
       {modules.length === 0 && (
-        <div className="text-center py-8 flex flex-col items-center gap-md">
-          <div className="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
-            <span className="material-symbols-outlined text-[32px] text-outline">domain_disabled</span>
-          </div>
-          <div>
-            <p className="font-title-tr text-title-tr text-on-surface-variant mb-1">Modül Bulunmuyor</p>
-            <p className="font-body-tr text-body-tr text-on-surface-variant/60 max-w-xs">Habitat yapılandırması boş. Yeni bir modül ekleyerek yapılandırmaya başlayın.</p>
-          </div>
-          <button onClick={onAddModule} className="mt-2 bg-primary-container text-on-primary-container font-label-tr text-label-tr px-md py-sm rounded-lg flex items-center gap-sm hover:bg-inverse-primary transition-colors cursor-pointer">
-            <span className="material-symbols-outlined text-[18px]">add</span>
+        <div className="text-center py-8">
+          <p className="font-display-tr text-title-tr text-on-surface mb-sm">Modül Bulunmuyor</p>
+          <p className="font-body-tr text-body-tr text-on-surface-variant mb-md">Habitat yapılandırması boş. Yeni bir modül ekleyerek yapılandırmaya başlayın.</p>
+          <button onClick={onAddModule} className="bg-primary-container text-on-primary-container font-label-tr text-label-tr px-md py-sm rounded-lg flex items-center gap-sm shadow-[0_0_12px_rgba(37,99,235,0.4)] hover:bg-inverse-primary transition-colors border border-primary/50 cursor-pointer">
+            <span className="material-symbols-outlined" data-icon="add" data-weight="fill" style={{fontVariationSettings: "'FILL' 1"}}>add</span>
             İlk Modülü Ekle
           </button>
         </div>
